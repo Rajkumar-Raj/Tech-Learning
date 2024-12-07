@@ -1,0 +1,126 @@
+<p>Here&apos;s how you can design a form using Bootstrap with the requested specifications. The form will have two sections, where the second section (containing <strong>Sex</strong> and <strong>Country</strong>) is collapsible/expandable using an SVG arrow.</p>
+<hr>
+<h3><strong>Complete Form Layout</strong></h3>
+<pre><code class="language-razor">@page &quot;/bootstrap-form&quot;
+
+&lt;h3&gt;Bootstrap Form Example&lt;/h3&gt;
+
+&lt;!-- First Section --&gt;
+&lt;div class=&quot;card my-3&quot;&gt;
+    &lt;div class=&quot;card-header&quot;&gt;
+        &lt;h5 class=&quot;mb-0&quot;&gt;Personal Information&lt;/h5&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;card-body&quot;&gt;
+        &lt;div class=&quot;mb-3&quot;&gt;
+            &lt;label for=&quot;name&quot; class=&quot;form-label&quot;&gt;Name&lt;/label&gt;
+            &lt;input type=&quot;text&quot; id=&quot;name&quot; class=&quot;form-control&quot; placeholder=&quot;Enter your name&quot; /&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;mb-3&quot;&gt;
+            &lt;label for=&quot;dob&quot; class=&quot;form-label&quot;&gt;Date of Birth&lt;/label&gt;
+            &lt;input type=&quot;date&quot; id=&quot;dob&quot; class=&quot;form-control&quot; /&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Second Section (Collapsible) --&gt;
+&lt;div class=&quot;card my-3&quot;&gt;
+    &lt;div class=&quot;card-header d-flex justify-content-between align-items-center&quot; @onclick=&quot;ToggleCollapse&quot;&gt;
+        &lt;h5 class=&quot;mb-0&quot;&gt;Additional Information&lt;/h5&gt;
+        &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;24&quot; height=&quot;24&quot; fill=&quot;currentColor&quot; class=&quot;bi bi-chevron-down&quot; viewBox=&quot;0 0 16 16&quot; style=&quot;cursor: pointer;&quot;&gt;
+            &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z&quot;/&gt;
+        &lt;/svg&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;card-body&quot; style=&quot;@(isCollapsed ? &quot;display: none;&quot; : &quot;display: block;&quot;)&quot;&gt;
+        &lt;div class=&quot;mb-3&quot;&gt;
+            &lt;label for=&quot;sex&quot; class=&quot;form-label&quot;&gt;Sex&lt;/label&gt;
+            &lt;select id=&quot;sex&quot; class=&quot;form-select&quot;&gt;
+                &lt;option value=&quot;&quot;&gt;Select&lt;/option&gt;
+                &lt;option value=&quot;male&quot;&gt;Male&lt;/option&gt;
+                &lt;option value=&quot;female&quot;&gt;Female&lt;/option&gt;
+                &lt;option value=&quot;other&quot;&gt;Other&lt;/option&gt;
+            &lt;/select&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;mb-3&quot;&gt;
+            &lt;label for=&quot;country&quot; class=&quot;form-label&quot;&gt;Country&lt;/label&gt;
+            &lt;select id=&quot;country&quot; class=&quot;form-select&quot;&gt;
+                &lt;option value=&quot;&quot;&gt;Select&lt;/option&gt;
+                &lt;option value=&quot;us&quot;&gt;United States&lt;/option&gt;
+                &lt;option value=&quot;ca&quot;&gt;Canada&lt;/option&gt;
+                &lt;option value=&quot;uk&quot;&gt;United Kingdom&lt;/option&gt;
+            &lt;/select&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;button class=&quot;btn btn-primary mt-3&quot;&gt;Submit&lt;/button&gt;
+
+@code {
+    private bool isCollapsed = true;
+
+    private void ToggleCollapse()
+    {
+        isCollapsed = !isCollapsed;
+    }
+}
+</code></pre>
+<hr>
+<h3><strong>Explanation</strong></h3>
+<ol>
+    <li>
+        <p><strong>First Section</strong>:</p>
+        <ul>
+            <li>Static card with <code>Name</code> and <code>Date of Birth</code> fields styled using Bootstrap classes like <code>form-control</code> and <code>form-label</code>.</li>
+        </ul>
+    </li>
+    <li>
+        <p><strong>Second Section (Collapsible)</strong>:</p>
+        <ul>
+            <li>Contains <strong>Sex</strong> and <strong>Country</strong> fields.</li>
+            <li>Initially collapsed (<code>isCollapsed = true</code>).</li>
+            <li>The collapse/expand toggle is controlled by a <code>@onclick</code> handler on the card header, which flips the <code>isCollapsed</code> state.</li>
+        </ul>
+    </li>
+    <li>
+        <p><strong>SVG Arrow</strong>:</p>
+        <ul>
+            <li>Used a Bootstrap icon (<code>bi-chevron-down</code>).</li>
+            <li>The arrow changes direction based on the collapsed state using dynamic styles or an additional <code>bi-chevron-up</code> icon.</li>
+        </ul>
+    </li>
+</ol>
+<hr>
+<h3><strong>CSS (Optional for Enhanced Styling)</strong></h3>
+<p>Add custom CSS to style the card header and SVG hover effects.</p>
+<pre><code class="language-css">.card-header {
+    background-color: #f8f9fa;
+    cursor: pointer;
+    user-select: none;
+}
+
+.card-header:hover {
+    background-color: #e9ecef;
+}
+
+.bi {
+    transition: transform 0.3s ease;
+}
+
+.bi-collapsed {
+    transform: rotate(180deg);
+}
+</code></pre>
+<p>To toggle the arrow dynamically, you can conditionally apply the <code>bi-collapsed</code> class:</p>
+<pre><code class="language-razor">&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;24&quot; height=&quot;24&quot; fill=&quot;currentColor&quot; 
+     class=&quot;bi @(isCollapsed ? &quot;bi-collapsed&quot; : &quot;&quot;)&quot; viewBox=&quot;0 0 16 16&quot;&gt;
+    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z&quot;/&gt;
+&lt;/svg&gt;
+</code></pre>
+<hr>
+<h3><strong>Resulting Behavior</strong></h3>
+<ol>
+    <li>The <strong>&quot;Additional Information&quot;</strong> section is collapsed by default.</li>
+    <li>Clicking the header toggles the visibility of the section.</li>
+    <li>The arrow dynamically rotates to indicate the current state.</li>
+    <li>The form fields are styled using Bootstrap for a clean and responsive design.</li>
+</ol>
+<p>This design is reusable and adheres to modern UI/UX principles!</p>
