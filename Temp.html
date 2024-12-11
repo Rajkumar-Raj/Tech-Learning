@@ -168,3 +168,153 @@ public class InputTypeAttribute : Attribute
     <li><strong>Reusable Component</strong>: Modular design for generating forms dynamically.</li>
 </ol>
 <p>This approach provides flexibility for creating forms dynamically while maintaining clean and readable code.</p>
+
+
+<p>======================================================================</p>
+<p>======================================================================</p>
+<p>======================================================================</p>
+
+<p>To allow dropdown sources as a dictionary <code>&lt;string, string&gt;</code> (e.g., for a key-value pair where the key is the internal value, and the value is the display text), you can modify the dynamic form component logic to handle dictionaries for dropdown sources.</p>
+<hr>
+<h3><strong>1. Update the Model</strong></h3>
+<p>Define dropdown source attributes as dictionaries to enable key-value pairing.</p>
+<h4>Example Model</h4>
+<pre><code>using System.ComponentModel.DataAnnotations;
+
+public class DynamicFormModel
+{
+    [Display(Name = &quot;Full Name&quot;)]
+    [Required(ErrorMessage = &quot;Name is required&quot;)]
+    [InputType(Type = InputFieldType.Text)]
+    public string Name { get; set; }
+
+    [Display(Name = &quot;Country&quot;)]
+    [Required(ErrorMessage = &quot;Country is required&quot;)]
+    [InputType(Type = InputFieldType.Dropdown, DropdownSource = nameof(CountryOptions))]
+    public string Country { get; set; }
+
+    public static readonly Dictionary&lt;string, string&gt; CountryOptions = new()
+    {
+        { &quot;US&quot;, &quot;United States&quot; },
+        { &quot;CA&quot;, &quot;Canada&quot; },
+        { &quot;MX&quot;, &quot;Mexico&quot; }
+    };
+}
+</code></pre>
+<hr>
+<h3><strong>2. Update the <code>DynamicFormComponent</code></strong></h3>
+<p>Modify the logic to render a dropdown from a dictionary source.</p>
+<h4>Updated Component</h4>
+<pre><code>@using System.Reflection
+@using System.ComponentModel.DataAnnotations
+
+&lt;EditForm Model=&quot;@Model&quot; OnValidSubmit=&quot;@HandleSubmit&quot;&gt;
+    &lt;DataAnnotationsValidator /&gt;
+    &lt;ValidationSummary /&gt;
+
+    @foreach (var property in Model.GetType().GetProperties())
+    {
+        var displayAttribute = property.GetCustomAttribute&lt;DisplayAttribute&gt;();
+        var inputTypeAttribute = property.GetCustomAttribute&lt;InputTypeAttribute&gt;();
+
+        if (inputTypeAttribute != null)
+        {
+            &lt;div class=&quot;mb-3&quot;&gt;
+                &lt;label&gt;@displayAttribute?.Name ?? property.Name&lt;/label&gt;
+                @RenderInputField(property, inputTypeAttribute)
+                &lt;ValidationMessage For=&quot;@(() =&gt; property.GetValue(Model))&quot; /&gt;
+            &lt;/div&gt;
+        }
+    }
+
+    &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;Submit&lt;/button&gt;
+&lt;/EditForm&gt;
+
+@code {
+    [Parameter]
+    public object Model { get; set; } = new DynamicFormModel();
+
+    private async Task HandleSubmit()
+    {
+        Console.WriteLine(&quot;Form submitted!&quot;);
+    }
+
+    private RenderFragment RenderInputField(PropertyInfo property, InputTypeAttribute inputTypeAttribute) =&gt; builder =&gt;
+    {
+        switch (inputTypeAttribute.Type)
+        {
+            case InputFieldType.Text:
+                builder.OpenComponent(0, typeof(InputText));
+                builder.AddAttribute(1, &quot;class&quot;, &quot;form-control&quot;);
+                builder.AddAttribute(2, &quot;Value&quot;, BindConverter.FormatValue(property.GetValue(Model)));
+                builder.AddAttribute(3, &quot;ValueChanged&quot;, EventCallback.Factory.Create(this, value =&gt; property.SetValue(Model, value)));
+                builder.AddAttribute(4, &quot;ValueExpression&quot;, () =&gt; property.GetValue(Model));
+                builder.CloseComponent();
+                break;
+
+            case InputFieldType.Dropdown:
+                var dropdownSourceProperty = Model.GetType().GetProperty(inputTypeAttribute.DropdownSource);
+                if (dropdownSourceProperty != null)
+                {
+                    var options = dropdownSourceProperty.GetValue(Model) as Dictionary&lt;string, string&gt;;
+                    if (options != null)
+                    {
+                        builder.OpenElement(0, &quot;select&quot;);
+                        builder.AddAttribute(1, &quot;class&quot;, &quot;form-control&quot;);
+                        builder.AddAttribute(2, &quot;Value&quot;, BindConverter.FormatValue(property.GetValue(Model)));
+                        builder.AddAttribute(3, &quot;onchange&quot;, EventCallback.Factory.Create(this, (ChangeEventArgs e) =&gt; property.SetValue(Model, e.Value)));
+
+                        foreach (var option in options)
+                        {
+                            builder.OpenElement(4, &quot;option&quot;);
+                            builder.AddAttribute(5, &quot;value&quot;, option.Key);
+                            builder.AddContent(6, option.Value);
+                            builder.CloseElement();
+                        }
+
+                        builder.CloseElement();
+                    }
+                }
+                break;
+        }
+    };
+}
+</code></pre>
+<hr>
+<h3><strong>3. Usage</strong></h3>
+<h4>Pass the Model to the Component</h4>
+<pre><code>&lt;DynamicFormComponent Model=&quot;@formModel&quot; /&gt;
+
+@code {
+    private DynamicFormModel formModel = new();
+}
+</code></pre>
+<hr>
+<h3><strong>4. Key Features</strong></h3>
+<ol>
+    <li>
+        <p><strong>Dropdown Support with Dictionary</strong>: The dropdown options are rendered using a dictionary, allowing different display values for internal keys.</p>
+        <ul>
+            <li><strong>Key</strong>: The value submitted with the form.</li>
+            <li><strong>Value</strong>: The display name shown to the user.</li>
+        </ul>
+    </li>
+    <li>
+        <p><strong>Dynamic Form Rendering</strong>: Automatically renders form fields based on the model.</p>
+    </li>
+    <li>
+        <p><strong>Validation</strong>: Data annotations handle required and other validation rules.</p>
+    </li>
+    <li>
+        <p><strong>Expandable for Other Input Types</strong>: Easily add additional field types as needed.</p>
+    </li>
+</ol>
+<hr>
+<h3>Example Output for Country Dropdown:</h3>
+<pre><code>&lt;select class=&quot;form-control&quot;&gt;
+    &lt;option value=&quot;US&quot;&gt;United States&lt;/option&gt;
+    &lt;option value=&quot;CA&quot;&gt;Canada&lt;/option&gt;
+    &lt;option value=&quot;MX&quot;&gt;Mexico&lt;/option&gt;
+&lt;/select&gt;
+</code></pre>
+<p>This setup allows for a clean, reusable approach to handle forms dynamically with dropdowns sourced from dictionaries.</p>
