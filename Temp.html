@@ -1,320 +1,129 @@
-<p>To extend the dynamic form generation to support specifying input types (e.g., dropdowns, checkboxes) in the model and providing dropdown sources, you can enhance the model and the form logic as follows:</p>
+<p>Here&rsquo;s how to create a reusable dynamic popup component in Blazor. The popup can display dynamic content, making it versatile for different use cases.</p>
 <hr>
-<h3><strong>1. Enhance the Model with InputType and DropdownSource Attributes</strong></h3>
-<p>Create custom attributes to define the input type and provide data for dropdown fields.</p>
-<h4>Example: Model with Enhanced Metadata</h4>
-<pre><code>using System.ComponentModel.DataAnnotations;
-
-public class DynamicFormModel
-{
-    [Display(Name = &quot;Full Name&quot;)]
-    [Required(ErrorMessage = &quot;Name is required&quot;)]
-    [InputType(Type = InputFieldType.Text)]
-    public string Name { get; set; }
-
-    [Display(Name = &quot;Date of Birth&quot;)]
-    [Required(ErrorMessage = &quot;DOB is required&quot;)]
-    [InputType(Type = InputFieldType.Date)]
-    public DateTime DOB { get; set; }
-
-    [Display(Name = &quot;Gender&quot;)]
-    [Required(ErrorMessage = &quot;Gender is required&quot;)]
-    [InputType(Type = InputFieldType.Dropdown, DropdownSource = nameof(GenderOptions))]
-    public string Gender { get; set; }
-
-    [Display(Name = &quot;Agree to Terms&quot;)]
-    [InputType(Type = InputFieldType.Checkbox)]
-    public bool AgreeToTerms { get; set; }
-
-    // Dropdown data sources
-    public static readonly List&lt;string&gt; GenderOptions = new() { &quot;Male&quot;, &quot;Female&quot;, &quot;Other&quot; };
-}
-
-public enum InputFieldType
-{
-    Text,
-    Date,
-    Number,
-    Dropdown,
-    Checkbox
-}
-
-[AttributeUsage(AttributeTargets.Property)]
-public class InputTypeAttribute : Attribute
-{
-    public InputFieldType Type { get; set; }
-    public string DropdownSource { get; set; }
-}
-</code></pre>
-<hr>
-<h3><strong>2. Update the Dynamic Form Component</strong></h3>
-<p>Enhance the form logic to render the correct input type and handle dropdowns with dynamic sources.</p>
-<h4>Updated Dynamic Form Component</h4>
-<pre><code>@using System.Reflection
-@using System.ComponentModel.DataAnnotations
-
-&lt;EditForm Model=&quot;@Model&quot; OnValidSubmit=&quot;@HandleSubmit&quot;&gt;
-    &lt;DataAnnotationsValidator /&gt;
-    &lt;ValidationSummary /&gt;
-
-    @foreach (var property in Model.GetType().GetProperties())
-    {
-        var displayAttribute = property.GetCustomAttribute&lt;DisplayAttribute&gt;();
-        var inputTypeAttribute = property.GetCustomAttribute&lt;InputTypeAttribute&gt;();
-
-        if (inputTypeAttribute != null)
-        {
-            &lt;div class=&quot;mb-3&quot;&gt;
-                &lt;label&gt;@displayAttribute?.Name ?? property.Name&lt;/label&gt;
-                @RenderInputField(property, inputTypeAttribute)
-                &lt;ValidationMessage For=&quot;@(() =&gt; property.GetValue(Model))&quot; /&gt;
-            &lt;/div&gt;
-        }
-    }
-
-    &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;Submit&lt;/button&gt;
-&lt;/EditForm&gt;
+<h3><strong>DynamicPopup.razor</strong></h3>
+<p>This component serves as a reusable popup with customizable content.</p>
+<pre><code>&lt;div class=&quot;popup-backdrop&quot; @onclick=&quot;ClosePopup&quot;block&quot; : &quot;none&quot;)&quot;&gt;
+    &lt;div class=&quot;popup-content&quot; @onclick:stopPropagation&gt;
+        &lt;button class=&quot;close-btn&quot; @onclick=&quot;ClosePopup&quot;&gt;✖&lt;/button&gt;
+        @ChildContent
+    &lt;/div&gt;
+&lt;/div&gt;
 
 @code {
-    [Parameter]
-    public object Model { get; set; } = new DynamicFormModel();
+    [Parameter] public RenderFragment ChildContent { get; set; } // Content to display inside the popup
+    [Parameter] public EventCallback&lt;bool&gt; OnClose { get; set; } // Callback to notify parent about popup close
+    [Parameter] public bool IsVisible { get; set; } // Control popup visibility
 
-    private async Task HandleSubmit()
+    private void ClosePopup()
     {
-        Console.WriteLine(&quot;Form submitted!&quot;);
+        IsVisible = false;
+        OnClose.InvokeAsync(IsVisible);
     }
-
-    private RenderFragment RenderInputField(PropertyInfo property, InputTypeAttribute inputTypeAttribute) =&gt; builder =&gt;
-    {
-        switch (inputTypeAttribute.Type)
-        {
-            case InputFieldType.Text:
-                builder.OpenComponent(0, typeof(InputText));
-                builder.AddAttribute(1, &quot;class&quot;, &quot;form-control&quot;);
-                builder.AddAttribute(2, &quot;Value&quot;, BindConverter.FormatValue(property.GetValue(Model)));
-                builder.AddAttribute(3, &quot;ValueChanged&quot;, EventCallback.Factory.Create(this, value =&gt; property.SetValue(Model, value)));
-                builder.AddAttribute(4, &quot;ValueExpression&quot;, () =&gt; property.GetValue(Model));
-                builder.CloseComponent();
-                break;
-
-            case InputFieldType.Date:
-                builder.OpenComponent(0, typeof(InputDate&lt;DateTime&gt;));
-                builder.AddAttribute(1, &quot;class&quot;, &quot;form-control&quot;);
-                builder.AddAttribute(2, &quot;Value&quot;, BindConverter.FormatValue(property.GetValue(Model)));
-                builder.AddAttribute(3, &quot;ValueChanged&quot;, EventCallback.Factory.Create(this, value =&gt; property.SetValue(Model, value)));
-                builder.AddAttribute(4, &quot;ValueExpression&quot;, () =&gt; property.GetValue(Model));
-                builder.CloseComponent();
-                break;
-
-            case InputFieldType.Number:
-                builder.OpenComponent(0, typeof(InputNumber&lt;int&gt;));
-                builder.AddAttribute(1, &quot;class&quot;, &quot;form-control&quot;);
-                builder.AddAttribute(2, &quot;Value&quot;, BindConverter.FormatValue(property.GetValue(Model)));
-                builder.AddAttribute(3, &quot;ValueChanged&quot;, EventCallback.Factory.Create(this, value =&gt; property.SetValue(Model, value)));
-                builder.AddAttribute(4, &quot;ValueExpression&quot;, () =&gt; property.GetValue(Model));
-                builder.CloseComponent();
-                break;
-
-            case InputFieldType.Dropdown:
-                var dropdownSourceProperty = Model.GetType().GetProperty(inputTypeAttribute.DropdownSource);
-                if (dropdownSourceProperty != null)
-                {
-                    var options = dropdownSourceProperty.GetValue(Model) as IEnumerable&lt;string&gt;;
-                    builder.OpenElement(0, &quot;select&quot;);
-                    builder.AddAttribute(1, &quot;class&quot;, &quot;form-control&quot;);
-                    builder.AddAttribute(2, &quot;Value&quot;, BindConverter.FormatValue(property.GetValue(Model)));
-                    builder.AddAttribute(3, &quot;onchange&quot;, EventCallback.Factory.Create(this, value =&gt; property.SetValue(Model, value)));
-
-                    foreach (var option in options)
-                    {
-                        builder.OpenElement(4, &quot;option&quot;);
-                        builder.AddAttribute(5, &quot;value&quot;, option);
-                        builder.AddContent(6, option);
-                        builder.CloseElement();
-                    }
-
-                    builder.CloseElement();
-                }
-                break;
-
-            case InputFieldType.Checkbox:
-                builder.OpenComponent(0, typeof(InputCheckbox));
-                builder.AddAttribute(1, &quot;class&quot;, &quot;form-check-input&quot;);
-                builder.AddAttribute(2, &quot;Value&quot;, property.GetValue(Model));
-                builder.AddAttribute(3, &quot;ValueChanged&quot;, EventCallback.Factory.Create(this, value =&gt; property.SetValue(Model, value)));
-                builder.AddAttribute(4, &quot;ValueExpression&quot;, () =&gt; property.GetValue(Model));
-                builder.CloseComponent();
-                break;
-        }
-    };
 }
 </code></pre>
 <hr>
-<h3><strong>3. Use the Updated Component</strong></h3>
-<p>Pass the model to the dynamic form component and render it.</p>
-<h4>Example Usage</h4>
-<pre><code>&lt;DynamicFormComponent Model=&quot;@formModel&quot; /&gt;
+<h3><strong>Styles (CSS)</strong></h3>
+<p>Add the following CSS to style the popup:</p>
+<pre><code>.popup-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 1000;
+}
+
+.popup-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    max-width: 90%;
+    min-width: 300px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+</code></pre>
+<hr>
+<h3><strong>Usage in a Parent Component</strong></h3>
+<p>Here&rsquo;s how to use the <code>DynamicPopup</code> component in a parent component.</p>
+<pre><code>@page &quot;/dynamic-popup&quot;
+
+&lt;h3&gt;Dynamic Popup Example&lt;/h3&gt;
+
+&lt;button @onclick=&quot;ShowPopup&quot;&gt;Open Popup&lt;/button&gt;
+
+&lt;DynamicPopup IsVisible=&quot;@IsPopupVisible&quot; OnClose=&quot;PopupClosed&quot;&gt;
+    &lt;h3&gt;Dynamic Popup Content&lt;/h3&gt;
+    &lt;p&gt;This is a reusable popup component with dynamic content.&lt;/p&gt;
+    &lt;button @onclick=&quot;SaveChanges&quot;&gt;Save&lt;/button&gt;
+&lt;/DynamicPopup&gt;
 
 @code {
-    private DynamicFormModel formModel = new();
-}
-</code></pre>
-<hr>
-<h3><strong>Features Covered:</strong></h3>
-<ol>
-    <li><strong>Dynamic Field Types</strong>: Support for text, date, number, dropdown, and checkbox.</li>
-    <li><strong>Dropdown Sources</strong>: Populate dropdowns dynamically using attributes.</li>
-    <li><strong>Validation</strong>: Uses data annotations for validation.</li>
-    <li><strong>Reusable Component</strong>: Modular design for generating forms dynamically.</li>
-</ol>
-<p>This approach provides flexibility for creating forms dynamically while maintaining clean and readable code.</p>
+    private bool IsPopupVisible;
 
-
-<p>======================================================================</p>
-<p>======================================================================</p>
-<p>======================================================================</p>
-
-<p>To allow dropdown sources as a dictionary <code>&lt;string, string&gt;</code> (e.g., for a key-value pair where the key is the internal value, and the value is the display text), you can modify the dynamic form component logic to handle dictionaries for dropdown sources.</p>
-<hr>
-<h3><strong>1. Update the Model</strong></h3>
-<p>Define dropdown source attributes as dictionaries to enable key-value pairing.</p>
-<h4>Example Model</h4>
-<pre><code>using System.ComponentModel.DataAnnotations;
-
-public class DynamicFormModel
-{
-    [Display(Name = &quot;Full Name&quot;)]
-    [Required(ErrorMessage = &quot;Name is required&quot;)]
-    [InputType(Type = InputFieldType.Text)]
-    public string Name { get; set; }
-
-    [Display(Name = &quot;Country&quot;)]
-    [Required(ErrorMessage = &quot;Country is required&quot;)]
-    [InputType(Type = InputFieldType.Dropdown, DropdownSource = nameof(CountryOptions))]
-    public string Country { get; set; }
-
-    public static readonly Dictionary&lt;string, string&gt; CountryOptions = new()
+    private void ShowPopup()
     {
-        { &quot;US&quot;, &quot;United States&quot; },
-        { &quot;CA&quot;, &quot;Canada&quot; },
-        { &quot;MX&quot;, &quot;Mexico&quot; }
-    };
-}
-</code></pre>
-<hr>
-<h3><strong>2. Update the <code>DynamicFormComponent</code></strong></h3>
-<p>Modify the logic to render a dropdown from a dictionary source.</p>
-<h4>Updated Component</h4>
-<pre><code>@using System.Reflection
-@using System.ComponentModel.DataAnnotations
-
-&lt;EditForm Model=&quot;@Model&quot; OnValidSubmit=&quot;@HandleSubmit&quot;&gt;
-    &lt;DataAnnotationsValidator /&gt;
-    &lt;ValidationSummary /&gt;
-
-    @foreach (var property in Model.GetType().GetProperties())
-    {
-        var displayAttribute = property.GetCustomAttribute&lt;DisplayAttribute&gt;();
-        var inputTypeAttribute = property.GetCustomAttribute&lt;InputTypeAttribute&gt;();
-
-        if (inputTypeAttribute != null)
-        {
-            &lt;div class=&quot;mb-3&quot;&gt;
-                &lt;label&gt;@displayAttribute?.Name ?? property.Name&lt;/label&gt;
-                @RenderInputField(property, inputTypeAttribute)
-                &lt;ValidationMessage For=&quot;@(() =&gt; property.GetValue(Model))&quot; /&gt;
-            &lt;/div&gt;
-        }
+        IsPopupVisible = true;
     }
 
-    &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;Submit&lt;/button&gt;
-&lt;/EditForm&gt;
-
-@code {
-    [Parameter]
-    public object Model { get; set; } = new DynamicFormModel();
-
-    private async Task HandleSubmit()
+    private void PopupClosed(bool isVisible)
     {
-        Console.WriteLine(&quot;Form submitted!&quot;);
+        IsPopupVisible = isVisible;
     }
 
-    private RenderFragment RenderInputField(PropertyInfo property, InputTypeAttribute inputTypeAttribute) =&gt; builder =&gt;
+    private void SaveChanges()
     {
-        switch (inputTypeAttribute.Type)
-        {
-            case InputFieldType.Text:
-                builder.OpenComponent(0, typeof(InputText));
-                builder.AddAttribute(1, &quot;class&quot;, &quot;form-control&quot;);
-                builder.AddAttribute(2, &quot;Value&quot;, BindConverter.FormatValue(property.GetValue(Model)));
-                builder.AddAttribute(3, &quot;ValueChanged&quot;, EventCallback.Factory.Create(this, value =&gt; property.SetValue(Model, value)));
-                builder.AddAttribute(4, &quot;ValueExpression&quot;, () =&gt; property.GetValue(Model));
-                builder.CloseComponent();
-                break;
-
-            case InputFieldType.Dropdown:
-                var dropdownSourceProperty = Model.GetType().GetProperty(inputTypeAttribute.DropdownSource);
-                if (dropdownSourceProperty != null)
-                {
-                    var options = dropdownSourceProperty.GetValue(Model) as Dictionary&lt;string, string&gt;;
-                    if (options != null)
-                    {
-                        builder.OpenElement(0, &quot;select&quot;);
-                        builder.AddAttribute(1, &quot;class&quot;, &quot;form-control&quot;);
-                        builder.AddAttribute(2, &quot;Value&quot;, BindConverter.FormatValue(property.GetValue(Model)));
-                        builder.AddAttribute(3, &quot;onchange&quot;, EventCallback.Factory.Create(this, (ChangeEventArgs e) =&gt; property.SetValue(Model, e.Value)));
-
-                        foreach (var option in options)
-                        {
-                            builder.OpenElement(4, &quot;option&quot;);
-                            builder.AddAttribute(5, &quot;value&quot;, option.Key);
-                            builder.AddContent(6, option.Value);
-                            builder.CloseElement();
-                        }
-
-                        builder.CloseElement();
-                    }
-                }
-                break;
-        }
-    };
+        // Handle save logic here
+        IsPopupVisible = false;
+    }
 }
 </code></pre>
 <hr>
-<h3><strong>3. Usage</strong></h3>
-<h4>Pass the Model to the Component</h4>
-<pre><code>&lt;DynamicFormComponent Model=&quot;@formModel&quot; /&gt;
-
-@code {
-    private DynamicFormModel formModel = new();
-}
-</code></pre>
-<hr>
-<h3><strong>4. Key Features</strong></h3>
+<h3><strong>Explanation</strong></h3>
 <ol>
     <li>
-        <p><strong>Dropdown Support with Dictionary</strong>: The dropdown options are rendered using a dictionary, allowing different display values for internal keys.</p>
+        <p><strong>Popup Component (<code>DynamicPopup</code>):</strong></p>
         <ul>
-            <li><strong>Key</strong>: The value submitted with the form.</li>
-            <li><strong>Value</strong>: The display name shown to the user.</li>
+            <li>Uses a <code>ChildContent</code> parameter to render dynamic content.</li>
+            <li><code>OnClose</code> callback notifies the parent when the popup is closed.</li>
+            <li><code>IsVisible</code> controls the popup&apos;s visibility.</li>
         </ul>
     </li>
     <li>
-        <p><strong>Dynamic Form Rendering</strong>: Automatically renders form fields based on the model.</p>
+        <p><strong>Parent Component:</strong></p>
+        <ul>
+            <li>Toggles the popup visibility using <code>IsPopupVisible</code>.</li>
+            <li>Passes content dynamically to the popup through the <code>ChildContent</code> slot.</li>
+        </ul>
     </li>
     <li>
-        <p><strong>Validation</strong>: Data annotations handle required and other validation rules.</p>
-    </li>
-    <li>
-        <p><strong>Expandable for Other Input Types</strong>: Easily add additional field types as needed.</p>
+        <p><strong>Styling:</strong></p>
+        <ul>
+            <li>The backdrop (<code>popup-backdrop</code>) covers the screen and dims the background.</li>
+            <li>The content container (<code>popup-content</code>) is centered and styled.</li>
+        </ul>
     </li>
 </ol>
 <hr>
-<h3>Example Output for Country Dropdown:</h3>
-<pre><code>&lt;select class=&quot;form-control&quot;&gt;
-    &lt;option value=&quot;US&quot;&gt;United States&lt;/option&gt;
-    &lt;option value=&quot;CA&quot;&gt;Canada&lt;/option&gt;
-    &lt;option value=&quot;MX&quot;&gt;Mexico&lt;/option&gt;
-&lt;/select&gt;
-</code></pre>
-<p>This setup allows for a clean, reusable approach to handle forms dynamically with dropdowns sourced from dictionaries.</p>
+<h3><strong>Benefits</strong></h3>
+<ul>
+    <li><strong>Reusability:</strong> The <code>DynamicPopup</code> can be used across the application.</li>
+    <li><strong>Dynamic Content:</strong> The <code>ChildContent</code> slot allows any content to be passed.</li>
+    <li><strong>Separation of Concerns:</strong> The popup logic is encapsulated, making the parent components cleaner.</li>
+</ul>
