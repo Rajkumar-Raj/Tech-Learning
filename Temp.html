@@ -1,0 +1,129 @@
+<p>Here&rsquo;s how to create a reusable dynamic popup component in Blazor. The popup can display dynamic content, making it versatile for different use cases.</p>
+<hr>
+<h3><strong>DynamicPopup.razor</strong></h3>
+<p>This component serves as a reusable popup with customizable content.</p>
+<pre><code>&lt;div class=&quot;popup-backdrop&quot; @onclick=&quot;ClosePopup&quot;block&quot; : &quot;none&quot;)&quot;&gt;
+    &lt;div class=&quot;popup-content&quot; @onclick:stopPropagation&gt;
+        &lt;button class=&quot;close-btn&quot; @onclick=&quot;ClosePopup&quot;&gt;✖&lt;/button&gt;
+        @ChildContent
+    &lt;/div&gt;
+&lt;/div&gt;
+
+@code {
+    [Parameter] public RenderFragment ChildContent { get; set; } // Content to display inside the popup
+    [Parameter] public EventCallback&lt;bool&gt; OnClose { get; set; } // Callback to notify parent about popup close
+    [Parameter] public bool IsVisible { get; set; } // Control popup visibility
+
+    private void ClosePopup()
+    {
+        IsVisible = false;
+        OnClose.InvokeAsync(IsVisible);
+    }
+}
+</code></pre>
+<hr>
+<h3><strong>Styles (CSS)</strong></h3>
+<p>Add the following CSS to style the popup:</p>
+<pre><code>.popup-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 1000;
+}
+
+.popup-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    max-width: 90%;
+    min-width: 300px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+</code></pre>
+<hr>
+<h3><strong>Usage in a Parent Component</strong></h3>
+<p>Here&rsquo;s how to use the <code>DynamicPopup</code> component in a parent component.</p>
+<pre><code>@page &quot;/dynamic-popup&quot;
+
+&lt;h3&gt;Dynamic Popup Example&lt;/h3&gt;
+
+&lt;button @onclick=&quot;ShowPopup&quot;&gt;Open Popup&lt;/button&gt;
+
+&lt;DynamicPopup IsVisible=&quot;@IsPopupVisible&quot; OnClose=&quot;PopupClosed&quot;&gt;
+    &lt;h3&gt;Dynamic Popup Content&lt;/h3&gt;
+    &lt;p&gt;This is a reusable popup component with dynamic content.&lt;/p&gt;
+    &lt;button @onclick=&quot;SaveChanges&quot;&gt;Save&lt;/button&gt;
+&lt;/DynamicPopup&gt;
+
+@code {
+    private bool IsPopupVisible;
+
+    private void ShowPopup()
+    {
+        IsPopupVisible = true;
+    }
+
+    private void PopupClosed(bool isVisible)
+    {
+        IsPopupVisible = isVisible;
+    }
+
+    private void SaveChanges()
+    {
+        // Handle save logic here
+        IsPopupVisible = false;
+    }
+}
+</code></pre>
+<hr>
+<h3><strong>Explanation</strong></h3>
+<ol>
+    <li>
+        <p><strong>Popup Component (<code>DynamicPopup</code>):</strong></p>
+        <ul>
+            <li>Uses a <code>ChildContent</code> parameter to render dynamic content.</li>
+            <li><code>OnClose</code> callback notifies the parent when the popup is closed.</li>
+            <li><code>IsVisible</code> controls the popup&apos;s visibility.</li>
+        </ul>
+    </li>
+    <li>
+        <p><strong>Parent Component:</strong></p>
+        <ul>
+            <li>Toggles the popup visibility using <code>IsPopupVisible</code>.</li>
+            <li>Passes content dynamically to the popup through the <code>ChildContent</code> slot.</li>
+        </ul>
+    </li>
+    <li>
+        <p><strong>Styling:</strong></p>
+        <ul>
+            <li>The backdrop (<code>popup-backdrop</code>) covers the screen and dims the background.</li>
+            <li>The content container (<code>popup-content</code>) is centered and styled.</li>
+        </ul>
+    </li>
+</ol>
+<hr>
+<h3><strong>Benefits</strong></h3>
+<ul>
+    <li><strong>Reusability:</strong> The <code>DynamicPopup</code> can be used across the application.</li>
+    <li><strong>Dynamic Content:</strong> The <code>ChildContent</code> slot allows any content to be passed.</li>
+    <li><strong>Separation of Concerns:</strong> The popup logic is encapsulated, making the parent components cleaner.</li>
+</ul>
