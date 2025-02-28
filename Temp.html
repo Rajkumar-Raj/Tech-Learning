@@ -1,61 +1,195 @@
-<p>To load <code>bootstrap.min.css</code> only for a <strong>specific Blazor component</strong>, you can dynamically inject the CSS when the component is loaded and remove it when the component is disposed.</p>
-<h3><strong>Solution: Use JavaScript to Load CSS Dynamically</strong></h3>
-<p>We will use <strong>JavaScript interop</strong> to inject Bootstrap when the component is initialized and remove it when the component is disposed.</p>
+<p>To implement <strong>Microsoft Entra ID (formerly Azure AD) authentication</strong> in a <strong>Blazor Server app</strong> and retrieve an <strong>access token</strong>, follow these steps:</p>
 <hr>
-<h3><strong>1. Create a JavaScript File (<code>wwwroot/js/site.js</code>)</strong></h3>
-<p>Add the following JavaScript function to dynamically add and remove the CSS file:</p>
-<pre><code>window.loadCss = (href, id) =&gt; {
-    if (!document.getElementById(id)) {
-        let link = document.createElement(&quot;link&quot;);
-        link.id = id;
-        link.rel = &quot;stylesheet&quot;;
-        link.href = href;
-        document.head.appendChild(link);
-    }
-};
+<h2><strong>1️⃣ Register Your Blazor Server App in Microsoft Entra ID</strong></h2>
+<ol>
+    <li><strong>Go to</strong> <a href="https://portal.azure.com/">Azure Portal</a> &rarr; <strong>Microsoft Entra ID</strong> &rarr; <strong>App registrations</strong>.</li>
+    <li>Click <strong>New registration</strong>.<ul>
+            <li><strong>Name</strong>: <code>BlazorServerApp</code></li>
+            <li><strong>Supported Account Types</strong>: Choose based on your requirement:<ul>
+                    <li><strong>Single Tenant</strong> (only your org)</li>
+                    <li><strong>Multi-Tenant</strong> (all orgs)</li>
+                </ul>
+            </li>
+            <li><strong>Redirect URI</strong>: Select <strong>Web</strong>and enter:
+                <pre><code>https://localhost:5001/signin-oidc
+</code></pre>
+            </li>
+        </ul>
+    </li>
+    <li>Click <strong>Register</strong> and <strong>copy the</strong>:<ul>
+            <li><strong>Application (Client) ID</strong></li>
+            <li><strong>Directory (Tenant) ID</strong></li>
+        </ul>
+    </li>
+</ol>
+<hr>
+<h2><strong>2️⃣ Configure API Permissions</strong></h2>
+<ol>
+    <li>Go to <strong>API Permissions</strong> &rarr; <strong>Add a Permission</strong>.</li>
+    <li>Select <strong>Microsoft Graph</strong> (or your API).</li>
+    <li>Choose:<ul>
+            <li><strong>Delegated Permissions</strong> (if signing in as a user)</li>
+            <li><strong>Application Permissions</strong> (if using client credentials).</li>
+        </ul>
+    </li>
+    <li>Click <strong>&quot;Grant Admin Consent&quot;</strong>.</li>
+</ol>
+<hr>
+<h2><strong>3️⃣ Add a Client Secret</strong></h2>
+<ol>
+    <li>Go to <strong>Certificates &amp; Secrets</strong> &rarr; <strong>Client Secrets</strong> &rarr; <strong>New Client Secret</strong>.</li>
+    <li><strong>Copy the Secret Value</strong>.</li>
+</ol>
+<hr>
+<h2><strong>4️⃣ Configure Blazor Server App</strong></h2>
+<p>Install the required package:</p>
+<pre><code>dotnet add package Microsoft.AspNetCore.Authentication.OpenIdConnect
+</code></pre>
+<h3><strong>Update <code>appsettings.json</code></strong></h3>
+<pre><code>{
+  &quot;AzureAd&quot;: {
+    &quot;Instance&quot;: &quot;https://login.microsoftonline.com/&quot;,
+    &quot;Domain&quot;: &quot;yourdomain.com&quot;,
+    &quot;TenantId&quot;: &quot;your-tenant-id&quot;,
+    &quot;ClientId&quot;: &quot;your-client-id&quot;,
+    &quot;ClientSecret&quot;: &quot;your-client-secret&quot;,
+    &quot;CallbackPath&quot;: &quot;/signin-oidc&quot;
+  }
+}
+</code></pre>
+<h3><strong>Configure Authentication in <code>Program.cs</code></strong></h3>
+<p>Modify <code>Program.cs</code>:</p>
+<pre><code>using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.Identity.Web;
+using Microsoft.Identity.Web.UI;
 
-window.removeCss = (id) =&gt; {
-    let element = document.getElementById(id);
-    if (element) {
-        element.remove();
-    }
-};
+var builder = WebApplication.CreateBuilder(args);
+
+// Add authentication services
+builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
+    .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection(&quot;AzureAd&quot;))
+    .EnableTokenAcquisitionToCallDownstreamApi()
+    .AddInMemoryTokenCaches();
+
+builder.Services.AddAuthorization(options =&gt;
+{
+    options.FallbackPolicy = options.DefaultPolicy;
+});
+
+builder.Services.AddRazorPages()
+    .AddMicrosoftIdentityUI();
+
+var app = builder.Build();
+
+// Enable authentication &amp; authorization
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllers();
+app.MapRazorPages();
+app.Run();
 </code></pre>
 <hr>
-<h3><strong>2. Include the Script in <code>_Host.cshtml</code> (Blazor Server) or <code>index.html</code> (Blazor WASM)</strong></h3>
-<p>Inside the <code>&lt;head&gt;</code> tag, add:</p>
-<pre><code>&lt;script src=&quot;js/site.js&quot;&gt;&lt;/script&gt;
-</code></pre>
-<hr>
-<h3><strong>3. Modify the Blazor Component (<code>MyComponent.razor</code>)</strong></h3>
-<p>In the specific component where you want <strong>Bootstrap styles</strong>, use <strong>JS interop</strong> to inject and remove the CSS.</p>
-<pre><code>@inject IJSRuntime JS
+<h2><strong>5️⃣ Get an Access Token for API Calls</strong></h2>
+<p>Once the user is authenticated, use <strong><code>ITokenAcquisition</code></strong> to retrieve an <strong>access token</strong> for calling APIs.</p>
+<h3><strong>Create a Service to Get Token</strong></h3>
+<pre><code>using Microsoft.Identity.Web;
+using System.Net.Http.Headers;
 
-&lt;h3&gt;My Component with Bootstrap&lt;/h3&gt;
-&lt;button class=&quot;btn btn-primary&quot;&gt;Click Me&lt;/button&gt;
-&lt;p class=&quot;alert alert-success&quot;&gt;This is a Bootstrap-styled alert.&lt;/p&gt;
+public class ApiService
+{
+    private readonly ITokenAcquisition _tokenAcquisition;
+    private readonly HttpClient _httpClient;
+
+    public ApiService(ITokenAcquisition tokenAcquisition, HttpClient httpClient)
+    {
+        _tokenAcquisition = tokenAcquisition;
+        _httpClient = httpClient;
+    }
+
+    public async Task&lt;string&gt; GetApiDataAsync()
+    {
+        string[] scopes = { &quot;https://graph.microsoft.com/.default&quot; };
+        string accessToken = await _tokenAcquisition.GetAccessTokenForUserAsync(scopes);
+
+        _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(&quot;Bearer&quot;, accessToken);
+
+        var response = await _httpClient.GetAsync(&quot;https://graph.microsoft.com/v1.0/me&quot;);
+        return await response.Content.ReadAsStringAsync();
+    }
+}
+</code></pre>
+<h3><strong>Register the Service in <code>Program.cs</code></strong></h3>
+<pre><code>builder.Services.AddHttpClient&lt;ApiService&gt;();
+</code></pre>
+<h3><strong>Call API in Blazor Component (<code>FetchData.razor</code>)</strong></h3>
+<pre><code>@page &quot;/fetchdata&quot;
+@inject ApiService ApiService
+
+&lt;h3&gt;API Data&lt;/h3&gt;
+
+@if (apiResponse == null)
+{
+    &lt;p&gt;Loading...&lt;/p&gt;
+}
+else
+{
+    &lt;pre&gt;@apiResponse&lt;/pre&gt;
+}
 
 @code {
-    private string bootstrapId = &quot;dynamic-bootstrap-css&quot;;
+    private string apiResponse;
 
     protected override async Task OnInitializedAsync()
     {
-        await JS.InvokeVoidAsync(&quot;loadCss&quot;, &quot;css/bootstrap.min.css&quot;, bootstrapId);
-    }
-
-    public async ValueTask DisposeAsync()
-    {
-        await JS.InvokeVoidAsync(&quot;removeCss&quot;, bootstrapId);
+        apiResponse = await ApiService.GetApiDataAsync();
     }
 }
 </code></pre>
 <hr>
-<h3><strong>4. Explanation</strong></h3>
-<ul>
-    <li><code>loadCss(&quot;css/bootstrap.min.css&quot;, &quot;dynamic-bootstrap-css&quot;)</code>: Injects the Bootstrap CSS <strong>only when the component loads</strong>.</li>
-    <li><code>removeCss(&quot;dynamic-bootstrap-css&quot;)</code>: Removes the Bootstrap CSS when the component is <strong>disposed</strong> (navigating away).</li>
-</ul>
+<h2><strong>6️⃣ Run the Blazor Server App</strong></h2>
+<ol>
+    <li><strong>Run the app</strong>:
+        <pre><code>dotnet run
+</code></pre>
+    </li>
+    <li><strong>Sign in using Microsoft Entra ID</strong>.</li>
+    <li>The access token is retrieved, and API data is displayed.</li>
+</ol>
 <hr>
-<h3><strong>✅ Benefits of This Approach</strong></h3>
-<p>✔&nbsp;<strong>Bootstrap loads only for this component</strong> &ndash; Other components remain unaffected.<br>✔&nbsp;<strong>Removes Bootstrap when navigating away</strong> &ndash; Prevents CSS conflicts.<br>✔ <strong>Works in both Blazor Server and Blazor WebAssembly</strong>.</p>
-<p>Would you like to extend this to support multiple CSS files dynamically? 🚀</p>
+<h3>✅ <strong>Summary</strong></h3>
+<table>
+    <thead>
+        <tr>
+            <th>Step</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>1️⃣ Register App</strong></td>
+            <td>Register in Azure Entra ID, get Client ID &amp; Tenant ID</td>
+        </tr>
+        <tr>
+            <td><strong>2️⃣ Configure API Permissions</strong></td>
+            <td>Add Microsoft Graph (or custom API) permissions</td>
+        </tr>
+        <tr>
+            <td><strong>3️⃣ Add Client Secret</strong></td>
+            <td>Generate a secret for authentication</td>
+        </tr>
+        <tr>
+            <td><strong>4️⃣ Configure Blazor App</strong></td>
+            <td>Set up <strong>OpenID Connect authentication</strong></td>
+        </tr>
+        <tr>
+            <td><strong>5️⃣ Get Access Token</strong></td>
+            <td>Use <code>ITokenAcquisition</code> to get the token</td>
+        </tr>
+        <tr>
+            <td><strong>6️⃣ Use Token in API Call</strong></td>
+            <td>Authenticate API requests with <code>Bearer Token</code></td>
+        </tr>
+    </tbody>
+</table>
+<p>Would you like to integrate this with a <strong>custom API</strong> instead of Microsoft Graph? 🚀</p>
