@@ -1,195 +1,92 @@
-<p>To implement <strong>Microsoft Entra ID (formerly Azure AD) authentication</strong> in a <strong>Blazor Server app</strong> and retrieve an <strong>access token</strong>, follow these steps:</p>
-<hr>
-<h2><strong>1️⃣ Register Your Blazor Server App in Microsoft Entra ID</strong></h2>
+<p>To create an <code>HttpClient</code> in a <strong>Blazor Server</strong> app that includes an <strong>access token</strong> from the <strong>Azure Management API</strong>, you can do this in <code>Program.cs</code> by:</p>
 <ol>
-    <li><strong>Go to</strong> <a href="https://portal.azure.com/">Azure Portal</a> &rarr; <strong>Microsoft Entra ID</strong> &rarr; <strong>App registrations</strong>.</li>
-    <li>Click <strong>New registration</strong>.<ul>
-            <li><strong>Name</strong>: <code>BlazorServerApp</code></li>
-            <li><strong>Supported Account Types</strong>: Choose based on your requirement:<ul>
-                    <li><strong>Single Tenant</strong> (only your org)</li>
-                    <li><strong>Multi-Tenant</strong> (all orgs)</li>
-                </ul>
-            </li>
-            <li><strong>Redirect URI</strong>: Select <strong>Web</strong>and enter:
-                <pre><code>https://localhost:5001/signin-oidc
-</code></pre>
-            </li>
-        </ul>
+    <li>
+        <p>Acquiring a token using <strong>Microsoft.Identity.Client (MSAL)</strong>.</p>
     </li>
-    <li>Click <strong>Register</strong> and <strong>copy the</strong>:<ul>
-            <li><strong>Application (Client) ID</strong></li>
-            <li><strong>Directory (Tenant) ID</strong></li>
-        </ul>
+    <li>
+        <p>Configuring <code>HttpClient</code> with the bearer token.</p>
     </li>
 </ol>
 <hr>
-<h2><strong>2️⃣ Configure API Permissions</strong></h2>
-<ol>
-    <li>Go to <strong>API Permissions</strong> &rarr; <strong>Add a Permission</strong>.</li>
-    <li>Select <strong>Microsoft Graph</strong> (or your API).</li>
-    <li>Choose:<ul>
-            <li><strong>Delegated Permissions</strong> (if signing in as a user)</li>
-            <li><strong>Application Permissions</strong> (if using client credentials).</li>
-        </ul>
-    </li>
-    <li>Click <strong>&quot;Grant Admin Consent&quot;</strong>.</li>
-</ol>
-<hr>
-<h2><strong>3️⃣ Add a Client Secret</strong></h2>
-<ol>
-    <li>Go to <strong>Certificates &amp; Secrets</strong> &rarr; <strong>Client Secrets</strong> &rarr; <strong>New Client Secret</strong>.</li>
-    <li><strong>Copy the Secret Value</strong>.</li>
-</ol>
-<hr>
-<h2><strong>4️⃣ Configure Blazor Server App</strong></h2>
-<p>Install the required package:</p>
-<pre><code>dotnet add package Microsoft.AspNetCore.Authentication.OpenIdConnect
-</code></pre>
-<h3><strong>Update <code>appsettings.json</code></strong></h3>
-<pre><code>{
-  &quot;AzureAd&quot;: {
-    &quot;Instance&quot;: &quot;https://login.microsoftonline.com/&quot;,
-    &quot;Domain&quot;: &quot;yourdomain.com&quot;,
-    &quot;TenantId&quot;: &quot;your-tenant-id&quot;,
-    &quot;ClientId&quot;: &quot;your-client-id&quot;,
-    &quot;ClientSecret&quot;: &quot;your-client-secret&quot;,
-    &quot;CallbackPath&quot;: &quot;/signin-oidc&quot;
-  }
-}
-</code></pre>
-<h3><strong>Configure Authentication in <code>Program.cs</code></strong></h3>
-<p>Modify <code>Program.cs</code>:</p>
-<pre><code>using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.Identity.Web;
-using Microsoft.Identity.Web.UI;
+<h3>✅ Example: <code>Program.cs</code></h3>
+<p>This assumes you&apos;re using <strong>client credentials flow</strong> to authenticate with Azure AD (e.g., for app-only access to the Azure Management API).</p>
+<pre><code>using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
+using Microsoft.Identity.Client;
+using System.Net.Http.Headers;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add authentication services
-builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
-    .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection(&quot;AzureAd&quot;))
-    .EnableTokenAcquisitionToCallDownstreamApi()
-    .AddInMemoryTokenCaches();
+// Add services to the container.
+builder.Services.AddRazorComponents()
+    .AddInteractiveServerComponents();
 
-builder.Services.AddAuthorization(options =&gt;
+// Register HttpClient with Azure access token
+builder.Services.AddHttpClient(&quot;AzureManagement&quot;, async client =&gt;
 {
-    options.FallbackPolicy = options.DefaultPolicy;
-});
+    // Azure AD App registration info
+    var tenantId = &quot;your-tenant-id&quot;;
+    var clientId = &quot;your-client-id&quot;;
+    var clientSecret = &quot;your-client-secret&quot;;
+    var authority = $&quot;https://login.microsoftonline.com/{tenantId}&quot;;
 
-builder.Services.AddRazorPages()
-    .AddMicrosoftIdentityUI();
+    var app = ConfidentialClientApplicationBuilder.Create(clientId)
+        .WithClientSecret(clientSecret)
+        .WithAuthority(new Uri(authority))
+        .Build();
+
+    // Azure Management API scope
+    var scopes = new[] { &quot;https://management.azure.com/.default&quot; };
+
+    var result = await app.AcquireTokenForClient(scopes).ExecuteAsync();
+
+    client.BaseAddress = new Uri(&quot;https://management.azure.com/&quot;);
+    client.DefaultRequestHeaders.Authorization =
+        new AuthenticationHeaderValue(&quot;Bearer&quot;, result.AccessToken);
+});
 
 var app = builder.Build();
 
-// Enable authentication &amp; authorization
-app.UseAuthentication();
-app.UseAuthorization();
+app.UseStaticFiles();
+app.UseRouting();
 
-app.MapControllers();
-app.MapRazorPages();
+app.MapRazorComponents&lt;App&gt;()
+    .AddInteractiveServerRenderMode();
+
 app.Run();
 </code></pre>
 <hr>
-<h2><strong>5️⃣ Get an Access Token for API Calls</strong></h2>
-<p>Once the user is authenticated, use <strong><code>ITokenAcquisition</code></strong> to retrieve an <strong>access token</strong> for calling APIs.</p>
-<h3><strong>Create a Service to Get Token</strong></h3>
-<pre><code>using Microsoft.Identity.Web;
-using System.Net.Http.Headers;
-
-public class ApiService
-{
-    private readonly ITokenAcquisition _tokenAcquisition;
-    private readonly HttpClient _httpClient;
-
-    public ApiService(ITokenAcquisition tokenAcquisition, HttpClient httpClient)
-    {
-        _tokenAcquisition = tokenAcquisition;
-        _httpClient = httpClient;
-    }
-
-    public async Task&lt;string&gt; GetApiDataAsync()
-    {
-        string[] scopes = { &quot;https://graph.microsoft.com/.default&quot; };
-        string accessToken = await _tokenAcquisition.GetAccessTokenForUserAsync(scopes);
-
-        _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(&quot;Bearer&quot;, accessToken);
-
-        var response = await _httpClient.GetAsync(&quot;https://graph.microsoft.com/v1.0/me&quot;);
-        return await response.Content.ReadAsStringAsync();
-    }
-}
-</code></pre>
-<h3><strong>Register the Service in <code>Program.cs</code></strong></h3>
-<pre><code>builder.Services.AddHttpClient&lt;ApiService&gt;();
-</code></pre>
-<h3><strong>Call API in Blazor Component (<code>FetchData.razor</code>)</strong></h3>
-<pre><code>@page &quot;/fetchdata&quot;
-@inject ApiService ApiService
-
-&lt;h3&gt;API Data&lt;/h3&gt;
-
-@if (apiResponse == null)
-{
-    &lt;p&gt;Loading...&lt;/p&gt;
-}
-else
-{
-    &lt;pre&gt;@apiResponse&lt;/pre&gt;
-}
+<h3>💡 Usage in Blazor Components or Services</h3>
+<p>Inject <code>IHttpClientFactory</code> and use the named client:</p>
+<pre><code>@inject IHttpClientFactory HttpClientFactory
 
 @code {
-    private string apiResponse;
-
     protected override async Task OnInitializedAsync()
     {
-        apiResponse = await ApiService.GetApiDataAsync();
+        var client = HttpClientFactory.CreateClient(&quot;AzureManagement&quot;);
+        var response = await client.GetAsync(&quot;subscriptions?api-version=2020-01-01&quot;);
+
+        var json = await response.Content.ReadAsStringAsync();
+        Console.WriteLine(json);
     }
 }
 </code></pre>
 <hr>
-<h2><strong>6️⃣ Run the Blazor Server App</strong></h2>
-<ol>
-    <li><strong>Run the app</strong>:
-        <pre><code>dotnet run
-</code></pre>
+<h3>🔐 Important Notes</h3>
+<ul>
+    <li>
+        <p>This is <strong>app-level auth</strong>, using <strong>client credentials</strong> (no user context).</p>
     </li>
-    <li><strong>Sign in using Microsoft Entra ID</strong>.</li>
-    <li>The access token is retrieved, and API data is displayed.</li>
-</ol>
-<hr>
-<h3>✅ <strong>Summary</strong></h3>
-<table>
-    <thead>
-        <tr>
-            <th>Step</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><strong>1️⃣ Register App</strong></td>
-            <td>Register in Azure Entra ID, get Client ID &amp; Tenant ID</td>
-        </tr>
-        <tr>
-            <td><strong>2️⃣ Configure API Permissions</strong></td>
-            <td>Add Microsoft Graph (or custom API) permissions</td>
-        </tr>
-        <tr>
-            <td><strong>3️⃣ Add Client Secret</strong></td>
-            <td>Generate a secret for authentication</td>
-        </tr>
-        <tr>
-            <td><strong>4️⃣ Configure Blazor App</strong></td>
-            <td>Set up <strong>OpenID Connect authentication</strong></td>
-        </tr>
-        <tr>
-            <td><strong>5️⃣ Get Access Token</strong></td>
-            <td>Use <code>ITokenAcquisition</code> to get the token</td>
-        </tr>
-        <tr>
-            <td><strong>6️⃣ Use Token in API Call</strong></td>
-            <td>Authenticate API requests with <code>Bearer Token</code></td>
-        </tr>
-    </tbody>
-</table>
-<p>Would you like to integrate this with a <strong>custom API</strong> instead of Microsoft Graph? 🚀</p>
+    <li>
+        <p>Make sure the Azure AD app has the correct <strong>API permissions</strong>:</p>
+        <ul>
+            <li>
+                <p>E.g., &quot;Azure Service Management (user_impersonation)&quot; in <strong>App registrations &gt; API permissions</strong>.</p>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <p>If you&apos;re using <strong>user-based access tokens</strong>, the flow changes&mdash;let me know and I can show that version too.</p>
+    </li>
+</ul>
+<p>Want to see how to secure secrets using <strong>Azure Key Vault</strong> or <strong>User Delegation</strong>?</p>
