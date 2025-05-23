@@ -1,2 +1,100 @@
-<p>var loanno = 1; var pipeline = new[] { // Match by Loanno new BsonDocument(&quot;$match&quot;, new BsonDocument(&quot;Loanno&quot;, loanno)), // Project to remove &apos;rules&apos; from Decision new BsonDocument(&quot;$project&quot;, new BsonDocument { { &quot;Loanno&quot;, 1 }, { &quot;result&quot;, new BsonDocument { { &quot;$map&quot;, new BsonDocument { { &quot;input&quot;, &quot;$result&quot; }, { &quot;as&quot;, &quot;item&quot; }, { &quot;in&quot;, new BsonDocument { { &quot;type&quot;, &quot;$$item.type&quot; }, { &quot;Decision&quot;, new BsonDocument { { &quot;Transaction&quot;, &quot;$$item.Decision.Transaction&quot; } // &quot;rules&quot; is omitted } } } } } } } } }) }; var result = collection.Aggregate(pipeline).ToList();&nbsp;</p>
-<p><br></p>
+<p>To <strong>embed a countdown timer (in seconds)</strong> inside your existing <strong>animated SVG loader</strong> in a <strong>Blazor component</strong>, you need to:</p>
+<ol>
+    <li>
+        <p>Overlay a text element (<code>&lt;text&gt;</code> or HTML <code>div</code>) in the center of the SVG.</p>
+    </li>
+    <li>
+        <p>Update the countdown from Blazor.</p>
+    </li>
+</ol>
+<hr>
+<h3>✅ Final Blazor Razor Component</h3>
+<p>Create a new file <code>SvgLoaderWithCounter.razor</code>:</p>
+<pre><code>@code {
+    [Parameter] public int Duration { get; set; } = 5;
+
+    private int timeLeft;
+    private System.Timers.Timer? timer;
+
+    protected override void OnInitialized()
+    {
+        timeLeft = Duration;
+
+        timer = new System.Timers.Timer(1000);
+        timer.Elapsed += (_, _) =&gt;
+        {
+            if (timeLeft &gt; 0)
+            {
+                timeLeft--;
+                InvokeAsync(StateHasChanged);
+            }
+            else
+            {
+                timer?.Stop();
+            }
+        };
+        timer.Start();
+    }
+
+    public void Dispose()
+    {
+        timer?.Dispose();
+    }
+}
+
+&lt;div class=&quot;svg-loader-container&quot;&gt;
+    &lt;svg width=&quot;100&quot; height=&quot;100&quot; viewBox=&quot;0 0 24 24&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;
+        &lt;g&gt;
+            &lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;9.5&quot; fill=&quot;none&quot; stroke=&quot;#3498db&quot; stroke-width=&quot;3&quot; stroke-linecap=&quot;round&quot;&gt;
+                &lt;animate attributeName=&quot;stroke-dasharray&quot; dur=&quot;1.5s&quot; calcMode=&quot;spline&quot;
+                         values=&quot;0 150;42 150;42 150;42 150&quot;
+                         keyTimes=&quot;0;0.475;0.95;1&quot;
+                         keySplines=&quot;0.42,0,0.58,1;0.42,0,0.58,1;0.42,0,0.58,1&quot;
+                         repeatCount=&quot;indefinite&quot; /&gt;
+                &lt;animate attributeName=&quot;stroke-dashoffset&quot; dur=&quot;1.5s&quot; calcMode=&quot;spline&quot;
+                         values=&quot;0;-16;-59;-59&quot;
+                         keyTimes=&quot;0;0.475;0.95;1&quot;
+                         keySplines=&quot;0.42,0,0.58,1;0.42,0,0.58,1;0.42,0,0.58,1&quot;
+                         repeatCount=&quot;indefinite&quot; /&gt;
+            &lt;/circle&gt;
+            &lt;animateTransform attributeName=&quot;transform&quot; type=&quot;rotate&quot;
+                              dur=&quot;2s&quot; values=&quot;0 12 12;360 12 12&quot;
+                              repeatCount=&quot;indefinite&quot; /&gt;
+        &lt;/g&gt;
+        &lt;!-- Timer text inside SVG --&gt;
+        &lt;text x=&quot;12&quot; y=&quot;16&quot; text-anchor=&quot;middle&quot; font-size=&quot;6&quot; fill=&quot;#333&quot; font-family=&quot;Arial&quot;&gt;
+            @timeLeft
+        &lt;/text&gt;
+    &lt;/svg&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+    .svg-loader-container {
+        width: 100px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h3>✅ Usage Example</h3>
+<p>In <code>Pages/Index.razor</code>:</p>
+<pre><code>&lt;SvgLoaderWithCounter Duration=&quot;10&quot; /&gt;
+</code></pre>
+<hr>
+<h3>✅ What This Does</h3>
+<ul>
+    <li>
+        <p>Animates a spinning stroke with your exact SVG.</p>
+    </li>
+    <li>
+        <p>Draws the countdown number inside the SVG (<code>&lt;text&gt;</code> at x=12, y=16).</p>
+    </li>
+    <li>
+        <p>Uses a Blazor timer to count down and refresh the value every second.</p>
+    </li>
+</ul>
+<hr>
+<p>Let me know if you want to trigger an event when the timer hits zero!</p>
