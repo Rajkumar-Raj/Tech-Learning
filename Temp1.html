@@ -1,100 +1,80 @@
-<p>To <strong>embed a countdown timer (in seconds)</strong> inside your existing <strong>animated SVG loader</strong> in a <strong>Blazor component</strong>, you need to:</p>
-<ol>
-    <li>
-        <p>Overlay a text element (<code>&lt;text&gt;</code> or HTML <code>div</code>) in the center of the SVG.</p>
-    </li>
-    <li>
-        <p>Update the countdown from Blazor.</p>
-    </li>
-</ol>
+<p>Here&apos;s a simple and clean way to implement <strong>tabs in Blazor</strong> (without JavaScript or external libraries).</p>
 <hr>
-<h3>✅ Final Blazor Razor Component</h3>
-<p>Create a new file <code>SvgLoaderWithCounter.razor</code>:</p>
+<h3>✅ Result Preview (What You&rsquo;ll Get)</h3>
+<p>A UI with clickable tabs, like:</p>
+<pre><code>[ Tab 1 ] [ Tab 2 ] [ Tab 3 ]
+
+Content of selected tab
+</code></pre>
+<hr>
+<h2>✅ Step-by-Step Implementation</h2>
+<h3>1. <strong>Create a Blazor Component for Tabs</strong></h3>
+<h4><code>SimpleTabs.razor</code></h4>
 <pre><code>@code {
-    [Parameter] public int Duration { get; set; } = 5;
+    private string activeTab = &quot;Tab1&quot;;
 
-    private int timeLeft;
-    private System.Timers.Timer? timer;
-
-    protected override void OnInitialized()
+    private void SelectTab(string tabName)
     {
-        timeLeft = Duration;
-
-        timer = new System.Timers.Timer(1000);
-        timer.Elapsed += (_, _) =&gt;
-        {
-            if (timeLeft &gt; 0)
-            {
-                timeLeft--;
-                InvokeAsync(StateHasChanged);
-            }
-            else
-            {
-                timer?.Stop();
-            }
-        };
-        timer.Start();
-    }
-
-    public void Dispose()
-    {
-        timer?.Dispose();
+        activeTab = tabName;
     }
 }
 
-&lt;div class=&quot;svg-loader-container&quot;&gt;
-    &lt;svg width=&quot;100&quot; height=&quot;100&quot; viewBox=&quot;0 0 24 24&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;
-        &lt;g&gt;
-            &lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;9.5&quot; fill=&quot;none&quot; stroke=&quot;#3498db&quot; stroke-width=&quot;3&quot; stroke-linecap=&quot;round&quot;&gt;
-                &lt;animate attributeName=&quot;stroke-dasharray&quot; dur=&quot;1.5s&quot; calcMode=&quot;spline&quot;
-                         values=&quot;0 150;42 150;42 150;42 150&quot;
-                         keyTimes=&quot;0;0.475;0.95;1&quot;
-                         keySplines=&quot;0.42,0,0.58,1;0.42,0,0.58,1;0.42,0,0.58,1&quot;
-                         repeatCount=&quot;indefinite&quot; /&gt;
-                &lt;animate attributeName=&quot;stroke-dashoffset&quot; dur=&quot;1.5s&quot; calcMode=&quot;spline&quot;
-                         values=&quot;0;-16;-59;-59&quot;
-                         keyTimes=&quot;0;0.475;0.95;1&quot;
-                         keySplines=&quot;0.42,0,0.58,1;0.42,0,0.58,1;0.42,0,0.58,1&quot;
-                         repeatCount=&quot;indefinite&quot; /&gt;
-            &lt;/circle&gt;
-            &lt;animateTransform attributeName=&quot;transform&quot; type=&quot;rotate&quot;
-                              dur=&quot;2s&quot; values=&quot;0 12 12;360 12 12&quot;
-                              repeatCount=&quot;indefinite&quot; /&gt;
-        &lt;/g&gt;
-        &lt;!-- Timer text inside SVG --&gt;
-        &lt;text x=&quot;12&quot; y=&quot;16&quot; text-anchor=&quot;middle&quot; font-size=&quot;6&quot; fill=&quot;#333&quot; font-family=&quot;Arial&quot;&gt;
-            @timeLeft
-        &lt;/text&gt;
-    &lt;/svg&gt;
+&lt;div class=&quot;tabs&quot;&gt;
+    &lt;button class=&quot;@GetTabClass(&quot;Tab1&quot;)&quot; @onclick=&quot;() =&gt; SelectTab(&quot;Tab1&quot;)&quot;&gt;Tab 1&lt;/button&gt;
+    &lt;button class=&quot;@GetTabClass(&quot;Tab2&quot;)&quot; @onclick=&quot;() =&gt; SelectTab(&quot;Tab2&quot;)&quot;&gt;Tab 2&lt;/button&gt;
+    &lt;button class=&quot;@GetTabClass(&quot;Tab3&quot;)&quot; @onclick=&quot;() =&gt; SelectTab(&quot;Tab3&quot;)&quot;&gt;Tab 3&lt;/button&gt;
 &lt;/div&gt;
 
-&lt;style&gt;
-    .svg-loader-container {
-        width: 100px;
-        height: 100px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+&lt;div class=&quot;tab-content mt-3&quot;&gt;
+    @if (activeTab == &quot;Tab1&quot;)
+    {
+        &lt;p&gt;This is content of Tab 1&lt;/p&gt;
     }
-&lt;/style&gt;
+    else if (activeTab == &quot;Tab2&quot;)
+    {
+        &lt;p&gt;This is content of Tab 2&lt;/p&gt;
+    }
+    else if (activeTab == &quot;Tab3&quot;)
+    {
+        &lt;p&gt;This is content of Tab 3&lt;/p&gt;
+    }
+&lt;/div&gt;
+
+@code {
+    private string GetTabClass(string tabName)
+        =&gt; activeTab == tabName ? &quot;tab-button active&quot; : &quot;tab-button&quot;;
+}
 </code></pre>
 <hr>
-<h3>✅ Usage Example</h3>
-<p>In <code>Pages/Index.razor</code>:</p>
-<pre><code>&lt;SvgLoaderWithCounter Duration=&quot;10&quot; /&gt;
+<h3>2. <strong>Add Some CSS Styling</strong></h3>
+<p>You can place this in <code>wwwroot/css/app.css</code>, <code>site.css</code>, or directly in the <code>SimpleTabs.razor</code> using <code>&lt;style&gt;</code>.</p>
+<pre><code>.tab-button {
+    padding: 10px 20px;
+    margin-right: 5px;
+    border: none;
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+.tab-button.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.tab-content {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
 </code></pre>
 <hr>
-<h3>✅ What This Does</h3>
-<ul>
-    <li>
-        <p>Animates a spinning stroke with your exact SVG.</p>
-    </li>
-    <li>
-        <p>Draws the countdown number inside the SVG (<code>&lt;text&gt;</code> at x=12, y=16).</p>
-    </li>
-    <li>
-        <p>Uses a Blazor timer to count down and refresh the value every second.</p>
-    </li>
-</ul>
+<h3>3. <strong>Use It in Your Page</strong></h3>
+<p>In <code>Pages/Index.razor</code> or any other <code>.razor</code> page:</p>
+<pre><code>&lt;h3&gt;Simple Tab Example&lt;/h3&gt;
+&lt;SimpleTabs /&gt;
+</code></pre>
+<p>Make sure to include the <code>@using</code> directive if the component is in a different namespace or folder.</p>
 <hr>
-<p>Let me know if you want to trigger an event when the timer hits zero!</p>
+<h3>✅ Done!</h3>
+<p>You now have a fully working tab component in Blazor with clean styling and logic &mdash; no JavaScript or external frameworks needed.</p>
+<p>Want to make it <strong>dynamic</strong> or reusable (i.e., define tabs as a parameter)? Let me know and I can help refactor it!</p>
