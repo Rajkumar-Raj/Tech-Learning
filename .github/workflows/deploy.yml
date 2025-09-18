@@ -30,7 +30,7 @@ jobs:
       - name: Move published files
         run: |
           mkdir -p release
-          cp -r build/wwwroot/Tech-Learning/* release/
+          cp -r build/wwwroot/* release/
 
       # 5. Deploy to GitHub Pages branch
       - name: Deploy to GitHub Pages
