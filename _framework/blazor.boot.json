@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "TechLearning",
   "resources": {
-    "hash": "sha256-/Jje6MxrUCteWswv8LhdX/QVYKV9w1QazZ5IFgtnrGI=",
+    "hash": "sha256-tHSk8eS2MfgYhSPS50QgOLyp1xEKOs0WjTPi3DOFge4=",
     "jsModuleNative": {
       "dotnet.native.8.0.20.elargmqivm.js": "sha256-D0bzod5lwwSzPR43JC8TTCcZKw+3jIHOk8CZFCRj5is="
     },
@@ -48,7 +48,7 @@
       "System.Text.Encodings.Web.wasm": "sha256-mvAZWl5zeWjLWz+V0R1IXnaoDv9QcEg+jUbseHDEtIc=",
       "System.Text.Json.wasm": "sha256-LYwpulZszDuJXRd8u2jZibnOyIhk6GNiRdEG2Wjf3sQ=",
       "System.Text.RegularExpressions.wasm": "sha256-+l4THzmjS0Kepirh9c73X6+miC4zvFeUaH9GCKZM2uk=",
-      "TechLearning.wasm": "sha256-gv9iLpfFZgACbM7oCDmkJpZD5JqQMsi+qaBTBsv4ny0="
+      "TechLearning.wasm": "sha256-F+lvQs76RmnLLeGfukZnEN54S3mtI48vul3EuSiJl3Q="
     }
   },
   "cacheBootResources": true,
