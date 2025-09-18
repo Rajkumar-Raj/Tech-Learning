@@ -1,0 +1,41 @@
+name: Deploy Blazor WASM to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]   # or your default branch
+  workflow_dispatch:      # allows manual triggers
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write    # needed to push to gh-pages
+
+    steps:
+      # 1. Checkout the code
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. Setup .NET
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'   # match your project version
+
+      # 3. Publish the app
+      - name: Publish
+        run: dotnet publish -c Release -o build
+
+      # 4. Copy the publish output to the expected folder
+      - name: Move published files
+        run: |
+          mkdir -p release
+          cp -r build/wwwroot/* release/
+
+      # 5. Deploy to GitHub Pages branch
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: release
+          publish_branch: gh-pages
