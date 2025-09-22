@@ -1,0 +1,26 @@
+﻿@if (Parent !=null && Parent.ActivePage == this)
+{
+    <div class="tab-pane active">
+        @ChildContent
+    </div>
+}
+
+@code {
+    [CascadingParameter]
+    private TabControl Parent { get; set; } = default!;
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string? Title { get; set; }
+
+    protected override void OnInitialized()
+    {
+        // Add this page to the parent's list of pages
+        if (Parent != null)
+        {
+            Parent.AddPage(this);
+        }
+    }
+}

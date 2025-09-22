@@ -1,0 +1,56 @@
+﻿@using Microsoft.JSInterop
+@inject IJSRuntime JSRuntime
+
+<div class="code-snippet-container">
+    <div class="code-header">
+        <button class="toggle-button" @onclick="ToggleCodeVisibility">
+            @if (isExpanded)
+            {
+                <span class="bi bi-chevron-down"></span>
+                <span>Collapse</span>
+                @* Collapse *@
+            }
+            else
+            {
+                <span class="bi bi-chevron-right"></span>
+                <span>Expand</span>
+            }
+        </button>
+        <button class="copy-button @(isExpanded ? "" : "hidden")" @onclick="CopyToClipboard">
+            <span class="bi bi-clipboard"></span> Copy
+        </button>
+    </div>
+
+    @if (isExpanded)
+    {
+        <pre class="code-block-wrapper"><code @ref="codeElement" class="language-csharp">@ChildContent</code></pre>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    private ElementReference codeElement;
+    private bool isExpanded = false; // Initial state is collapsed
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        // Highlight the code only when it becomes visible
+        if (isExpanded)
+        {
+            await JSRuntime.InvokeVoidAsync("codeSnippet.highlight");
+        }
+    }
+
+    private void ToggleCodeVisibility()
+    {
+        isExpanded = !isExpanded;
+    }
+
+    private async Task CopyToClipboard()
+    {
+        var codeText = await JSRuntime.InvokeAsync<string>("codeSnippet.getElementText", codeElement);
+        await JSRuntime.InvokeVoidAsync("codeSnippet.copyText", codeText);
+    }
+}

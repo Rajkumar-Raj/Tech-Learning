@@ -1,0 +1,366 @@
+﻿@page "/csharp"
+
+<TabControl>
+    <TabPage Title="Fundamentals">
+        <p>This is the content for the first tab.</p>
+        <p>You can add any custom component here, including forms, tables, or charts.</p>
+    </TabPage>
+    <TabPage Title="Features">
+        <p>This tab has different content.</p>
+        <p>The `TabPage` component is a reusable container for each tab's display.</p>
+    </TabPage>
+    <TabPage Title="IoC container">
+        <p>This is the third tab.</p>
+        <p>It's easy to add as many tabs as you need.</p>
+    </TabPage>
+    <TabPage Title="Advanced Concepts">
+        <div class="content">
+            <h3>1. <strong>Reflection</strong></h3>
+            <p>
+                Reflection allows a C# program to <strong>inspect and interact with types and assemblies at runtime</strong>. It
+                enables accessing metadata (like types, properties, methods) and manipulating objects dynamically, which can be
+                powerful in scenarios like creating plugins, testing frameworks, and custom serializers.
+            </p>
+            <h4>Key Classes:</h4>
+            <ul>
+                <li>
+                    <strong><code>Type</code></strong>: Represents type information, including properties, methods, fields, and
+                    events.
+                </li>
+                <li>
+                    <strong><code>MethodInfo</code>, <code>PropertyInfo</code>, and <code>FieldInfo</code></strong>: Provide access to
+                    methods, properties, and fields on a type.
+                </li>
+                <li><strong><code>Activator</code></strong>: Allows creating instances of types dynamically.</li>
+            </ul>
+            <CodeSnippet>
+ using System;
+ using System.Reflection;
+ 
+ public class Person
+ {
+     public string Name { get; set; }
+     public void Greet()
+     {
+         Console.WriteLine($"Hello, my name is {Name}!");
+     }
+ }
+ 
+ class Program
+ {
+     static void Main()
+     {
+         // Get Type metadata for Person
+         Type type = typeof(Person);
+ 
+         // Create an instance of Person dynamically
+         object personInstance = Activator.CreateInstance(type);
+ 
+         // Set the Name property
+         PropertyInfo nameProperty = type.GetProperty("Name");
+         nameProperty.SetValue(personInstance, "Alice");
+ 
+         // Invoke the Greet method
+         MethodInfo greetMethod = type.GetMethod("Greet");
+         greetMethod.Invoke(personInstance, null);
+     }
+ }
+            </CodeSnippet>
+            <hr>
+
+            <h3>2. <strong>Delegates and Lambda Expressions</strong></h3>
+            <p>
+                Delegates are objects that point to methods, allowing <strong>method references</strong> to be passed as
+                parameters. <strong>Lambda expressions</strong> are concise ways of creating anonymous functions, simplifying
+                delegate usage, and making code more readable.
+            </p>
+            <h4>Lambda Expressions:</h4>
+            <ul>
+                <li><strong>Syntax</strong>: <code>(parameters) =&gt; expression</code></li>
+                <li>Lambdas can be used with LINQ and other data processing operations to filter, map, and reduce data.</li>
+            </ul>
+             <CodeSnippet>
+
+             </CodeSnippet>
+            <div class="content">
+                <pre>        <code>
+            using System;
+            using System.Collections.Generic;
+            using System.Linq;
+
+            class Program
+            {
+                static void Main()
+                {
+                    List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
+
+                    // Use a lambda expression to filter even numbers
+                    var evens = numbers.Where(n =&gt; n % 2 == 0);
+
+                    Console.WriteLine(string.Join(", ", evens)); // Output: 2, 4
+                }
+            }
+        </int></int></code>
+    </pre>
+            </div>
+            <hr>
+            <h3>3. <strong>LINQ (Language Integrated Query) and LINQ Expressions</strong></h3>
+            <p>
+                LINQ enables querying collections and other data sources in a <strong>declarative, SQL-like syntax</strong>. LINQ
+                expressions are objects that represent a query and can be dynamically built and executed, making LINQ versatile
+                for building complex queries.
+            </p>
+            <CodeSnippet>
+
+            </CodeSnippet>
+            <div class="content">
+                <pre>        <code>
+            using System;
+            using System.Collections.Generic;
+            using System.Linq;
+
+            class Program
+            {
+                static void Main()
+                {
+                    List<string> fruits = new List<string> { "Apple", "Banana", "Cherry" };
+
+                    // Query syntax
+                    var result = from fruit in fruits
+                                 where fruit.Contains("a")
+                                 select fruit;
+
+                    Console.WriteLine(string.Join(", ", result)); // Output: Banana
+                }
+            }
+        </string></string></code>
+    </pre>
+            </div>
+            <hr>
+            <h3>4. <strong>Async Programming and Parallelism</strong></h3>
+            <p>
+                <strong>Async/Await</strong> is used to perform <strong>
+                    asynchronous tasks without blocking the main
+                    thread
+                </strong>, while <strong>Parallel LINQ (PLINQ)</strong> and the <strong>
+                    Task Parallel Library
+                    (TPL)
+                </strong> help leverage multiple processors for concurrent execution.
+            </p>
+            <CodeSnippet>
+using System;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main()
+    {
+        Console.WriteLine("Starting...");
+        await Task.Delay(2000); // Simulate async work
+        Console.WriteLine("Completed!");
+    }
+}
+            </CodeSnippet>
+            <hr>
+            <h3>5. <strong>Extension Methods</strong></h3>
+            <p>
+                Extension methods allow adding new functionality to existing types <strong>
+                    without modifying the original
+                    type
+                </strong> or creating a derived type. They are particularly useful for adding functionality to classes
+                you don’t own or cannot modify, such as <code>System.String</code>.
+            </p>
+            <CodeSnippet>
+using System;
+
+public static class StringExtensions
+{
+    public static bool IsLongerThan(this string str, int length)
+    {
+        return str.Length &gt; length;
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        string message = "Hello, World!";
+        Console.WriteLine(message.IsLongerThan(5)); // Output: True
+    }
+}
+            </CodeSnippet>
+            <hr>
+
+            <h3>6. <strong>Dynamic Types</strong></h3>
+            <p>
+                The <code>dynamic</code> keyword bypasses compile-time type checking, enabling <strong>dynamic binding</strong>.
+                This can be useful when working with data from sources like COM objects, scripting languages, or JSON objects
+                where the structure may be unknown at compile time.
+            </p>
+            <CodeSnippet>
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        dynamic obj = "Hello, Dynamic World!";
+        Console.WriteLine(obj.Length); // Runtime resolves Length property
+    }
+}
+            </CodeSnippet>
+            <hr>
+            <h3>7. <strong>Dependency Injection (DI) and IoC Containers</strong></h3>
+            <p>
+                <strong>Dependency Injection (DI)</strong> is a design pattern for achieving <strong>
+                    Inversion of Control
+                    (IoC)
+                </strong>. It promotes <strong>loose coupling</strong> by allowing dependencies to be injected into
+                objects rather than being created within them. IoC containers like
+                <code>Microsoft.Extensions.DependencyInjection</code> manage object creation and lifecycle automatically.
+            </p>
+            <CodeSnippet>
+
+            </CodeSnippet>
+            <div class="content">
+                <h4>Example with IoC:</h4>
+                <pre>        <code>
+            using System;
+            using Microsoft.Extensions.DependencyInjection;
+
+            public interface ILogger
+            {
+                void Log(string message);
+            }
+
+            public class ConsoleLogger : ILogger
+            {
+                public void Log(string message)
+                {
+                    Console.WriteLine(message);
+                }
+            }
+
+            class Program
+            {
+                static void Main()
+                {
+                    var serviceProvider = new ServiceCollection()
+                        .AddSingleton<ilogger, consolelogger="">()
+                        .BuildServiceProvider();
+
+                    ILogger logger = serviceProvider.GetService<ilogger>();
+                    logger.Log("Dependency Injection in action!");
+                }
+            }
+        </ilogger></ilogger,></code>
+    </pre>
+            </div>
+            <hr>
+            <h3>8. <strong>Memory Management and Span&lt;T&gt;</strong></h3>
+            <p>
+                C# provides <strong>stack allocation and span-based memory management</strong> for high-performance applications
+                needing more control over memory usage. <strong>Span&lt;T&gt;</strong> and <strong>Memory&lt;T&gt;</strong> are
+                stack-based data structures designed to manage slices of arrays, strings, and unmanaged memory regions with
+                minimal allocations.
+            </p>
+            <CodeSnippet>
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Span&lt;int&gt; numbers = stackalloc int[] { 1, 2, 3, 4, 5 }; // Stack allocation
+        Console.WriteLine(numbers[1]); // Output: 2
+    }
+}
+            </CodeSnippet>
+            <hr>
+
+            <h3>9. <strong>Pattern Matching</strong></h3>
+            <p>
+                Pattern matching allows more readable <strong>conditional code</strong>, especially with <code>switch</code>
+                expressions, <code>is</code> expressions, and pattern-based <code>switch</code> cases, providing a more
+                functional approach to type-checking and control flow.
+            </p>
+            <CodeSnippet>
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        object obj = "Hello";
+
+        switch (obj)
+        {
+            case int i:
+                Console.WriteLine($"Integer: {i}");
+                break;
+            case string s:
+                Console.WriteLine($"String: {s}");
+                break;
+            default:
+                Console.WriteLine("Unknown type");
+                break;
+        }
+    }
+} 
+            </CodeSnippet>
+            <hr>
+
+            <h3>10. <strong>Records and Immutable Types</strong></h3>
+            <p>
+                Introduced in C# 9, <strong>Records</strong> are a special kind of reference type focused on <strong>
+                    data
+                    immutability
+                </strong> and <strong>structural equality</strong>. They are ideal for scenarios where you want
+                immutable data objects with value-based equality rather than reference-based.
+            </p>
+            <CodeSnippet>
+public record Person(string FirstName, string LastName);
+
+class Program
+{
+    static void Main()
+    {
+        var person1 = new Person("John", "Doe");
+        var person2 = new Person("John", "Doe");
+
+        Console.WriteLine(person1 == person2); // True, checks value equality
+    }
+}
+            </CodeSnippet>
+            <hr>
+
+            <h3>11. <strong>Nullable Reference Types</strong></h3>
+            <p>
+                Nullable Reference Types allow for <strong>nullability annotations</strong> and <strong>
+                    compile-time
+                    warnings
+                </strong> about potential <code>null</code> reference errors. This feature helps in writing safer
+                code by encouraging developers to handle <code>null</code> values explicitly.
+            </p>
+            <CodeSnippet>
+#nullable enable
+
+public class Person
+{
+    public string? Name { get; set; } // Nullable reference type
+}
+
+class Program
+{
+    static void Main()
+    {
+        Person person = new Person();
+        Console.WriteLine(person.Name?.Length); // Safe access
+    }
+}
+            </CodeSnippet>
+            
+        </div>
+    </TabPage>
+</TabControl>

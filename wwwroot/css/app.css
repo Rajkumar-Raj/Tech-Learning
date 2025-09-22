@@ -101,3 +101,15 @@ a, .btn-link {
 code {
     color: #c02d76;
 }
+
+
+/* Custom styling for the tabs */
+.blazor-tabs .nav-link {
+    cursor: pointer;
+}
+
+    .blazor-tabs .nav-link.active {
+        color: #495057;
+        background-color: #fff;
+        border-color: #dee2e6 #dee2e6 #fff;
+    }

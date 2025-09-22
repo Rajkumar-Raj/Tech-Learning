@@ -1,0 +1,46 @@
+﻿<div class="blazor-tabs">
+    <!-- Tab Headers -->
+    <ul class="nav nav-tabs">
+        @foreach (var page in Pages)
+        {
+            <li class="nav-item">
+                <button class="nav-link @(page == ActivePage ? "active" : "")"
+                        @onclick="() => ActivatePage(page)">
+                    @(page.Title)
+                </button>
+            </li>
+        }
+    </ul>
+
+    <!-- Tab Content -->
+    @* <div class="tab-content mt-3">
+        @ChildContent
+    </div> *@
+</div>
+
+<CascadingValue Value="this">
+    @ChildContent
+</CascadingValue>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    public TabPage? ActivePage { get; set; }
+    public List<TabPage> Pages { get; set; } = new List<TabPage>();
+
+    internal void AddPage(TabPage page)
+    {
+        Pages.Add(page);
+        if (Pages.Count == 1)
+        {
+            ActivePage = page; // Activate the first tab by default
+        }
+        StateHasChanged();
+    }
+
+    internal void ActivatePage(TabPage page)
+    {
+        ActivePage = page;
+    }
+}
