@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="css/app.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
     <link href="TechLearning.styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs.min.css">
+    <link rel="stylesheet" href="lib/bootstrap-icons/font/bootstrap-icons.min.css">
 </head>
 
 <body>
@@ -27,6 +29,25 @@
         <a class="dismiss">🗙</a>
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/csharp.min.js"></script>
+    <script>
+        // Function to trigger highlighting and copy text
+        window.codeSnippet = {
+            highlight: function () {
+                // Re-highlight the newly rendered code block
+                document.querySelectorAll('pre code').forEach((el) => {
+                    hljs.highlightElement(el);
+                });
+            },
+            getElementText: function (element) {
+                return element?.innerText || '';
+            },
+            copyText: function (text) {
+                navigator.clipboard.writeText(text);
+            }
+        };
+    </script>
 </body>
 
 </html>
