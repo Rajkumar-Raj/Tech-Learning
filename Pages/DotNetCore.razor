@@ -4876,6 +4876,937 @@ app.UseRateLimiter();
                 </li>
             </ul>
             <hr />
+            <h1>🧩 <strong>High-Performance &amp; Scalable ASP.NET Core API Architecture</strong></h1>
+            <p>Below is a conceptual diagram (text-based illustration) you can visualize or use in design docs:</p>
+<pre><code>                   ┌─────────────────────────────┐
+                   │       CLIENT APPS           │
+                   │  (Web, Mobile, SPA, etc.)   │
+                   └────────────┬────────────────┘
+                                │ HTTPS
+                                ▼
+              ┌─────────────────────────────────────────┐
+              │           LOAD BALANCER / API GATEWAY    │
+              │ (NGINX, Azure Front Door, AWS ALB)       │
+              └────────────────┬─────────────────────────┘
+                               │
+                ┌──────────────┼──────────────┐
+                ▼              ▼              ▼
+   ┌────────────────┐  ┌────────────────┐  ┌────────────────┐
+   │   API SERVER 1 │  │   API SERVER 2 │  │   API SERVER 3 │
+   │ (ASP.NET Core) │  │ (ASP.NET Core) │  │ (ASP.NET Core) │
+   ├────────────────┤  ├────────────────┤  ├────────────────┤
+   │ Use Kestrel    │  │ Async Controllers│ │ Middleware Opt │
+   │ Use DI + EFCore│  │ ResponseCaching  │ │ OutputCaching  │
+   │ Use Polly Retry│  │ Distributed Cache│ │ Rate Limiter   │
+   └────────────────┘  └────────────────┘  └────────────────┘
+                │              │              │
+                └──────────────┼──────────────┘
+                               │
+          ┌────────────────────────────────────────┐
+          │        DISTRIBUTED CACHE (Redis)        │
+          │ Shared query/data cache for all servers │
+          └────────────────────────────────────────┘
+                               │
+                ┌──────────────┴──────────────┐
+                ▼                             ▼
+   ┌──────────────────────┐       ┌──────────────────────┐
+   │     DATABASE (SQL)   │       │  BACKGROUND SERVICES │
+   │ (Azure SQL, Postgres)│       │ (Hangfire, Workers)  │
+   │ EF Core + CompiledQ  │       │ Queue for async jobs │
+   └──────────────────────┘       └──────────────────────┘
+                               │
+           ┌─────────────────────────────────────────┐
+           │       OBSERVABILITY / MONITORING         │
+           │ App Insights / Prometheus / Serilog / Seq│
+           └─────────────────────────────────────────┘
+</code></pre>
+            <hr />
+            <h2>🔍 <strong>Explanation by Layers</strong></h2>
+            <h3><strong>1️⃣ Clients</strong></h3>
+            <ul>
+                <li>
+                    <p>Web, mobile, desktop, or IoT apps consuming your API.</p>
+                </li>
+                <li>
+                    <p>Communicate via HTTPS and JSON (REST or GraphQL).</p>
+                </li>
+            </ul>
+            <hr />
+            <h3><strong>2️⃣ Load Balancer / API Gateway</strong></h3>
+            <p><strong>Purpose:</strong> Route, secure, and distribute requests.</p>
+            <p>✅ <strong>Examples:</strong></p>
+            <ul>
+                <li>
+                    <p>Azure Front Door</p>
+                </li>
+                <li>
+                    <p>NGINX / AWS Application Load Balancer</p>
+                </li>
+                <li>
+                    <p>Ocelot (for .NET-based API Gateway)</p>
+                </li>
+            </ul>
+            <p><strong>Key Responsibilities:</strong></p>
+            <ul>
+                <li>
+                    <p>Load balancing (Round Robin / Least Connections)</p>
+                </li>
+                <li>
+                    <p>SSL termination</p>
+                </li>
+                <li>
+                    <p>Rate limiting</p>
+                </li>
+                <li>
+                    <p>Routing to microservices</p>
+                </li>
+            </ul>
+            <hr />
+            <h3><strong>3️⃣ API Layer (ASP.NET Core Servers)</strong></h3>
+            <p>Each server runs identical code and is <strong>stateless</strong>.<br /> They can scale horizontally (add/remove instances easily).</p>
+            <p>✅ <strong>Core components:</strong></p>
+            <ul>
+                <li>
+                    <p><code>Controllers</code> (async endpoints)</p>
+                </li>
+                <li>
+                    <p>Middleware: Logging, Auth, Caching</p>
+                </li>
+                <li>
+                    <p>Dependency Injection</p>
+                </li>
+                <li>
+                    <p><code>EF Core</code> for database access</p>
+                </li>
+                <li>
+                    <p><code>Polly</code> for retry and circuit breaker policies</p>
+                </li>
+                <li>
+                    <p><code>RateLimiter</code> to protect from abuse</p>
+                </li>
+            </ul>
+            <p>✅ <strong>Optimizations:</strong></p>
+            <ul>
+                <li>
+                    <p><code>AsNoTracking()</code> for read queries</p>
+                </li>
+                <li>
+                    <p><code>ResponseCompression</code> (gzip)</p>
+                </li>
+                <li>
+                    <p><code>OutputCache</code> (.NET 8+)</p>
+                </li>
+                <li>
+                    <p><code>IMemoryCache</code> for quick per-instance cache</p>
+                </li>
+            </ul>
+            <hr />
+            <h3><strong>4️⃣ Distributed Cache (Redis)</strong></h3>
+            <p>Used for <strong>scaling cache across multiple servers</strong>.</p>
+            <ul>
+                <li>
+                    <p>Caches frequently accessed data or results (e.g., product list).</p>
+                </li>
+                <li>
+                    <p>Prevents duplicate database hits.</p>
+                </li>
+            </ul>
+            <p>Example:</p>
+<pre><code class="language-csharp">var data = await _cache.GetOrCreateAsync("TopProducts", async entry =&gt;
+{
+    entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10);
+    return await _db.Products.Take(100).ToListAsync();
+});
+</code></pre>
+            <p>✅ High-speed access<br /> ✅ Shared between all app servers</p>
+            <hr />
+            <h3><strong>5️⃣ Database Layer</strong></h3>
+            <ul>
+                <li>
+                    <p>Use <strong>EF Core</strong> for ORM</p>
+                </li>
+                <li>
+                    <p>Enable <strong>Compiled Queries</strong> for repeated queries</p>
+                </li>
+                <li>
+                    <p>Use <strong>Connection Pooling</strong> (default)</p>
+                </li>
+                <li>
+                    <p>Add <strong>indexes</strong> for commonly filtered columns</p>
+                </li>
+                <li>
+                    <p>Optimize heavy reads with <strong>read replicas</strong> (in Azure SQL / AWS RDS)</p>
+                </li>
+            </ul>
+            <p><strong>Pattern:</strong><br /> Primary DB (writes) + Read Replica (reads) &rarr; improves scalability.</p>
+            <hr />
+            <h3><strong>6️⃣ Background Services</strong></h3>
+            <p>For heavy or long-running tasks:</p>
+            <ul>
+                <li>
+                    <p>Email notifications</p>
+                </li>
+                <li>
+                    <p>Report generation</p>
+                </li>
+                <li>
+                    <p>File processing</p>
+                </li>
+                <li>
+                    <p>Queue consumption</p>
+                </li>
+            </ul>
+            <p>✅ Use:</p>
+            <ul>
+                <li>
+                    <p><code>BackgroundService</code> (built-in .NET)</p>
+                </li>
+                <li>
+                    <p><code>IHostedService</code></p>
+                </li>
+                <li>
+                    <p><strong>Hangfire</strong> or <strong>Azure Functions</strong></p>
+                </li>
+            </ul>
+<pre><code class="language-csharp">public class ReportWorker : BackgroundService
+{
+    protected override async Task ExecuteAsync(CancellationToken token)
+    {
+        while (!token.IsCancellationRequested)
+        {
+            await _reportQueue.ProcessNextAsync();
+            await Task.Delay(1000);
+        }
+    }
+}
+</code></pre>
+            <p>✅ Keeps API responses fast by offloading work.</p>
+            <hr />
+            <h3><strong>7️⃣ Observability &amp; Monitoring</strong></h3>
+            <p>🔹 <strong>Logging:</strong> Serilog, Seq<br /> 🔹 <strong>Metrics:</strong> Prometheus + Grafana<br /> 🔹 <strong>Tracing:</strong> OpenTelemetry (for distributed systems)<br /> 🔹 <strong>Performance:</strong> Application Insights</p>
+            <p><strong>Key metrics to track:</strong></p>
+            <ul>
+                <li>
+                    <p>Request latency (avg, 95th percentile)</p>
+                </li>
+                <li>
+                    <p>Throughput (requests/sec)</p>
+                </li>
+                <li>
+                    <p>Error rate</p>
+                </li>
+                <li>
+                    <p>DB query time</p>
+                </li>
+                <li>
+                    <p>Cache hit ratio</p>
+                </li>
+            </ul>
+            <hr />
+            <h2>⚙️ <strong>8️⃣ Supporting Features for Scalability</strong></h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Output Caching</strong></td>
+                        <td>Cache full HTTP responses</td>
+                        <td><code>.CacheOutput()</code> in .NET 8</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rate Limiting</strong></td>
+                        <td>Prevent abuse</td>
+                        <td><code>AddRateLimiter()</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Retry Policies (Polly)</strong></td>
+                        <td>Handle transient DB/network errors</td>
+                        <td><code>.AddPolicyHandler()</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Queue Processing</strong></td>
+                        <td>Offload heavy tasks</td>
+                        <td>BackgroundService, Azure Queue</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Health Checks</strong></td>
+                        <td>Track system status</td>
+                        <td><code>/health</code> endpoint</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Distributed Tracing</strong></td>
+                        <td>End-to-end request tracking</td>
+                        <td>OpenTelemetry</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <h2>🧠 <strong>9️⃣ Key Design Principles</strong></h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Principle</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Stateless</strong></td>
+                        <td>Each request is independent &mdash; no in-memory session</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Async-first</strong></td>
+                        <td>Always use async/await for I/O</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cache-friendly</strong></td>
+                        <td>Cache everything you can (data, response, query)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Resilient</strong></td>
+                        <td>Use retry, fallback, and circuit breaker</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Observable</strong></td>
+                        <td>Instrument your API for logs, metrics, and traces</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Horizontally Scalable</strong></td>
+                        <td>Add instances instead of upgrading hardware</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <h2>💡 <strong>Example Request Flow</strong></h2>
+            <p><strong>Step-by-step for a <code>/api/products</code> request:</strong></p>
+            <ol>
+                <li>
+                    <p>Request hits <strong>Load Balancer</strong></p>
+                </li>
+                <li>
+                    <p>Forwarded to <strong>API Server 2</strong></p>
+                </li>
+                <li>
+                    <p>API calls <strong>Redis</strong> &rarr; cache hit? ✅ return cached result</p>
+                </li>
+                <li>
+                    <p>If cache miss &rarr; query <strong>SQL Database</strong></p>
+                </li>
+                <li>
+                    <p>Result cached in Redis for 10 min</p>
+                </li>
+                <li>
+                    <p>Response compressed &rarr; sent to client</p>
+                </li>
+                <li>
+                    <p>Metrics logged &rarr; Application Insights + Serilog</p>
+                </li>
+            </ol>
+            <p>✅ End-to-end flow = efficient, resilient, and observable.</p>
+            <hr />
+        </div>
+    </TabPage>
+    <TabPage Title="Delegates">
+        <div class="content">
+            <h1>⚙️ <strong>Delegates &amp; Functional Programming in C#</strong></h1>
+            <hr />
+            <h2>🧩 1️⃣ What is a Delegate?</h2>
+            <p>A <strong>delegate</strong> is a <em>type-safe function pointer</em> &mdash; it holds a reference to a method (or multiple methods) and can call them dynamically at runtime.</p>
+            <blockquote>
+                <p>💬 &ldquo;A delegate is an object that knows how to call a method.&rdquo;</p>
+            </blockquote>
+            <p>Think of it like a variable that stores a function.</p>
+            <hr />
+            <h3>🔹 Example: Basic Delegate</h3>
+<pre><code class="language-csharp">// Step 1: Declare a delegate type
+public delegate void Notify(string message);
+
+// Step 2: Define a method that matches the delegate signature
+void SendMessage(string message)
+{
+    Console.WriteLine($"Sending: {message}");
+}
+
+// Step 3: Assign the method to a delegate instance
+Notify notifier = SendMessage;
+
+// Step 4: Invoke the delegate
+notifier("Hello World!");
+</code></pre>
+            <p>🧠 Output:</p>
+<pre><code>Sending: Hello World!
+</code></pre>
+            <p>✅ <strong>Type-safe</strong> &mdash; compiler ensures the method matches the delegate&rsquo;s signature.<br /> ✅ <strong>Replaces function pointers</strong> (used in older languages like C/C++).</p>
+            <hr />
+            <h2>🧠 2️⃣ Delegate Syntax Simplified</h2>
+            <p><strong>Old way:</strong></p>
+<pre><code class="language-csharp">Notify n = new Notify(SendMessage);
+n("Hi");
+</code></pre>
+            <p><strong>Modern way (C# 3.0+):</strong></p>
+<pre><code class="language-csharp">Notify n = SendMessage;
+n("Hi");
+</code></pre>
+            <hr />
+            <h2>🔁 3️⃣ Multicast Delegates</h2>
+            <p>Delegates can hold <strong>multiple methods</strong> &mdash; they run in sequence.</p>
+<pre><code class="language-csharp">void Email(string msg) =&gt; Console.WriteLine($"Email: {msg}");
+void SMS(string msg) =&gt; Console.WriteLine($"SMS: {msg}");
+
+Notify notifier = Email;
+notifier += SMS;
+
+notifier("System Update!");
+</code></pre>
+            <p>🧠 Output:</p>
+<pre><code>Email: System Update!
+SMS: System Update!
+</code></pre>
+            <p>✅ Useful for event handling (multiple subscribers).</p>
+            <hr />
+            <h2>⚙️ 4️⃣ Built-in Delegates in .NET</h2>
+            <p>To avoid creating custom delegate types each time, .NET provides <strong>generic delegates</strong>:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Delegate Type</th>
+                        <th>Parameters</th>
+                        <th>Return Type</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>Action</code></td>
+                        <td>0&ndash;16 parameters</td>
+                        <td><code>void</code></td>
+                        <td><code>Action&lt;int&gt; Print = x =&gt; Console.WriteLine(x);</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>Func</code></td>
+                        <td>0&ndash;16 parameters</td>
+                        <td>Returns a value</td>
+                        <td><code>Func&lt;int, int&gt; Square = x =&gt; x * x;</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>Predicate</code></td>
+                        <td>1 parameter</td>
+                        <td>Returns <code>bool</code></td>
+                        <td><code>Predicate&lt;int&gt; IsEven = x =&gt; x % 2 == 0;</code></td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <h3>🔸 Example: Action</h3>
+<pre><code class="language-csharp">Action&lt;string&gt; greet = name =&gt; Console.WriteLine($"Hello, {name}!");
+greet("Alice");
+</code></pre>
+            <h3>🔸 Example: Func</h3>
+<pre><code class="language-csharp">Func&lt;int, int, int&gt; add = (a, b) =&gt; a + b;
+Console.WriteLine(add(3, 5)); // 8
+</code></pre>
+            <h3>🔸 Example: Predicate</h3>
+<pre><code class="language-csharp">Predicate&lt;int&gt; isEven = x =&gt; x % 2 == 0;
+Console.WriteLine(isEven(4)); // True
+</code></pre>
+            <p>✅ <code>Action</code>, <code>Func</code>, and <code>Predicate</code> cover 95% of real-world delegate usage.</p>
+            <hr />
+            <h2>🧠 5️⃣ Anonymous Methods</h2>
+            <p>You can define methods <strong>inline</strong> without naming them &mdash; introduced in C# 2.0.</p>
+<pre><code class="language-csharp">Notify notifier = delegate(string msg)
+{
+    Console.WriteLine("Anonymous says: " + msg);
+};
+
+notifier("Hello!");
+</code></pre>
+            <p>✅ Used when you need quick, throwaway methods.</p>
+            <hr />
+            <h2>⚡ 6️⃣ Lambda Expressions (Modern Functional Syntax)</h2>
+            <p>Introduced in C# 3.0 &mdash; <strong>shorter, cleaner syntax</strong> for anonymous methods.</p>
+<pre><code class="language-csharp">Notify notify = msg =&gt; Console.WriteLine("Lambda says: " + msg);
+notify("Hello from Lambda!");
+</code></pre>
+            <p><strong>Syntax:</strong></p>
+<pre><code class="language-csharp">(parameters) =&gt; expression_or_statement
+</code></pre>
+            <p>✅ Great for inline logic<br /> ✅ Used heavily in LINQ, events, and async APIs</p>
+            <hr />
+            <h1>🧩 7️⃣ Real-World Use: Delegates in Events</h1>
+            <p>Delegates are the <strong>foundation of events</strong> in .NET.</p>
+<pre><code class="language-csharp">public class Alarm
+{
+    public delegate void AlarmHandler(string msg);
+    public event AlarmHandler OnAlarm;
+
+    public void Trigger() =&gt; OnAlarm?.Invoke("Alarm ringing!");
+}
+
+public class Program
+{
+    static void Main()
+    {
+        var alarm = new Alarm();
+        alarm.OnAlarm += msg =&gt; Console.WriteLine(msg);
+
+        alarm.Trigger();
+    }
+}
+</code></pre>
+            <p>✅ Event = delegate + safety wrapper<br /> ✅ Used for decoupled communication between objects</p>
+            <hr />
+            <h1>🧠 8️⃣ Functional Programming in C#</h1>
+            <p>Now that you know delegates, you&rsquo;re ready for <strong>functional programming</strong> concepts &mdash; writing functions as <em>first-class citizens.</em></p>
+            <hr />
+            <h2>🔹 a) Functions as Parameters</h2>
+<pre><code class="language-csharp">void ProcessNumbers(int[] nums, Func&lt;int, bool&gt; filter)
+{
+    foreach (var n in nums.Where(filter))
+        Console.WriteLine(n);
+}
+
+ProcessNumbers(new[] { 1, 2, 3, 4 }, n =&gt; n % 2 == 0);
+</code></pre>
+            <p>✅ Passing logic (<code>filter</code>) dynamically = flexible code.</p>
+            <hr />
+            <h2>🔹 b) Higher-Order Functions</h2>
+            <p>A <strong>higher-order function</strong> takes another function as input or returns one.</p>
+            <p>Example:</p>
+<pre><code class="language-csharp">Func&lt;int, Func&lt;int, int&gt;&gt; MultiplyBy =
+    x =&gt; (y =&gt; x * y);
+
+var multiplyBy2 = MultiplyBy(2);
+Console.WriteLine(multiplyBy2(5)); // 10
+</code></pre>
+            <p>✅ Function returning a function.<br /> ✅ Core concept in functional design.</p>
+            <hr />
+            <h2>🔹 c) LINQ and Functional Thinking</h2>
+            <p>LINQ is built entirely on delegates and functional programming.</p>
+            <p>Example:</p>
+<pre><code class="language-csharp">var evenSquares = Enumerable.Range(1, 10)
+    .Where(n =&gt; n % 2 == 0)
+    .Select(n =&gt; n * n)
+    .ToList();
+
+evenSquares.ForEach(Console.WriteLine);
+</code></pre>
+            <p>Here:</p>
+            <ul>
+                <li>
+                    <p><code>.Where()</code> expects <code>Func&lt;int, bool&gt;</code> (delegate)</p>
+                </li>
+                <li>
+                    <p><code>.Select()</code> expects <code>Func&lt;int, TResult&gt;</code></p>
+                </li>
+            </ul>
+            <p>✅ Functional chaining = cleaner, declarative logic.</p>
+            <hr />
+            <h2>🔹 d) Immutability</h2>
+            <p>Functional programming favors <strong>immutable data</strong> (no side effects).</p>
+<pre><code class="language-csharp">var list = new List&lt;int&gt; { 1, 2, 3 };
+var newList = list.Select(x =&gt; x * 2).ToList(); // creates new list
+</code></pre>
+            <p>✅ Keeps state predictable<br /> ✅ Reduces bugs in concurrent systems</p>
+            <hr />
+            <h2>🔹 e) Pure Functions</h2>
+            <p>A <em>pure function</em> always returns the same result for the same input, without changing external state.</p>
+<pre><code class="language-csharp">int Add(int a, int b) =&gt; a + b;  // ✅ Pure
+int AddWithSideEffect(int a) =&gt; ++a; // ❌ Changes input
+</code></pre>
+            <p>✅ Easier to test and reason about.</p>
+            <hr />
+            <h1>🧩 9️⃣ Summary Table</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Concept</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Delegate</strong></td>
+                        <td>Type-safe function reference</td>
+                        <td><code>delegate void Notify(string msg)</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Multicast Delegate</strong></td>
+                        <td>One delegate, multiple methods</td>
+                        <td><code>+=</code> syntax</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Action</strong></td>
+                        <td>Delegate returning void</td>
+                        <td><code>Action&lt;int&gt; Print</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Func</strong></td>
+                        <td>Delegate returning value</td>
+                        <td><code>Func&lt;int,int&gt; Square</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Predicate</strong></td>
+                        <td>Func returning bool</td>
+                        <td><code>Predicate&lt;int&gt; IsEven</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Anonymous Method</strong></td>
+                        <td>Inline delegate</td>
+                        <td><code>delegate(string m){...}</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lambda Expression</strong></td>
+                        <td>Short form of anonymous</td>
+                        <td><code>(x)=&gt;x*x</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Event</strong></td>
+                        <td>Delegate + publisher/subscriber</td>
+                        <td><code>event Action OnClick</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Functional Programming</strong></td>
+                        <td>Treats functions as values</td>
+                        <td><code>Func&lt;int,bool&gt;</code> in LINQ</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <h1>⚙️ 10️⃣ Real-World Uses in ASP.NET Core</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Use Case</th>
+                        <th>Delegate/FP Feature</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Middleware pipeline</td>
+                        <td><code>Func&lt;HttpContext, Task&gt;</code></td>
+                    </tr>
+                    <tr>
+                        <td>LINQ queries</td>
+                        <td><code>Func&lt;T, bool&gt;</code> filters</td>
+                    </tr>
+                    <tr>
+                        <td>Events (e.g., Button Clicks, SignalR)</td>
+                        <td><code>Action</code>, custom delegates</td>
+                    </tr>
+                    <tr>
+                        <td>Async Tasks</td>
+                        <td>Lambdas for background jobs</td>
+                    </tr>
+                    <tr>
+                        <td>DI Configuration</td>
+                        <td>Passing delegates to services</td>
+                    </tr>
+                    <tr>
+                        <td>Pipeline filters (Minimal APIs)</td>
+                        <td>Inline lambda handlers</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <p>✅ <strong>In short:</strong><br /> Delegates = <em>function references</em><br /> Functional Programming = <em>using functions flexibly and declaratively</em></p>
+            <p>Together, they power much of what makes <strong>modern C# elegant and expressive.</strong></p>
+            <hr />
+            <h1>🧩 <strong>Delegates, Events &amp; Lambdas &mdash; Visual Relationship</strong></h1>
+            <hr />
+            <h3>🧠 Concept Overview</h3>
+            <p>C# event-driven and functional programming rests on <strong>three layers</strong>:</p>
+<pre><code> ┌────────────────────────────────────────────┐
+ │                Lambda                      │
+ │  &rarr; inline, anonymous function              │
+ │  &rarr; short syntax for delegates              │
+ └────────────────────────────────────────────┘
+                   │
+                   ▼
+ ┌────────────────────────────────────────────┐
+ │                Delegate                    │
+ │  &rarr; type-safe function pointer              │
+ │  &rarr; defines the method signature             │
+ │  &rarr; holds references to one or more methods  │
+ └────────────────────────────────────────────┘
+                   │
+                   ▼
+ ┌────────────────────────────────────────────┐
+ │                 Event                      │
+ │  &rarr; uses a delegate type                    │
+ │  &rarr; restricts access to += / -= (subscribe) │
+ │  &rarr; publisher/subscriber pattern            │
+ └────────────────────────────────────────────┘
+</code></pre>
+            <hr />
+            <h1>🔹 <strong>1️⃣ Delegate Layer &mdash; The Foundation</strong></h1>
+            <p>A delegate defines a <strong>method signature</strong> &mdash; a contract that tells which kind of function it can reference.</p>
+            <h3>Example</h3>
+<pre><code class="language-csharp">public delegate void Notify(string message);
+</code></pre>
+            <p>It can point to any method that matches <code>(string message)</code> &rarr; <code>void</code>.</p>
+<pre><code class="language-csharp">void SendEmail(string msg) =&gt; Console.WriteLine($"Email: {msg}");
+void SendSMS(string msg) =&gt; Console.WriteLine($"SMS: {msg}");
+</code></pre>
+            <p>Now, assign them:</p>
+<pre><code class="language-csharp">Notify notifier = SendEmail;
+notifier += SendSMS;
+notifier("Server down!");
+</code></pre>
+            <p>🧩 <strong>Delegates = container for methods</strong></p>
+            <ul>
+                <li>
+                    <p>Can call multiple functions in sequence.</p>
+                </li>
+                <li>
+                    <p>Are type-safe.</p>
+                </li>
+                <li>
+                    <p>Can be passed as parameters to other methods (functional programming).</p>
+                </li>
+            </ul>
+            <hr />
+            <h1>🔹 <strong>2️⃣ Event Layer &mdash; Controlled Delegate</strong></h1>
+            <p>Events are <strong>built on top of delegates</strong> but provide safety and encapsulation.</p>
+            <ul>
+                <li>
+                    <p>Only the <strong>class that declares the event</strong> can invoke it.</p>
+                </li>
+                <li>
+                    <p>Other classes can <strong>subscribe (<code>+=</code>)</strong> or <strong>unsubscribe (<code>-=</code>)</strong>.</p>
+                </li>
+            </ul>
+            <hr />
+            <h3>Example: Event Using Delegate</h3>
+<pre><code class="language-csharp">public class AlarmSystem
+{
+    // Step 1: Define delegate type
+    public delegate void AlarmHandler(string msg);
+
+    // Step 2: Declare event using delegate
+    public event AlarmHandler OnAlarm;
+
+    // Step 3: Raise event
+    public void Trigger() =&gt; OnAlarm?.Invoke("🚨 Alarm triggered!");
+}
+</code></pre>
+            <h3>Event Subscription:</h3>
+<pre><code class="language-csharp">public class Program
+{
+    static void Main()
+    {
+        var alarm = new AlarmSystem();
+
+        // Subscribe with lambda (instead of separate method)
+        alarm.OnAlarm += msg =&gt; Console.WriteLine($"Alert: {msg}");
+
+        alarm.Trigger();
+    }
+}
+</code></pre>
+            <p>🧠 Output:</p>
+<pre><code>Alert: 🚨 Alarm triggered!
+</code></pre>
+            <p>✅ Event uses a delegate internally<br /> ✅ Lambda is just a short way to define an inline handler</p>
+            <hr />
+            <h1>🔹 <strong>3️⃣ Lambda Expressions &mdash; Functional Shortcut</strong></h1>
+            <p>A <strong>lambda</strong> is an inline, anonymous function &mdash; a <em>shortcut</em> for defining a delegate or event handler.</p>
+<pre><code class="language-csharp">// Traditional method
+void HandleAlarm(string msg) =&gt; Console.WriteLine(msg);
+alarm.OnAlarm += HandleAlarm;
+
+// Lambda equivalent
+alarm.OnAlarm += msg =&gt; Console.WriteLine(msg);
+</code></pre>
+            <p>✅ No need to define <code>HandleAlarm</code> explicitly.<br /> ✅ Cleaner, more functional code.</p>
+            <hr />
+            <h1>🔄 <strong>4️⃣ How They Work Together</strong></h1>
+            <p>Here&rsquo;s the <strong>flow</strong> under the hood:</p>
+<pre><code> ┌─────────────────────────────────────────────────────────┐
+ │  Publisher Class (AlarmSystem)                          │
+ │----------------------------------------------------------│
+ │  public event AlarmHandler OnAlarm;                     │
+ │                                                         │
+ │  // Event uses delegate 'AlarmHandler'                   │
+ │  // When event raised &rarr; invokes delegate list            │
+ │  OnAlarm?.Invoke("Alarm triggered!")                     │
+ └─────────────────────────────────────────────────────────┘
+                                 │
+                                 ▼
+ ┌─────────────────────────────────────────────────────────┐
+ │   Delegate (AlarmHandler)                               │
+ │----------------------------------------------------------│
+ │  Points to all methods or lambdas subscribed to event    │
+ │  Example: [HandleAlarm, LambdaMethod, SendSMS]           │
+ └─────────────────────────────────────────────────────────┘
+                                 │
+                                 ▼
+ ┌─────────────────────────────────────────────────────────┐
+ │   Subscribers (Methods / Lambdas)                       │
+ │----------------------------------------------------------│
+ │  - HandleAlarm(string msg)                               │
+ │  - msg =&gt; Console.WriteLine(msg)                         │
+ │  - SendSMS(msg)                                          │
+ └─────────────────────────────────────────────────────────┘
+</code></pre>
+            <p>✅ <strong>Event</strong> manages the delegate list<br /> ✅ <strong>Delegate</strong> stores the subscribed handlers<br /> ✅ <strong>Lambdas</strong> are the actual function implementations</p>
+            <hr />
+            <h1>🧱 <strong>5️⃣ Example &mdash; All Together</strong></h1>
+<pre><code class="language-csharp">using System;
+
+public class AlarmSystem
+{
+    // Delegate definition
+    public delegate void AlarmHandler(string message);
+
+    // Event built on delegate
+    public event AlarmHandler OnAlarm;
+
+    public void TriggerAlarm()
+    {
+        Console.WriteLine("🚨 Triggering alarm...");
+        OnAlarm?.Invoke("Alarm Activated!");
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        var alarm = new AlarmSystem();
+
+        // Subscribe using named method
+        alarm.OnAlarm += DisplayMessage;
+
+        // Subscribe using lambda
+        alarm.OnAlarm += msg =&gt; Console.WriteLine($"Lambda listener: {msg}");
+
+        alarm.TriggerAlarm();
+    }
+
+    static void DisplayMessage(string msg)
+    {
+        Console.WriteLine($"Named method: {msg}");
+    }
+}
+</code></pre>
+            <p>🧠 Output:</p>
+<pre><code>🚨 Triggering alarm...
+Named method: Alarm Activated!
+Lambda listener: Alarm Activated!
+</code></pre>
+            <p>✅ <code>AlarmHandler</code> is a <strong>delegate</strong> type<br /> ✅ <code>OnAlarm</code> is an <strong>event</strong> that wraps it<br /> ✅ Lambdas &amp; methods are <strong>subscribers</strong></p>
+            <hr />
+            <h1>🔹 <strong>6️⃣ Real-World Use Cases</strong></h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Use Case</th>
+                        <th>Delegate / Event / Lambda Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>UI Apps</strong></td>
+                        <td>Button.Click &rarr; event using delegates</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ASP.NET Middleware</strong></td>
+                        <td>Request pipeline built with <code>Func&lt;HttpContext, Task&gt;</code> delegates</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SignalR</strong></td>
+                        <td>Client events &rarr; <code>OnMessageReceived</code> (delegate-based)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Background Jobs</strong></td>
+                        <td>Pass <code>Func&lt;Task&gt;</code> delegates to job queues</td>
+                    </tr>
+                    <tr>
+                        <td><strong>LINQ</strong></td>
+                        <td>Uses <code>Func&lt;T,bool&gt;</code> and <code>Func&lt;T,TResult&gt;</code> lambdas</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Event-driven Microservices</strong></td>
+                        <td>Publish/subscribe patterns with events</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <h1>⚡ <strong>7️⃣ Summary Table</strong></h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Concept</th>
+                        <th>Definition</th>
+                        <th>Keyword</th>
+                        <th>Invocation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Delegate</strong></td>
+                        <td>Reference type for methods</td>
+                        <td><code>delegate</code></td>
+                        <td><code>myDelegate("msg")</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Event</strong></td>
+                        <td>Controlled delegate for notifications</td>
+                        <td><code>event</code></td>
+                        <td><code>myEvent?.Invoke("msg")</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lambda</strong></td>
+                        <td>Anonymous inline function</td>
+                        <td><code>=&gt;</code></td>
+                        <td>Used in delegates or events</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <h1>🧭 <strong>8️⃣ Analogy</strong></h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Real World</th>
+                        <th>C# Equivalent</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Alarm system triggers an alert</td>
+                        <td><strong>Event</strong></td>
+                    </tr>
+                    <tr>
+                        <td>The wire that carries the signal</td>
+                        <td><strong>Delegate</strong></td>
+                    </tr>
+                    <tr>
+                        <td>The siren that reacts to the signal</td>
+                        <td><strong>Lambda/Method (Subscriber)</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <p>✅ <strong>In summary:</strong></p>
+            <ul>
+                <li>
+                    <p><strong>Delegates</strong> define <em>what</em> can be called.</p>
+                </li>
+                <li>
+                    <p><strong>Events</strong> define <em>when</em> and <em>by whom</em> it can be called.</p>
+                </li>
+                <li>
+                    <p><strong>Lambdas</strong> define <em>how</em> it behaves when triggered.</p>
+                </li>
+            </ul>
+            <hr />
         </div>
     </TabPage>
     <TabPage Title="Garbage Collection">
