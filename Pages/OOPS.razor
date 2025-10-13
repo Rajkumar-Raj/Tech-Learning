@@ -1,0 +1,1577 @@
+﻿@page "/oops"
+
+<TabControl>
+    <TabPage Title="Core Concepts">
+        <div class="content">
+            <h3>🧩 <strong>Core Concepts of OOP</strong></h3>
+            <ol>
+                <li>
+                    <p><strong>Class</strong></p>
+                    <ul>
+                        <li>
+                            <p>A <strong>blueprint or template</strong> for creating objects.</p>
+                        </li>
+                        <li>
+                            <p>Defines the <strong>attributes (data)</strong> and <strong>methods (behavior)</strong> that the objects will have.</p>
+                        </li>
+                        <li>
+                            <p>Example: <code>class Car { color, speed, start(), stop() }</code></p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Object</strong></p>
+                    <ul>
+                        <li>
+                            <p>An <strong>instance</strong> of a class.</p>
+                        </li>
+                        <li>
+                            <p>Represents a <strong>real-world entity</strong> with state (attributes) and behavior (methods).</p>
+                        </li>
+                        <li>
+                            <p>Example: <code>myCar = new Car()</code></p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Encapsulation</strong></p>
+                    <ul>
+                        <li>
+                            <p>Bundling <strong>data (attributes)</strong> and <strong>methods</strong> that operate on that data within a single unit (class).</p>
+                        </li>
+                        <li>
+                            <p>Restricts <strong>direct access</strong> to some of the object&rsquo;s components (using access modifiers like <code>private</code>, <code>protected</code>, <code>public</code>).</p>
+                        </li>
+                        <li>
+                            <p>Promotes <strong>data hiding</strong> and <strong>controlled access</strong> via getters and setters.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Abstraction</strong></p>
+                    <ul>
+                        <li>
+                            <p>Hiding <strong>complex implementation details</strong> and showing only <strong>essential features</strong>.</p>
+                        </li>
+                        <li>
+                            <p>Focuses on <strong>what an object does</strong>, not <strong>how it does it</strong>.</p>
+                        </li>
+                        <li>
+                            <p>Achieved using <strong>abstract classes</strong> or <strong>interfaces</strong>.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Inheritance</strong></p>
+                    <ul>
+                        <li>
+                            <p>Mechanism that allows a class (<strong>child/subclass</strong>) to <strong>inherit</strong> attributes and methods from another class (<strong>parent/superclass</strong>).</p>
+                        </li>
+                        <li>
+                            <p>Promotes <strong>code reusability</strong> and <strong>hierarchical relationships</strong>.</p>
+                        </li>
+                        <li>
+                            <p>Example: <code>class ElectricCar extends Car</code></p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Polymorphism</strong></p>
+                    <ul>
+                        <li>
+                            <p>Means &ldquo;<strong>many forms</strong>.&rdquo;</p>
+                        </li>
+                        <li>
+                            <p>Allows the same function or method name to behave differently based on the object calling it.</p>
+                        </li>
+                        <li>
+                            <p>Two types:</p>
+                            <ul>
+                                <li>
+                                    <p><strong>Compile-time (method overloading)</strong> &mdash; same method name, different parameters.</p>
+                                </li>
+                                <li>
+                                    <p><strong>Runtime (method overriding)</strong> &mdash; subclass redefines a method from its parent class.</p>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+            <hr />
+            <h3>⚙️ <strong>Supporting / Advanced Concepts</strong></h3>
+            <ol start="7">
+                <li>
+                    <p><strong>Composition</strong></p>
+                    <ul>
+                        <li>
+                            <p>A form of association where one class <strong>contains</strong> objects of another class.</p>
+                        </li>
+                        <li>
+                            <p>Represents a <strong>&ldquo;has-a&rdquo;</strong> relationship.</p>
+                        </li>
+                        <li>
+                            <p>Example: <code>Car</code><em>has a</em><code>Engine</code>.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Association</strong></p>
+                    <ul>
+                        <li>
+                            <p>A general relationship between two classes.</p>
+                        </li>
+                        <li>
+                            <p>Can be <strong>one-to-one</strong>, <strong>one-to-many</strong>, or <strong>many-to-many</strong>.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Aggregation</strong></p>
+                    <ul>
+                        <li>
+                            <p>A <strong>weaker form</strong> of composition.</p>
+                        </li>
+                        <li>
+                            <p>Represents a <strong>&ldquo;has-a&rdquo;</strong> relationship where the contained object can exist <strong>independently</strong> of the container.</p>
+                        </li>
+                        <li>
+                            <p>Example: <code>Library</code><em>has</em><code>Books</code>, but books can exist without a library.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Message Passing</strong></p>
+                </li>
+            </ol>
+            <ul>
+                <li>
+                    <p>Objects communicate with each other by <strong>sending messages (method calls)</strong>.</p>
+                </li>
+            </ul>
+            <ol start="11">
+                <li>
+                    <p><strong>Dynamic Binding</strong></p>
+                </li>
+            </ol>
+            <ul>
+                <li>
+                    <p>The method to be invoked is determined at <strong>runtime</strong>, not compile time.</p>
+                </li>
+                <li>
+                    <p>Enables <strong>runtime polymorphism</strong>.</p>
+                </li>
+            </ul>
+        </div>
+    </TabPage>
+    <TabPage Title="Abstraction vs Encapsulation">
+        <div class="content">
+            <p>Here&rsquo;s a clear and structured comparison 👇</p>
+            <hr />
+            <h3>🧠 <strong>1. Definition</strong></h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Concept</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Abstraction</strong></td>
+                        <td>The process of <strong>hiding complex implementation details</strong> and showing only the <strong>essential features</strong> of an object. It focuses on <strong>what</strong> an object does.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Encapsulation</strong></td>
+                        <td>The process of <strong>bundling data (attributes)</strong> and <strong>methods (functions)</strong> that operate on that data into a single unit (class), and <strong>restricting direct access</strong> to the data. It focuses on <strong>how</strong> data is protected and maintained.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <h3>⚙️ <strong>2. Focus</strong></h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Concept</th>
+                        <th>Focus</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Abstraction</strong></td>
+                        <td>Simplifying complexity by hiding unnecessary details.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Encapsulation</strong></td>
+                        <td>Protecting data and controlling access to it.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <h3>🔒 <strong>3. Main Goal</strong></h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Concept</th>
+                        <th>Goal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Abstraction</strong></td>
+                        <td>To <strong>expose only essential features</strong> to the outside world.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Encapsulation</strong></td>
+                        <td>To <strong>safeguard internal data</strong> from unauthorized access or modification.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <h3>🧩 <strong>4. Implementation</strong></h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Concept</th>
+                        <th>How it&rsquo;s implemented</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Abstraction</strong></td>
+                        <td>Through <strong>abstract classes</strong>, <strong>interfaces</strong>, or <strong>method overriding</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Encapsulation</strong></td>
+                        <td>Through <strong>access modifiers</strong> (like <code>private</code>, <code>protected</code>, <code>public</code>) and <strong>getter/setter</strong> methods.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <h3>💡 <strong>5. Example</strong></h3>
+            <p><strong>Abstraction Example:</strong></p>
+<pre><code class="language-java">abstract class Vehicle {
+    abstract void start(); // We don&rsquo;t know *how* it starts &mdash; just that it can.
+}
+
+class Car extends Vehicle {
+    void start() {
+        System.out.println("Car starts with a key");
+    }
+}
+</code></pre>
+            <p>➡️ The user only needs to know that a <code>Vehicle</code> can <strong>start</strong>, not how it works internally.</p>
+            <hr />
+            <p><strong>Encapsulation Example:</strong></p>
+<pre><code class="language-java">class Person {
+    private String name; // hidden data
+
+    // public methods to access private data
+    public void setName(String newName) {
+        name = newName;
+    }
+
+    public String getName() {
+        return name;
+    }
+}
+</code></pre>
+            <p>➡️ The <code>name</code> variable is <strong>protected</strong> from direct modification &mdash; access is controlled.</p>
+            <hr />
+            <h3>🆚 <strong>6. Summary Table</strong></h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Abstraction</th>
+                        <th>Encapsulation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Focus</strong></td>
+                        <td>Hiding complexity</td>
+                        <td>Hiding data</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Concerned with</strong></td>
+                        <td>Design level</td>
+                        <td>Implementation level</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Achieved using</strong></td>
+                        <td>Abstract classes, interfaces</td>
+                        <td>Access modifiers, getters/setters</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Goal</strong></td>
+                        <td>Simplify usage</td>
+                        <td>Protect data</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Example</strong></td>
+                        <td>A <code>Car</code> has a <code>start()</code> method, you don&rsquo;t know its internals</td>
+                        <td>A <code>Car</code> hides its <code>engine</code> details from direct access</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <p>✅ <strong>In short:</strong></p>
+            <ul>
+                <li>
+                    <p><strong>Abstraction</strong> = "What the object does"</p>
+                </li>
+                <li>
+                    <p><strong>Encapsulation</strong> = "How the object does it safely"</p>
+                </li>
+            </ul>
+        </div>
+    </TabPage>
+    <TabPage Title="Interface vs Abstract Class">
+        <div class="content">
+            <h2>🧠 1. <strong>Basic Definition</strong></h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Concept</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Abstract Class</strong></td>
+                        <td>A class that <strong>cannot be instantiated</strong> and can contain <strong>abstract methods</strong> (without a body) and <strong>non-abstract methods</strong> (with implementation). Used when you want to provide a <strong>base class</strong> with shared code.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Interface</strong></td>
+                        <td>A <strong>contract</strong> that specifies <strong>methods, properties, events, or indexers</strong> that implementing classes <strong>must define</strong>. Interfaces do <strong>not contain implementation</strong> (except in special cases, like default interface methods in newer C# versions).</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <h2>⚙️ 2. <strong>Syntax Example</strong></h2>
+            <h3>🔹 Abstract Class Example</h3>
+<pre><code class="language-csharp">public abstract class Animal
+{
+    public abstract void MakeSound(); // abstract method
+
+    public void Sleep()               // concrete method
+    {
+        Console.WriteLine("Sleeping...");
+    }
+}
+
+public class Dog : Animal
+{
+    public override void MakeSound()
+    {
+        Console.WriteLine("Bark");
+    }
+}
+</code></pre>
+            <p>✅ <code>Animal</code> provides a <strong>partial implementation</strong> and <strong>shared behavior</strong>.<br /> ❌ You <strong>cannot</strong> create an instance of <code>Animal</code>.</p>
+            <hr />
+            <h3>🔹 Interface Example</h3>
+<pre><code class="language-csharp">public interface IFlyable
+{
+    void Fly();
+}
+
+public interface ISwimmable
+{
+    void Swim();
+}
+
+public class Duck : IFlyable, ISwimmable
+{
+    public void Fly()
+    {
+        Console.WriteLine("Duck is flying");
+    }
+
+    public void Swim()
+    {
+        Console.WriteLine("Duck is swimming");
+    }
+}
+</code></pre>
+            <p>✅ A <code>Duck</code> class can <strong>implement multiple interfaces</strong>, adding different behaviors.</p>
+            <hr />
+            <h2>🧩 3. <strong>Key Differences</strong></h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th><strong>Abstract Class</strong></th>
+                        <th><strong>Interface</strong></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Keyword</strong></td>
+                        <td><code>abstract class</code></td>
+                        <td><code>interface</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Instantiation</strong></td>
+                        <td>Cannot be instantiated</td>
+                        <td>Cannot be instantiated</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Members</strong></td>
+                        <td>Can have <strong>fields</strong>, <strong>constructors</strong>, <strong>abstract</strong>, and <strong>non-abstract methods</strong></td>
+                        <td>Can have <strong>methods</strong>, <strong>properties</strong>, <strong>events</strong>, <strong>indexers</strong> &mdash; <strong>no fields</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Access Modifiers</strong></td>
+                        <td>Members can have different access levels (<code>public</code>, <code>protected</code>, etc.)</td>
+                        <td>All members are <strong>public</strong> by default</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Implementation</strong></td>
+                        <td>A derived class <strong>inherits</strong> from it using <code>:</code> and can <strong>override</strong> methods</td>
+                        <td>A class <strong>implements</strong> it using <code>:</code> and must <strong>define all members</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Multiple Inheritance</strong></td>
+                        <td>C# does <strong>not</strong> support multiple inheritance for classes</td>
+                        <td>A class can <strong>implement multiple interfaces</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Constructors</strong></td>
+                        <td>Can have constructors</td>
+                        <td>Cannot have constructors</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Variables (Fields)</strong></td>
+                        <td>Can contain fields</td>
+                        <td>Cannot contain instance fields (only constants or static members in some cases)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Use Case</strong></td>
+                        <td>When you need <strong>common base behavior</strong></td>
+                        <td>When you need to <strong>define capabilities or contracts</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <h2>⚡ 4. <strong>Modern C# (8.0 and later)</strong> &mdash; Interface Enhancements</h2>
+            <p>Starting with <strong>C# 8.0</strong>, interfaces can now have:</p>
+            <ul>
+                <li>
+                    <p><strong>Default implementations</strong> for methods</p>
+                </li>
+                <li>
+                    <p><strong>Static members</strong></p>
+                </li>
+                <li>
+                    <p><strong>Private members</strong></p>
+                </li>
+            </ul>
+            <p>Example:</p>
+<pre><code class="language-csharp">public interface ILogger
+{
+    void Log(string message);
+
+    // Default method (C# 8+)
+    void LogError(string message)
+    {
+        Console.WriteLine("Error: " + message);
+    }
+}
+</code></pre>
+            <p>➡️ This blurs the line slightly between interfaces and abstract classes &mdash; but interfaces still <strong>cannot hold state (fields)</strong>.</p>
+            <hr />
+            <h2>🧱 5. <strong>When to Use Each</strong></h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Situation</th>
+                        <th>Use</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>You want to share <strong>common code or state</strong></td>
+                        <td><strong>Abstract class</strong></td>
+                    </tr>
+                    <tr>
+                        <td>You want to define a <strong>contract</strong> for unrelated classes</td>
+                        <td><strong>Interface</strong></td>
+                    </tr>
+                    <tr>
+                        <td>You expect <strong>future versioning</strong> (adding methods later without breaking code)</td>
+                        <td><strong>Abstract class</strong> (easier to evolve)</td>
+                    </tr>
+                    <tr>
+                        <td>You need <strong>multiple inheritance of behavior</strong></td>
+                        <td><strong>Interface</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <h2>✅ <strong>In Short:</strong></h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Concept</th>
+                        <th>Best For</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Abstract Class</strong></td>
+                        <td>Classes that are <strong>closely related</strong> and share <strong>implementation</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Interface</strong></td>
+                        <td>Classes that are <strong>unrelated</strong> but must follow a <strong>common behavior</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <p><strong>Example Summary:</strong></p>
+            <ul>
+                <li>
+                    <p>🐶 <code>Dog : Animal</code> &rarr; &ldquo;is a&rdquo; relationship &rarr; <strong>Abstract Class</strong></p>
+                </li>
+                <li>
+                    <p>🦆 <code>Duck : IFlyable, ISwimmable</code> &rarr; &ldquo;can do&rdquo; relationship &rarr; <strong>Interfaces</strong></p>
+                </li>
+            </ul>
+            <hr />
+            <p>Would you like me to show a <strong>real-world analogy</strong> (e.g., car engine vs. capabilities) to make this concept easier to visualize?</p>
+        </div>
+    </TabPage>
+    <TabPage Title="Interview Questions">
+        <div class="content">
+            <h3>🟢 <strong>Basic OOP Interview Questions</strong></h3>
+            <ol>
+                <li>
+                    <p><strong>What is Object-Oriented Programming (OOP)?</strong></p>
+                </li>
+                <li>
+                    <p><strong>What are the main principles of OOP?</strong></p>
+                    <ul>
+                        <li>
+                            <p>Encapsulation</p>
+                        </li>
+                        <li>
+                            <p>Inheritance</p>
+                        </li>
+                        <li>
+                            <p>Polymorphism</p>
+                        </li>
+                        <li>
+                            <p>Abstraction</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>What is a class and an object?</strong></p>
+                </li>
+                <li>
+                    <p><strong>What is the difference between a class and an object?</strong></p>
+                </li>
+                <li>
+                    <p><strong>What is encapsulation? Give an example.</strong></p>
+                </li>
+                <li>
+                    <p><strong>What is inheritance? How does it work?</strong></p>
+                </li>
+                <li>
+                    <p><strong>What is polymorphism? Explain compile-time and runtime polymorphism.</strong></p>
+                </li>
+                <li>
+                    <p><strong>What is abstraction? How is it achieved in OOP?</strong></p>
+                </li>
+                <li>
+                    <p><strong>What is the difference between abstraction and encapsulation?</strong></p>
+                </li>
+                <li>
+                    <p><strong>What are access specifiers (public, private, protected)?</strong></p>
+                </li>
+            </ol>
+            <hr />
+            <h3>🟡 <strong>Intermediate OOP Interview Questions</strong></h3>
+            <ol>
+                <li>
+                    <p><strong>What is the difference between method overloading and method overriding?</strong></p>
+                </li>
+                <li>
+                    <p><strong>Can constructors be overloaded or overridden?</strong></p>
+                </li>
+                <li>
+                    <p><strong>What is the difference between an abstract class and an interface?</strong></p>
+                </li>
+                <li>
+                    <p><strong>What is a constructor? What types of constructors exist?</strong></p>
+                </li>
+                <li>
+                    <p><strong>What is the role of <code>super</code> and <code>this</code> keywords?</strong></p>
+                </li>
+                <li>
+                    <p><strong>What is multiple inheritance? Is it supported in your language?</strong></p>
+                </li>
+                <li>
+                    <p><strong>What is the difference between <code>is-a</code> and <code>has-a</code> relationships?</strong></p>
+                </li>
+                <li>
+                    <p><strong>What is dynamic (late) binding and static (early) binding?</strong></p>
+                </li>
+                <li>
+                    <p><strong>What is an object lifecycle (creation, usage, destruction)?</strong></p>
+                </li>
+                <li>
+                    <p><strong>What is the difference between composition and aggregation?</strong></p>
+                </li>
+            </ol>
+            <hr />
+            <h3>🔵 <strong>Advanced OOP Interview Questions</strong></h3>
+            <ol>
+                <li>
+                    <p><strong>How is polymorphism implemented internally?</strong></p>
+                </li>
+                <li>
+                    <p><strong>What design patterns rely heavily on OOP principles?</strong></p>
+                </li>
+                <li>
+                    <p><strong>What is the diamond problem in multiple inheritance?</strong></p>
+                </li>
+                <li>
+                    <p><strong>How do interfaces help achieve abstraction?</strong></p>
+                </li>
+                <li>
+                    <p><strong>What is dependency inversion and why is it important?</strong></p>
+                </li>
+                <li>
+                    <p><strong>What is SOLID? Explain each principle briefly.</strong></p>
+                </li>
+                <li>
+                    <p><strong>What is the difference between shallow copy and deep copy?</strong></p>
+                </li>
+                <li>
+                    <p><strong>What are virtual functions and pure virtual functions?</strong></p>
+                </li>
+                <li>
+                    <p><strong>What is an inner (nested) class?</strong></p>
+                </li>
+                <li>
+                    <p><strong>How does OOP support code reusability and maintainability?</strong></p>
+                </li>
+            </ol>
+            <hr />
+        </div>
+    </TabPage>
+    <TabPage Title="C# interview questions">
+        <div class="content">
+            <p>Perfect 👍 &mdash; here&rsquo;s a list of <strong>common C# interview questions focused on OOP concepts</strong>, with short explanations and examples where useful.</p>
+            <hr />
+            <h2>🟢 <strong>Basic OOP Questions in C#</strong></h2>
+            <ol>
+                <li>
+                    <p><strong>What is Object-Oriented Programming (OOP)?</strong><br /> OOP is a programming paradigm based on the concept of <em>objects</em> that contain data (fields) and behavior (methods).</p>
+                </li>
+                <li>
+                    <p><strong>What are the four pillars of OOP in C#?</strong></p>
+                    <ul>
+                        <li>
+                            <p><strong>Encapsulation</strong> &mdash; wrapping data and methods into a single unit (class).</p>
+                        </li>
+                        <li>
+                            <p><strong>Abstraction</strong> &mdash; hiding implementation details and showing only what&rsquo;s necessary.</p>
+                        </li>
+                        <li>
+                            <p><strong>Inheritance</strong> &mdash; one class can acquire the properties and methods of another.</p>
+                        </li>
+                        <li>
+                            <p><strong>Polymorphism</strong> &mdash; the same method can behave differently based on the object.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>What is the difference between a class and an object?</strong></p>
+                    <ul>
+                        <li>
+                            <p>A <strong>class</strong> is a blueprint.</p>
+                        </li>
+                        <li>
+                            <p>An <strong>object</strong> is an instance of a class.</p>
+                        </li>
+                    </ul>
+<pre><code class="language-csharp">class Car { public string Model; }
+Car car1 = new Car(); // object
+</code></pre>
+                </li>
+                <li>
+                    <p><strong>What is encapsulation in C#?</strong><br /> Restricting direct access to class fields using access modifiers (<code>private</code>, <code>protected</code>, <code>public</code>) and exposing them through properties.</p>
+<pre><code class="language-csharp">class Person {
+    private string name;
+    public string Name {
+        get { return name; }
+        set { name = value; }
+    }
+}
+</code></pre>
+                </li>
+                <li>
+                    <p><strong>What is inheritance?</strong><br /> One class (child) inherits fields and methods from another (parent).</p>
+<pre><code class="language-csharp">class Animal { public void Eat() { } }
+class Dog : Animal { public void Bark() { } }
+</code></pre>
+                </li>
+                <li>
+                    <p><strong>What is polymorphism?</strong><br /> Ability of an object to take many forms &mdash; typically using method overriding or interfaces.</p>
+<pre><code class="language-csharp">class Animal { public virtual void Speak() { Console.WriteLine("Animal sound"); } }
+class Dog : Animal { public override void Speak() { Console.WriteLine("Bark"); } }
+</code></pre>
+                </li>
+            </ol>
+            <hr />
+            <h2>🟡 <strong>Intermediate C# OOP Questions</strong></h2>
+            <ol>
+                <li>
+                    <p><strong>What is the difference between method overloading and overriding?</strong></p>
+                    <ul>
+                        <li>
+                            <p><strong>Overloading:</strong> Same method name, different parameters (compile-time polymorphism).</p>
+                        </li>
+                        <li>
+                            <p><strong>Overriding:</strong> Redefining a method in a derived class (runtime polymorphism).</p>
+                        </li>
+                    </ul>
+<pre><code class="language-csharp">class Example {
+    void Show(int x) { }
+    void Show(string s) { } // Overloading
+}
+
+class A { public virtual void Print() { } }
+class B : A { public override void Print() { } } // Overriding
+</code></pre>
+                </li>
+                <li>
+                    <p><strong>What is an abstract class in C#?</strong><br /> A class that <strong>cannot be instantiated</strong> and may contain abstract methods (no implementation).</p>
+<pre><code class="language-csharp">abstract class Shape {
+    public abstract void Draw();
+}
+class Circle : Shape {
+    public override void Draw() { Console.WriteLine("Drawing circle"); }
+}
+</code></pre>
+                </li>
+                <li>
+                    <p><strong>What is an interface in C#?</strong><br /> A contract that defines <em>what</em> a class should do, not <em>how</em>.</p>
+<pre><code class="language-csharp">interface IShape { void Draw(); }
+class Circle : IShape { public void Draw() { Console.WriteLine("Drawing circle"); } }
+</code></pre>
+                </li>
+                <li>
+                    <p><strong>What is the difference between an abstract class and an interface?</strong></p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Abstract Class</th>
+                                <th>Interface</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Can have fields</td>
+                                <td>✅ Yes</td>
+                                <td>❌ No</td>
+                            </tr>
+                            <tr>
+                                <td>Can have constructors</td>
+                                <td>✅ Yes</td>
+                                <td>❌ No</td>
+                            </tr>
+                            <tr>
+                                <td>Multiple inheritance</td>
+                                <td>❌ No</td>
+                                <td>✅ Yes</td>
+                            </tr>
+                            <tr>
+                                <td>Default implementation</td>
+                                <td>✅ (since C# 8)</td>
+                                <td>✅ (since C# 8)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+                <li>
+                    <p><strong>What are access modifiers in C#?</strong></p>
+                    <ul>
+                        <li>
+                            <p><code>public</code>, <code>private</code>, <code>protected</code>, <code>internal</code>, <code>protected internal</code>, <code>private protected</code>.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>What is a constructor?</strong><br /> Special method used to initialize objects.</p>
+<pre><code class="language-csharp">class Car {
+    public string Model;
+    public Car(string model) { Model = model; } // constructor
+}
+</code></pre>
+                </li>
+            </ol>
+            <hr />
+            <h2>🔵 <strong>Advanced OOP Questions in C#</strong></h2>
+            <ol>
+                <li>
+                    <p><strong>What is the difference between <code>new</code>, <code>override</code>, and <code>virtual</code> keywords?</strong></p>
+                    <ul>
+                        <li>
+                            <p><code>virtual</code> &mdash; allows a method to be overridden.</p>
+                        </li>
+                        <li>
+                            <p><code>override</code> &mdash; modifies the behavior of a virtual method in a derived class.</p>
+                        </li>
+                        <li>
+                            <p><code>new</code> &mdash; hides a base class method without overriding it.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>What is the difference between composition and inheritance?</strong></p>
+                    <ul>
+                        <li>
+                            <p><strong>Inheritance</strong> &mdash; &ldquo;is-a&rdquo; relationship (e.g., Dog is an Animal).</p>
+                        </li>
+                        <li>
+                            <p><strong>Composition</strong> &mdash; &ldquo;has-a&rdquo; relationship (e.g., Car has an Engine).</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>What is the difference between an interface and an abstract class in C# 8+?</strong><br /> Interfaces can now contain <strong>default implementations</strong> using <code>default</code> keyword in method definitions.</p>
+                </li>
+                <li>
+                    <p><strong>What are properties and auto-implemented properties?</strong></p>
+                    <ul>
+                        <li>
+                            <p><strong>Property:</strong></p>
+<pre><code class="language-csharp">private string name;
+public string Name {
+    get { return name; }
+    set { name = value; }
+}
+</code></pre>
+                        </li>
+                        <li>
+                            <p><strong>Auto-implemented property:</strong></p>
+<pre><code class="language-csharp">public string Name { get; set; }
+</code></pre>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>What is a sealed class?</strong><br /> A class that <strong>cannot be inherited</strong>.</p>
+<pre><code class="language-csharp">sealed class MathHelper { }
+</code></pre>
+                </li>
+                <li>
+                    <p><strong>What is the difference between shallow copy and deep copy?</strong></p>
+                    <ul>
+                        <li>
+                            <p><strong>Shallow copy:</strong> Copies reference pointers only.</p>
+                        </li>
+                        <li>
+                            <p><strong>Deep copy:</strong> Copies object and all referenced data.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>What is the use of <code>base</code> keyword?</strong><br /> Used to access base class members or constructors.</p>
+<pre><code class="language-csharp">class Child : Parent {
+    public Child() : base("Hello") { }
+}
+</code></pre>
+                </li>
+                <li>
+                    <p><strong>Explain the SOLID principles in C# OOP.</strong></p>
+                    <ul>
+                        <li>
+                            <p><strong>S</strong>ingle Responsibility</p>
+                        </li>
+                        <li>
+                            <p><strong>O</strong>pen/Closed</p>
+                        </li>
+                        <li>
+                            <p><strong>L</strong>iskov Substitution</p>
+                        </li>
+                        <li>
+                            <p><strong>I</strong>nterface Segregation</p>
+                        </li>
+                        <li>
+                            <p><strong>D</strong>ependency Inversion</p>
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+            <hr />
+        </div>
+    </TabPage>
+    <TabPage Title="C# coding questions">
+        <div class="content">
+            <h2>🟢 <strong>1. Encapsulation</strong></h2>
+            <p><strong>Question:</strong><br /> Demonstrate encapsulation in C# using properties.</p>
+            <p><strong>Example Answer:</strong></p>
+<pre><code class="language-csharp">public class Employee
+{
+    private string name;
+    private double salary;
+
+    public string Name
+    {
+        get { return name; }
+        set
+        {
+            if (!string.IsNullOrEmpty(value))
+                name = value;
+        }
+    }
+
+    public double Salary
+    {
+        get { return salary; }
+        set
+        {
+            if (value &gt; 0)
+                salary = value;
+        }
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Employee emp = new Employee();
+        emp.Name = "Alice";
+        emp.Salary = 50000;
+        Console.WriteLine($"{emp.Name} earns {emp.Salary}");
+    }
+}
+</code></pre>
+            <p>✅ <strong>Concept:</strong> Data fields are private; access is controlled via public properties.</p>
+            <hr />
+            <h2>🟡 <strong>2. Inheritance</strong></h2>
+            <p><strong>Question:</strong><br /> Show how inheritance works in C#.</p>
+            <p><strong>Example Answer:</strong></p>
+<pre><code class="language-csharp">class Animal
+{
+    public void Eat() =&gt; Console.WriteLine("Eating...");
+}
+
+class Dog : Animal
+{
+    public void Bark() =&gt; Console.WriteLine("Barking...");
+}
+
+class Program
+{
+    static void Main()
+    {
+        Dog d = new Dog();
+        d.Eat();  // Inherited
+        d.Bark(); // Own method
+    }
+}
+</code></pre>
+            <p>✅ <strong>Concept:</strong> <code>Dog</code> inherits the <code>Eat()</code> method from <code>Animal</code>.</p>
+            <hr />
+            <h2>🔵 <strong>3. Polymorphism (Method Overriding)</strong></h2>
+            <p><strong>Question:</strong><br /> Demonstrate runtime polymorphism in C#.</p>
+            <p><strong>Example Answer:</strong></p>
+<pre><code class="language-csharp">class Shape
+{
+    public virtual void Draw() =&gt; Console.WriteLine("Drawing a shape");
+}
+
+class Circle : Shape
+{
+    public override void Draw() =&gt; Console.WriteLine("Drawing a circle");
+}
+
+class Rectangle : Shape
+{
+    public override void Draw() =&gt; Console.WriteLine("Drawing a rectangle");
+}
+
+class Program
+{
+    static void Main()
+    {
+        Shape shape = new Circle();
+        shape.Draw(); // "Drawing a circle"
+
+        shape = new Rectangle();
+        shape.Draw(); // "Drawing a rectangle"
+    }
+}
+</code></pre>
+            <p>✅ <strong>Concept:</strong> Same method behaves differently based on the object type.</p>
+            <hr />
+            <h2>🟣 <strong>4. Abstraction</strong></h2>
+            <p><strong>Question:</strong><br /> Use an abstract class to show abstraction.</p>
+            <p><strong>Example Answer:</strong></p>
+<pre><code class="language-csharp">abstract class Payment
+{
+    public abstract void Pay();
+}
+
+class CreditCardPayment : Payment
+{
+    public override void Pay() =&gt; Console.WriteLine("Paid using Credit Card");
+}
+
+class PayPalPayment : Payment
+{
+    public override void Pay() =&gt; Console.WriteLine("Paid using PayPal");
+}
+
+class Program
+{
+    static void Main()
+    {
+        Payment payment = new PayPalPayment();
+        payment.Pay();
+    }
+}
+</code></pre>
+            <p>✅ <strong>Concept:</strong> Abstract class hides implementation details, exposing only the <code>Pay()</code> contract.</p>
+            <hr />
+            <h2>🟤 <strong>5. Interfaces and Polymorphism</strong></h2>
+            <p><strong>Question:</strong><br /> Implement polymorphism using interfaces.</p>
+            <p><strong>Example Answer:</strong></p>
+<pre><code class="language-csharp">interface ILogger
+{
+    void Log(string message);
+}
+
+class ConsoleLogger : ILogger
+{
+    public void Log(string message) =&gt; Console.WriteLine("Console: " + message);
+}
+
+class FileLogger : ILogger
+{
+    public void Log(string message) =&gt; Console.WriteLine("File: " + message);
+}
+
+class Program
+{
+    static void Main()
+    {
+        ILogger logger = new ConsoleLogger();
+        logger.Log("Hello from console");
+
+        logger = new FileLogger();
+        logger.Log("Hello from file");
+    }
+}
+</code></pre>
+            <p>✅ <strong>Concept:</strong> Interface allows multiple implementations with interchangeable behavior.</p>
+            <hr />
+            <h2>⚪ <strong>6. Constructor Overloading</strong></h2>
+            <p><strong>Question:</strong><br /> Show how to overload constructors in C#.</p>
+            <p><strong>Example Answer:</strong></p>
+<pre><code class="language-csharp">class Car
+{
+    public string Model;
+    public int Year;
+
+    public Car() { Model = "Unknown"; Year = 0; }
+    public Car(string model) { Model = model; Year = 2025; }
+    public Car(string model, int year) { Model = model; Year = year; }
+
+    public void Display() =&gt; Console.WriteLine($"{Model} ({Year})");
+}
+
+class Program
+{
+    static void Main()
+    {
+        Car car1 = new Car();
+        Car car2 = new Car("Tesla");
+        Car car3 = new Car("BMW", 2023);
+
+        car1.Display();
+        car2.Display();
+        car3.Display();
+    }
+}
+</code></pre>
+            <p>✅ <strong>Concept:</strong> Multiple constructors with different parameter lists.</p>
+            <hr />
+            <h2>⚫ <strong>7. Composition</strong></h2>
+            <p><strong>Question:</strong><br /> Show a &ldquo;has-a&rdquo; relationship in C# using composition.</p>
+            <p><strong>Example Answer:</strong></p>
+<pre><code class="language-csharp">class Engine
+{
+    public void Start() =&gt; Console.WriteLine("Engine started");
+}
+
+class Car
+{
+    private Engine engine = new Engine();
+
+    public void StartCar()
+    {
+        engine.Start();
+        Console.WriteLine("Car is ready to go!");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Car car = new Car();
+        car.StartCar();
+    }
+}
+</code></pre>
+            <p>✅ <strong>Concept:</strong> <code>Car</code> <em>has an</em> <code>Engine</code> &mdash; this is composition.</p>
+            <hr />
+            <h2>🔶 <strong>8. Sealed Class and Method</strong></h2>
+            <p><strong>Question:</strong><br /> What is a sealed class and method? Demonstrate with code.</p>
+            <p><strong>Example Answer:</strong></p>
+<pre><code class="language-csharp">sealed class FinalClass
+{
+    public void Show() =&gt; Console.WriteLine("This class cannot be inherited");
+}
+
+// sealed methods
+class Base
+{
+    public virtual void Display() =&gt; Console.WriteLine("Base Display");
+}
+
+class Derived : Base
+{
+    public sealed override void Display() =&gt; Console.WriteLine("Derived Display");
+}
+
+// Further derived class cannot override Display()
+</code></pre>
+            <p>✅ <strong>Concept:</strong> Prevents inheritance or overriding for safety or design reasons.</p>
+            <hr />
+            <h2>🧩 <strong>9. Static Members</strong></h2>
+            <p><strong>Question:</strong><br /> Show the use of static fields and methods.</p>
+            <p><strong>Example Answer:</strong></p>
+<pre><code class="language-csharp">class Counter
+{
+    private static int count = 0;
+
+    public Counter() { count++; }
+
+    public static void ShowCount()
+    {
+        Console.WriteLine($"Objects created: {count}");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        new Counter();
+        new Counter();
+        Counter.ShowCount();
+    }
+}
+</code></pre>
+            <p>✅ <strong>Concept:</strong> Static members belong to the class, not an object.</p>
+            <hr />
+            <h2>🧠 <strong>10. Polymorphism with Abstract + Interface</strong></h2>
+            <p><strong>Question:</strong><br /> Combine abstract class and interface for polymorphism.</p>
+            <p><strong>Example Answer:</strong></p>
+<pre><code class="language-csharp">interface IPrintable { void Print(); }
+
+abstract class Document
+{
+    public abstract void Save();
+}
+
+class Report : Document, IPrintable
+{
+    public override void Save() =&gt; Console.WriteLine("Report saved");
+    public void Print() =&gt; Console.WriteLine("Report printed");
+}
+
+class Program
+{
+    static void Main()
+    {
+        IPrintable printable = new Report();
+        printable.Print();
+
+        Document doc = new Report();
+        doc.Save();
+    }
+}
+</code></pre>
+            <p>✅ <strong>Concept:</strong> Multiple abstraction levels can be combined using interfaces + abstract classes.</p>
+            <hr />
+            <h2>🔶 <strong>1. What&rsquo;s the difference between <code>virtual</code>, <code>override</code>, and <code>new</code> keywords in C#?</strong></h2>
+            <p><strong>Explanation:</strong></p>
+            <ul>
+                <li>
+                    <p><code>virtual</code> &rarr; allows a base class method to be overridden in derived classes.</p>
+                </li>
+                <li>
+                    <p><code>override</code> &rarr; changes the implementation of a <code>virtual</code> (or <code>abstract</code>) method in a derived class.</p>
+                </li>
+                <li>
+                    <p><code>new</code> &rarr; hides a base class method (method hiding), not overriding.</p>
+                </li>
+            </ul>
+            <p><strong>Example:</strong></p>
+<pre><code class="language-csharp">class Base
+{
+    public virtual void Show() =&gt; Console.WriteLine("Base");
+}
+
+class Derived : Base
+{
+    public override void Show() =&gt; Console.WriteLine("Derived");
+}
+
+class Hidden : Base
+{
+    public new void Show() =&gt; Console.WriteLine("Hidden");
+}
+
+class Program
+{
+    static void Main()
+    {
+        Base b1 = new Derived();
+        Base b2 = new Hidden();
+
+        b1.Show(); // Derived
+        b2.Show(); // Base (method hiding does not affect base reference)
+    }
+}
+</code></pre>
+            <p>✅ <em>Takeaway:</em> <code>override</code> uses runtime polymorphism, <code>new</code> uses compile-time hiding.</p>
+            <hr />
+            <h2>🧠 <strong>2. Can we create an object of an abstract class in C#?</strong></h2>
+            <p><strong>Answer:</strong><br /> No, abstract classes cannot be instantiated directly.<br /> But you can create an <em>object reference</em> of an abstract type that points to a derived class.</p>
+<pre><code class="language-csharp">abstract class Shape { public abstract void Draw(); }
+
+class Circle : Shape
+{
+    public override void Draw() =&gt; Console.WriteLine("Circle drawn");
+}
+
+class Program
+{
+    static void Main()
+    {
+        Shape s = new Circle(); // OK
+        // Shape s = new Shape(); ❌ Error
+        s.Draw();
+    }
+}
+</code></pre>
+            <hr />
+            <h2>⚙️ <strong>3. What happens if a derived class has a method with the same name but without <code>override</code> or <code>new</code>?</strong></h2>
+            <p><strong>Answer:</strong><br /> The compiler gives a <em>warning</em> that the method hides an inherited member &mdash; but the base version will still be called via a base reference.</p>
+<pre><code class="language-csharp">class Base { public void Show() =&gt; Console.WriteLine("Base"); }
+class Derived : Base { public void Show() =&gt; Console.WriteLine("Derived"); }
+
+class Program
+{
+    static void Main()
+    {
+        Base obj = new Derived();
+        obj.Show(); // Base
+    }
+}
+</code></pre>
+            <p>✅ Always use <code>new</code> or <code>override</code> to make your intention clear.</p>
+            <hr />
+            <h2>🧩 <strong>4. What is the difference between abstract class and interface in C# 8.0+?</strong></h2>
+            <p><strong>Before C# 8.0:</strong></p>
+            <ul>
+                <li>
+                    <p>Abstract class &rarr; can have fields, constructors, and implementations.</p>
+                </li>
+                <li>
+                    <p>Interface &rarr; only method declarations.</p>
+                </li>
+            </ul>
+            <p><strong>Since C# 8.0:</strong></p>
+            <ul>
+                <li>
+                    <p>Interfaces can also contain <strong>default method implementations</strong> using <code>default</code> keyword.</p>
+                </li>
+            </ul>
+            <p><strong>Example:</strong></p>
+<pre><code class="language-csharp">interface ILogger
+{
+    void Log(string msg);
+    void Info(string msg) =&gt; Console.WriteLine("INFO: " + msg);
+}
+</code></pre>
+            <p>✅ <em>Trick:</em> Even though interfaces can have default methods, they <strong>still cannot have fields or constructors.</strong></p>
+            <hr />
+            <h2>🔒 <strong>5. What is a sealed class and sealed method?</strong></h2>
+            <p><strong>Explanation:</strong></p>
+            <ul>
+                <li>
+                    <p><strong>Sealed class:</strong> cannot be inherited.</p>
+                </li>
+                <li>
+                    <p><strong>Sealed method:</strong> cannot be overridden further.</p>
+                </li>
+            </ul>
+            <p><strong>Example:</strong></p>
+<pre><code class="language-csharp">class A
+{
+    public virtual void Show() =&gt; Console.WriteLine("A");
+}
+
+class B : A
+{
+    public sealed override void Show() =&gt; Console.WriteLine("B");
+}
+
+sealed class C : B { } // Can't be inherited further
+</code></pre>
+            <p>✅ <em>Trick:</em> If you try to override a sealed method, you&rsquo;ll get a compile-time error.</p>
+            <hr />
+            <h2>🧱 <strong>6. What&rsquo;s the difference between composition and inheritance? Which is better?</strong></h2>
+            <ul>
+                <li>
+                    <p><strong>Inheritance</strong> &mdash; &ldquo;is-a&rdquo; relationship<br /> &rarr; <code>Car : Vehicle</code></p>
+                </li>
+                <li>
+                    <p><strong>Composition</strong> &mdash; &ldquo;has-a&rdquo; relationship<br /> &rarr; <code>Car</code> <em>has an</em> <code>Engine</code></p>
+                </li>
+            </ul>
+            <p>✅ <strong>Composition is often preferred</strong> because:</p>
+            <ul>
+                <li>
+                    <p>It avoids tight coupling.</p>
+                </li>
+                <li>
+                    <p>You can replace components without changing the class hierarchy.</p>
+                </li>
+            </ul>
+            <hr />
+            <h2>⚡ <strong>7. What is the difference between shallow copy and deep copy in C#?</strong></h2>
+            <p><strong>Shallow copy:</strong> Copies only object references, not the actual objects.<br /> <strong>Deep copy:</strong> Creates copies of all referenced objects as well.</p>
+            <p><strong>Example:</strong></p>
+<pre><code class="language-csharp">class Person
+{
+    public string Name;
+    public Person(string name) =&gt; Name = name;
+}
+
+class Employee
+{
+    public Person Person;
+    public Employee(Person person) =&gt; Person = person;
+}
+
+class Program
+{
+    static void Main()
+    {
+        Employee e1 = new Employee(new Person("Alice"));
+        Employee e2 = e1; // shallow copy
+        e2.Person.Name = "Bob";
+        Console.WriteLine(e1.Person.Name); // Bob (same object reference)
+    }
+}
+</code></pre>
+            <p>✅ <em>To make a deep copy,</em> implement <code>ICloneable</code> and manually clone nested objects.</p>
+            <hr />
+            <h2>🧮 <strong>8. What is the difference between early binding and late binding in C#?</strong></h2>
+            <ul>
+                <li>
+                    <p><strong>Early binding (compile-time):</strong> Compiler knows which method to call. (e.g., method overloading)</p>
+                </li>
+                <li>
+                    <p><strong>Late binding (runtime):</strong> Method to call is determined at runtime. (e.g., method overriding or reflection)</p>
+                </li>
+            </ul>
+            <p><strong>Example:</strong></p>
+<pre><code class="language-csharp">class Base { public virtual void Show() =&gt; Console.WriteLine("Base"); }
+class Derived : Base { public override void Show() =&gt; Console.WriteLine("Derived"); }
+</code></pre>
+            <p>✅ <em>Trick:</em> <code>virtual</code> and <code>override</code> = late binding.</p>
+            <hr />
+            <h2>🧩 <strong>9. Can constructors be overridden in C#?</strong></h2>
+            <p><strong>Answer:</strong><br /> No, constructors <strong>cannot be overridden</strong> because they are not inherited.<br /> However, you can <strong>call base constructors</strong> using the <code>base</code> keyword.</p>
+<pre><code class="language-csharp">class Base
+{
+    public Base(string msg) =&gt; Console.WriteLine(msg);
+}
+
+class Derived : Base
+{
+    public Derived() : base("Hello from Base") { }
+}
+</code></pre>
+            <hr />
+            <h2>⚖️ <strong>10. Explain the SOLID principles with C# examples (conceptual question).</strong></h2>
+            <p><strong>S &mdash; Single Responsibility:</strong><br /> Each class should have one reason to change.<br /> ✅ Example: <code>InvoicePrinter</code> and <code>InvoiceCalculator</code> should not be in one class.</p>
+            <p><strong>O &mdash; Open/Closed:</strong><br /> Classes should be open for extension, closed for modification.<br /> ✅ Use interfaces or abstract classes to extend behavior.</p>
+            <p><strong>L &mdash; Liskov Substitution:</strong><br /> Subclasses should be replaceable with their base classes without breaking functionality.</p>
+            <p><strong>I &mdash; Interface Segregation:</strong><br /> Many specific interfaces are better than one general-purpose interface.</p>
+            <p><strong>D &mdash; Dependency Inversion:</strong><br /> Depend on abstractions, not concrete implementations.<br /> ✅ Use dependency injection.</p>
+            <hr />
+            <h2>🧠 <strong>11. Trick Question &mdash; Can a static class implement an interface?</strong></h2>
+            <p><strong>Answer:</strong> ❌ No.<br /> A <code>static</code> class cannot implement an interface or be inherited.<br /> It is designed for utility/helper methods only.</p>
+            <hr />
+            <h2>⚡ <strong>12. What happens if you call a virtual method inside a constructor?</strong></h2>
+            <p><strong>Answer:</strong><br /> The <em>base class constructor</em> runs <strong>before</strong> the derived class is fully initialized,<br /> so calling a virtual method from a base constructor may execute the derived method <em>on an uninitialized object.</em></p>
+            <p>✅ <em>Trick:</em> Avoid calling virtual methods from constructors &mdash; it can cause unpredictable behavior.</p>
+            <hr />
+        </div>
+    </TabPage>
+    <TabPage Title="Revision sheet">
+        <div class="content">
+            <h2>⚡ <strong>C# OOP Mock Interview Cheat Sheet (Quick Revision)</strong></h2>
+            <hr />
+            <h3>🟢 <strong>1. What are the four main OOP principles?</strong></h3>
+            <p><strong>Answer:</strong> Encapsulation, Inheritance, Polymorphism, and Abstraction.</p>
+            <hr />
+            <h3>🟡 <strong>2. What is the difference between a class and an object?</strong></h3>
+            <p><strong>Answer:</strong><br /> A <em>class</em> is a blueprint; an <em>object</em> is an instance of that blueprint.</p>
+            <hr />
+            <h3>🟠 <strong>3. What is the difference between abstraction and encapsulation?</strong></h3>
+            <p><strong>Answer:</strong></p>
+            <ul>
+                <li>
+                    <p><strong>Abstraction</strong> hides <em>implementation details</em>.</p>
+                </li>
+                <li>
+                    <p><strong>Encapsulation</strong> hides <em>data</em> and binds it with methods.</p>
+                </li>
+            </ul>
+            <hr />
+            <h3>🔵 <strong>4. What is polymorphism in C#?</strong></h3>
+            <p><strong>Answer:</strong><br /> Polymorphism allows the same method name to behave differently &mdash; achieved via <strong>method overloading (compile-time)</strong> and <strong>method overriding (runtime)</strong>.</p>
+            <hr />
+            <h3>🟣 <strong>5. What is the difference between <code>virtual</code>, <code>override</code>, and <code>new</code>?</strong></h3>
+            <p><strong>Answer:</strong></p>
+            <ul>
+                <li>
+                    <p><code>virtual</code> &rarr; enables overriding.</p>
+                </li>
+                <li>
+                    <p><code>override</code> &rarr; modifies a virtual method.</p>
+                </li>
+                <li>
+                    <p><code>new</code> &rarr; hides the base method (not polymorphic).</p>
+                </li>
+            </ul>
+            <hr />
+            <h3>🟤 <strong>6. What&rsquo;s the difference between an abstract class and an interface?</strong></h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Abstract Class</th>
+                        <th>Interface</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Implementation</td>
+                        <td>Can have both abstract and concrete methods</td>
+                        <td>Only method signatures (default methods since C# 8)</td>
+                    </tr>
+                    <tr>
+                        <td>Fields</td>
+                        <td>Allowed</td>
+                        <td>Not allowed</td>
+                    </tr>
+                    <tr>
+                        <td>Inheritance</td>
+                        <td>Single</td>
+                        <td>Multiple</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <h3>⚫ <strong>7. What is the difference between <code>is-a</code> and <code>has-a</code> relationship?</strong></h3>
+            <p><strong>Answer:</strong></p>
+            <ul>
+                <li>
+                    <p><code>is-a</code> &rarr; inheritance (<code>Car : Vehicle</code>).</p>
+                </li>
+                <li>
+                    <p><code>has-a</code> &rarr; composition (<code>Car</code> <em>has an</em> <code>Engine</code>).</p>
+                </li>
+            </ul>
+            <hr />
+            <h3>⚙️ <strong>8. What is a sealed class or method?</strong></h3>
+            <p><strong>Answer:</strong></p>
+            <ul>
+                <li>
+                    <p><strong>Sealed class:</strong> cannot be inherited.</p>
+                </li>
+                <li>
+                    <p><strong>Sealed method:</strong> cannot be overridden further.</p>
+                </li>
+            </ul>
+            <hr />
+            <h3>🧩 <strong>9. What is the difference between method overloading and overriding?</strong></h3>
+            <p><strong>Answer:</strong></p>
+            <ul>
+                <li>
+                    <p><strong>Overloading:</strong> same method name, different parameters. (Compile-time)</p>
+                </li>
+                <li>
+                    <p><strong>Overriding:</strong> base method redefined in derived class using <code>override</code>. (Runtime)</p>
+                </li>
+            </ul>
+            <hr />
+            <h3>🔶 <strong>10. What are the SOLID principles?</strong></h3>
+            <p><strong>Answer:</strong></p>
+            <ul>
+                <li>
+                    <p><strong>S</strong> &mdash; Single Responsibility</p>
+                </li>
+                <li>
+                    <p><strong>O</strong> &mdash; Open/Closed</p>
+                </li>
+                <li>
+                    <p><strong>L</strong> &mdash; Liskov Substitution</p>
+                </li>
+                <li>
+                    <p><strong>I</strong> &mdash; Interface Segregation</p>
+                </li>
+                <li>
+                    <p><strong>D</strong> &mdash; Dependency Inversion</p>
+                </li>
+            </ul>
+            <hr />
+            <p>✅ <strong>Bonus Tips for Interviews:</strong></p>
+            <ul>
+                <li>
+                    <p>Always mention <strong>&ldquo;real-world analogies&rdquo;</strong> (e.g., Car is-a Vehicle, Car has-a Engine).</p>
+                </li>
+                <li>
+                    <p>Stress <strong>why</strong> OOP improves maintainability, reusability, and scalability.</p>
+                </li>
+                <li>
+                    <p>If asked for examples, write short, clean code (avoid overcomplicating).</p>
+                </li>
+            </ul>
+            <hr />
+        </div>
+    </TabPage>
+</TabControl>
+
+@code {
+
+}

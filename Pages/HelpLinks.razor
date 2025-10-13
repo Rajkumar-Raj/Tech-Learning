@@ -1,0 +1,47 @@
+﻿@page "/helplinks"
+<style>
+    #helplinks li {
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+        margin-bottom: 2px;
+    }
+
+        /* Alternate color for odd-numbered list items */
+        #helplinks li:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+
+        /* Alternate color for even-numbered list items */
+        #helplinks li:nth-child(even) {
+            background-color: #e6e6e6;
+        }
+</style>
+<h3>Help Links</h3>
+
+<div id="helplinks">
+    <ul>
+        <li>
+            <a href="https://roadmap.sh/roadmaps">Developer Roadmaps</a>
+            <span>Helps to Identify How to Start, what to read</span>
+        </li>
+
+        <li>
+            <a href="https://www.geeksforgeeks.org/blogs/a-step-by-step-approach-to-learn-object-oriented-programming/">
+                A Step-by-Step Approach to Learn Object Oriented Programming
+            </a>
+        </li>
+        <li>
+            <a href="https://github.com/Rajkumar-Raj">Raj's Github'</a>
+            <a href="https://rajkumar-raj.github.io/Tech-Learning/">Tech Learning</a>
+            <a href="https://wordtohtml.net/">Word to Html</a>
+            <a href="https://wordhtml.com/">Word to Html</a>
+        </li>
+    </ul>
+</div>
+
+
+
+@code {
+
+}

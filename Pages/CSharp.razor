@@ -2,306 +2,742 @@
 
 
 <TabControl>
-    <TabPage Title="Fundamentals">
+    <TabPage Title="C# Fundamentals">
         <div class="content">
-            <p>
-                <strong>
-                    C# is a versatile, modern programming language developed by Microsoft.
-                    It’s often used for building web, desktop, and mobile applications, as
-                    well as games and cloud-based services.
-                </strong>
-            </p>
 
-            <h3>1. <strong>Basic Syntax and Structure</strong></h3>
-
+            <p>Core fundamentals of C# (C-Sharp), focusing on key concepts and features of the language:</p>
+            <h3>1. <strong>Basic Syntax</strong></h3>
+            <h4>Structure of a C# Program</h4>
+            <p>A basic C# program consists of:</p>
             <ul>
                 <li>
-                    <strong>Namespaces</strong>: C# organizes code into
-                    <strong>namespaces</strong> to help avoid naming conflicts and make code
-                    more modular. <code>System</code> is a default namespace that includes
-                    common classes like <code>Console</code>.
+                    <p><strong>Namespace</strong>: A container that holds classes and other types.</p>
                 </li>
                 <li>
-                    <strong>Classes and Objects</strong>: C# is an object-oriented language,
-                    meaning everything revolves around <strong>classes</strong> and
-                    <strong>objects</strong>. A class defines the structure and behavior of
-                    objects, which are instances of classes.
+                    <p><strong>Class</strong>: Defines the structure and behavior of the program. C# is object-oriented, so everything in C# resides inside a class or struct.</p>
+                </li>
+                <li>
+                    <p><strong>Main Method</strong>: This is the entry point of a C# application, where execution starts.</p>
                 </li>
             </ul>
-
             <CodeSnippet>
-using System;
+                using System;
 
-namespace MyApp
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello, World!");
-        }
-    }
-}
-           </CodeSnippet>
-            <hr>
-            <h3>2. <strong>Data Types and Variables</strong></h3>
-            <ul>
-                <li>
-                    <p>
-                        <strong>Primitive Data Types</strong>: C# includes various data types,
-                        such as:
-                    </p>
-                    <ul>
-                        <li><code>int</code>: integer (e.g., 5)</li>
-                        <li><code>double</code>: floating-point number (e.g., 5.5)</li>
-                        <li><code>char</code>: single character (e.g., 'A')</li>
-                        <li><code>bool</code>: boolean (true or false)</li>
-                        <li><code>string</code>: sequence of characters (e.g., "Hello")</li>
-                    </ul>
-                </li>
-                <li>
-                    <p>
-                        <strong>Variables</strong>: Variables are containers for storing data
-                        values. In C#, variables need to be declared with a type, making it a
-                        <strong>strongly-typed language</strong>.
-                    </p>
-                </li>
-            </ul>
-
-            <CodeSnippet>
-int number = 10;
-double pi = 3.14;
-string name = "C#";
-bool isAwesome = true;            
+                namespace MyFirstProgram
+                {
+                class Program
+                {
+                static void Main(string[] args)
+                {
+                Console.WriteLine("Hello, World!");
+                }
+                }
+                }
             </CodeSnippet>
-            <hr>
-
+            <h3>2. <strong>Variables and Data Types</strong></h3>
+            <p>C# is a strongly-typed language, meaning variables must be explicitly declared with a type. The most commonly used data types are:</p>
+            <ul>
+                <li>
+                    <p><strong>Primitive types</strong> (e.g., <code>int</code>, <code>float</code>, <code>char</code>, <code>bool</code>, <code>double</code>)</p>
+                </li>
+                <li>
+                    <p><strong>Reference types</strong> (e.g., <code>string</code>, arrays, objects)</p>
+                </li>
+            </ul>
+            <CodeSnippet>
+                int age = 30; // Integer
+                float weight = 70.5f; // Floating-point number
+                char gender = 'M'; // Character
+                bool isActive = true; // Boolean
+                string name = "John"; // String
+            </CodeSnippet>
             <h3>3. <strong>Control Flow Statements</strong></h3>
-            <p>Control flow statements control the execution path in a program.</p>
+            <p>C# uses standard control flow statements, including:</p>
             <ul>
                 <li>
-                    <strong>Conditionals</strong>: <code>if</code>, <code>else if</code>,
-                    and <code>else</code> statements control logic based on conditions.
+                    <p><strong>If-Else</strong>: Conditional branching</p>
                 </li>
-                <li><strong>Switch</strong>: Allows selection among multiple options.</li>
                 <li>
-                    <strong>Loops</strong>: C# supports various loops, such as:
-                    <ul>
-                        <li>
-                            <code>for</code> loop: Runs a block of code a specified number of
-                            times.
-                        </li>
-                        <li>
-                            <code>while</code> loop: Runs a block of code while a condition is
-                            true.
-                        </li>
-                        <li>
-                            <code>do-while</code> loop: Similar to <code>while</code>, but
-                            checks the condition after the first execution.
-                        </li>
-                        <li>
-                            <code>foreach</code> loop: Used to iterate through collections like
-                            arrays or lists.
-                        </li>
-                    </ul>
+                    <p><strong>Switch</strong>: Used for handling multiple cases</p>
+                </li>
+                <li>
+                    <p><strong>For, While, and Do-While</strong>: Looping mechanisms</p>
                 </li>
             </ul>
-
             <CodeSnippet>
-int num = 10;
+                int num = 5;
 
-if (num &gt; 5)
-{
-    Console.WriteLine("Greater than 5");
-}
-else
-{
-    Console.WriteLine("5 or less");
-}
+                if (num &gt; 0)
+                {
+                Console.WriteLine("Positive");
+                }
+                else
+                {
+                Console.WriteLine("Negative or Zero");
+                }
 
-for (int i = 0; i &lt; 5; i++)
-{
-    Console.WriteLine(i);  // Outputs 0 to 4
-}           
+                switch (num)
+                {
+                case 1:
+                Console.WriteLine("One");
+                break;
+                case 5:
+                Console.WriteLine("Five");
+                break;
+                default:
+                Console.WriteLine("Other");
+                break;
+                }
             </CodeSnippet>
-
-            <hr>
-            <h3>4. <strong>Methods</strong></h3>
-            <p>
-                <strong>Methods</strong> are reusable blocks of code that perform specific
-                tasks. They allow you to structure code better and avoid repetition. A
-                method can return a value or be <code>void</code> (returning nothing).
-            </p>
+            <h3>4. <strong>Methods (Functions)</strong></h3>
+            <p>A method is a block of code that performs a specific task. It can take parameters and return a value.</p>
             <CodeSnippet>
-using System;
+                class Program
+                {
+                static void Main(string[] args)
+                {
+                int result = Add(5, 7);
+                Console.WriteLine(result);
+                }
 
-class Program
-{
-    static void Main(string[] args)
-    {
-        int sum = Add(5, 3);
-        Console.WriteLine("Sum: " + sum);
-    }
-
-    static int Add(int a, int b)
-    {
-        return a + b;
-    }
-}           
+                static int Add(int a, int b)
+                {
+                return a + b;
+                }
+                }
             </CodeSnippet>
-
-            <hr>
-
-            <h3>5. <strong>Object-Oriented Programming (OOP)</strong></h3>
-            <p>
-                C# is built on <strong>OOP principles</strong>, including
-                <strong>Encapsulation</strong>, <strong>Inheritance</strong>,
-                <strong>Polymorphism</strong>, and <strong>Abstraction</strong>.
-            </p>
+            <h3>5. <strong>Object-Oriented Programming (OOP) Concepts</strong></h3>
+            <p>C# is an object-oriented programming language, meaning it supports concepts like classes, objects, inheritance, polymorphism, encapsulation, and abstraction.</p>
+            <h4>Classes and Objects</h4>
             <ul>
                 <li>
-                    <strong>Encapsulation</strong>: Grouping related variables and methods
-                    in classes and controlling access with access modifiers
-                    (<code>public</code>, <code>private</code>, <code>protected</code>).
+                    <p><strong>Class</strong>: Defines the blueprint for an object.</p>
                 </li>
                 <li>
-                    <strong>Inheritance</strong>: Allows one class to inherit fields and
-                    methods from another class.
-                </li>
-                <li>
-                    <strong>Polymorphism</strong>: Methods can behave differently based on
-                    the object that invokes them.
-                </li>
-                <li>
-                    <strong>Abstraction</strong>: Simplifying complex systems by breaking
-                    them into classes with clear, easy-to-use interfaces.
+                    <p><strong>Object</strong>: An instance of a class.</p>
                 </li>
             </ul>
-
             <CodeSnippet>
-class Animal
-{
-    public void Speak()
-    {
-        Console.WriteLine("Animal sound");
-    }
-}
+                class Car
+                {
+                public string Make;
+                public string Model;
+                public int Year;
 
-class Dog : Animal
-{
-    public void Bark()
-    {
-        Console.WriteLine("Dog barks");
-    }
-}                       
+                public void Start()
+                {
+                Console.WriteLine("Car started");
+                }
+                }
+
+                class Program
+                {
+                static void Main(string[] args)
+                {
+                Car myCar = new Car(); // Creating an object of Car
+                myCar.Make = "Toyota";
+                myCar.Model = "Corolla";
+                myCar.Year = 2020;
+
+                myCar.Start(); // Calling method on the object
+                }
+                }
             </CodeSnippet>
-
-            <hr>
-            <h3>6. <strong>Collections and Arrays</strong></h3>
-            <p>Collections store multiple items of data together. In C#, we have various types of collections:</p>
-            <ul>
-                <li><strong>Arrays</strong>: Fixed-size collection of items of the same type.</li>
-                <li><strong>List</strong>: A dynamic-sized collection.</li>
-                <li><strong>Dictionary</strong>: Key-value pairs, useful for mapping.</li>
-            </ul>
+            <h4>Inheritance</h4>
+            <p>Inheritance allows a class to inherit properties and methods from another class.</p>
             <CodeSnippet>
-int[] numbers = { 1, 2, 3 };
-List&lt;string> names = new List&lt;string>() { "Alice", "Bob" };
-Dictionary&lt;string, int=""> ageMap = new Dictionary&lt;string, int="">()
-{
-    { "Alice", 25 },
-    { "Bob", 30 }
-};
+                class Animal
+                {
+                public void Eat()
+                {
+                Console.WriteLine("Eating...");
+                }
+                }
+
+                class Dog : Animal
+                {
+                public void Bark()
+                {
+                Console.WriteLine("Barking...");
+                }
+                }
+
+                class Program
+                {
+                static void Main(string[] args)
+                {
+                Dog dog = new Dog();
+                dog.Eat(); // Inherited from Animal
+                dog.Bark(); // Defined in Dog
+                }
+                }
             </CodeSnippet>
-            <hr>
-
-            <h3>7. <strong>Error Handling</strong></h3>
-            <p>
-                C# uses <strong>try-catch</strong> blocks to handle exceptions, which are runtime errors that disrupt program
-                flow. <code>finally</code> can be used to execute code regardless of the success or failure of the
-                <code>try</code> block.
-            </p>
-
+            <h4>Polymorphism</h4>
+            <p>Polymorphism allows objects of different types to be treated as objects of a common base type. The most common example is method overriding.</p>
             <CodeSnippet>
-try
-{
-    int result = 10 / 0;
-}
-catch (DivideByZeroException e)
-{
-    Console.WriteLine("Cannot divide by zero.");
-}
-finally
-{
-    Console.WriteLine("Finished error handling.");
-}
+                class Animal
+                {
+                public virtual void Speak()
+                {
+                Console.WriteLine("Animal speaks");
+                }
+                }
+
+                class Dog : Animal
+                {
+                public override void Speak()
+                {
+                Console.WriteLine("Woof!");
+                }
+                }
+
+                class Program
+                {
+                static void Main(string[] args)
+                {
+                Animal animal = new Dog();
+                animal.Speak(); // Output: Woof!
+                }
+                }
             </CodeSnippet>
-            <hr>
-
-            <h3>8. <strong>Asynchronous Programming (Async/Await)</strong></h3>
-            <p>
-                <strong>Async/await</strong> is used for asynchronous operations that improve responsiveness, such as network
-                requests or long-running calculations.
-            </p>
-
+            <h4>Encapsulation</h4>
+            <p>Encapsulation is the concept of hiding data and providing access through public methods (getters and setters).</p>
             <CodeSnippet>
- using System;
- using System.Threading.Tasks;
+                class Person
+                {
+                private string name;
 
- class Program
- {
-     static async Task Main()
-     {
-         await DoAsyncTask();
-     }
+                public string Name
+                {
+                get { return name; }
+                set { name = value; }
+                }
+                }
 
-     static async Task DoAsyncTask()
-     {
-         await Task.Delay(2000);  // Asynchronously wait 2 seconds
-         Console.WriteLine("Task complete.");
-     }
- }
+                class Program
+                {
+                static void Main(string[] args)
+                {
+                Person p = new Person();
+                p.Name = "John"; // Setting the name using the setter
+                Console.WriteLine(p.Name); // Getting the name using the getter
+                }
+                }
             </CodeSnippet>
-            <hr>
+            <h3>6. <strong>Arrays and Collections</strong></h3>
+            <h4>Arrays</h4>
+            <p>An array is a collection of elements of the same type.</p>
+            <CodeSnippet>
+                int[] numbers = new int[] { 1, 2, 3, 4, 5 };
 
+                Console.WriteLine(numbers[0]); // Output: 1
+            </CodeSnippet>
+            <h4>Lists (Dynamic Arrays)</h4>
+            <p>C# provides a more flexible collection type called <code>List&lt;T&gt;</code> from the <code>System.Collections.Generic</code> namespace.</p>
+            <CodeSnippet>
+                using System;
+                using System.Collections.Generic;
+
+                class Program
+                {
+                static void Main(string[] args)
+                {
+                List&lt;int&gt; numbers = new List&lt;int&gt; { 1, 2, 3, 4 };
+                numbers.Add(5); // Adds an element to the list
+
+                foreach (var number in numbers)
+                {
+                Console.WriteLine(number);
+                }
+                }
+                }
+            </CodeSnippet>
+            <h3>7. <strong>Exception Handling</strong></h3>
+            <p>C# uses <code>try</code>, <code>catch</code>, and <code>finally</code> blocks to handle exceptions (errors during runtime).</p>
+            <CodeSnippet>
+                try
+                {
+                int result = 10 / 0; // This will cause a divide by zero exception
+                }
+                catch (DivideByZeroException ex)
+                {
+                Console.WriteLine("Error: " + ex.Message);
+                }
+                finally
+                {
+                Console.WriteLine("This will always run.");
+                }
+            </CodeSnippet>
+            <h3>8. <strong>Delegates, Events, and Lambdas</strong></h3>
+            <h4>Delegates</h4>
+            <p>A <strong>delegate</strong> is a type that references a method, allowing methods to be passed as parameters.</p>
+            <CodeSnippet>
+                public delegate void GreetDelegate(string name);
+
+                class Program
+                {
+                static void Main(string[] args)
+                {
+                GreetDelegate greet = Greet;
+                greet("John");
+                }
+
+                static void Greet(string name)
+                {
+                Console.WriteLine("Hello, " + name);
+                }
+                }
+            </CodeSnippet>
+            <h4>Events</h4>
+            <p>An <strong>event</strong> is used to notify when something happens, often used with delegates to create event-driven programming.</p>
+            <CodeSnippet>
+                public class Publisher
+                {
+                public event Action OnActionOccurred;
+
+                public void TriggerEvent()
+                {
+                OnActionOccurred?.Invoke();
+                }
+                }
+
+                class Program
+                {
+                static void Main(string[] args)
+                {
+                Publisher publisher = new Publisher();
+                publisher.OnActionOccurred += () =&gt; Console.WriteLine("Event triggered!");
+
+                publisher.TriggerEvent(); // Output: Event triggered!
+                }
+                }
+            </CodeSnippet>
+            <h4>Lambda Expressions</h4>
+            <p>A <strong>lambda expression</strong> provides a concise way to represent anonymous methods.</p>
+            <CodeSnippet>
+                Func&lt;int, int, int&gt; add = (x, y) =&gt; x + y;
+                Console.WriteLine(add(3, 4)); // Output: 7
+            </CodeSnippet>
             <h3>9. <strong>LINQ (Language Integrated Query)</strong></h3>
-            <p><strong>LINQ</strong> is a query syntax in C# used for filtering, sorting, and manipulating collections.</p>
+            <p>LINQ is a powerful query language that integrates with C# to query collections, databases, and other data sources in a declarative manner.</p>
             <CodeSnippet>
-using System;
-using System.Linq;
+                using System;
+                using System.Linq;
 
-class Program
-{
-    static void Main()
-    {
-        int[] numbers = { 1, 2, 3, 4, 5 };
-        var evenNumbers = numbers.Where(n =&gt; n % 2 == 0);
+                class Program
+                {
+                static void Main(string[] args)
+                {
+                int[] numbers = { 1, 2, 3, 4, 5 };
 
-        foreach (var n in evenNumbers)
-        {
-            Console.WriteLine(n);  // Outputs: 2, 4
-        }
-    }
-}
+                var evenNumbers = from n in numbers
+                where n % 2 == 0
+                select n;
+
+                foreach (var num in evenNumbers)
+                {
+                Console.WriteLine(num); // Output: 2, 4
+                }
+                }
+                }
             </CodeSnippet>
-            <hr>
+            <h3>10. <strong>Asynchronous Programming</strong></h3>
+            <p>C# has support for asynchronous programming using <code>async</code> and <code>await</code> keywords, which are used to handle tasks like I/O operations or time-consuming tasks without blocking the main thread.</p>
+            <CodeSnippet>
+                using System;
+                using System.Threading.Tasks;
 
+                class Program
+                {
+                static async Task Main(string[] args)
+                {
+                await Task.Delay(2000); // Simulate a time-consuming task
+                Console.WriteLine("Task completed!");
+                }
+                }
+            </CodeSnippet>
+            <hr />
+            <h3>Summary</h3>
+            <p>These are just some of the fundamental concepts in C#. C# is a powerful, versatile, and type-safe language that is widely used for developing a range of applications&mdash;from desktop apps to web services, mobile apps, and games (via Unity). As you continue to work with C#, you&rsquo;ll encounter more advanced features like generics, attributes, reflection, dependency injection, and more. But understanding the core fundamentals will give you a strong foundation to build on.</p>
 
-            <h3>10. <strong>Access Modifiers</strong></h3>
-            <p>Access modifiers in C# control the visibility of classes, methods, and properties:</p>
+         
+        </div>
+    </TabPage>
+    <TabPage Title="C# Advanced Concept">
+        <div class="content">
+            <p>Absolutely! Once you&rsquo;re comfortable with <strong>C# fundamentals</strong>, the next step is to learn <strong>advanced concepts</strong> that enable you to write <strong>efficient, reusable, scalable, and maintainable</strong> code. Below is a detailed guide to the <strong>advanced C# concepts</strong>, explained in a structured way:</p>
+            <hr />
+            <h2>🧠 <strong>Advanced C# Concepts</strong></h2>
+            <hr />
+            <h3>🔹 1. <strong>Object-Oriented Programming (Advanced)</strong></h3>
+            <h4>✅ Inheritance (Deep Dive)</h4>
+            <p>You can inherit from base classes and override their members using <code>virtual</code> and <code>override</code>.</p>
+            <CodeSnippet>
+                public class Animal
+                {
+                public virtual void Speak() =&gt; Console.WriteLine("Animal sound");
+                }
+
+                public class Dog : Animal
+                {
+                public override void Speak() =&gt; Console.WriteLine("Woof!");
+                }
+            </CodeSnippet>
+            <h4>✅ Abstract Classes</h4>
+            <p>Abstract classes <strong>cannot be instantiated</strong> and can contain <strong>abstract methods</strong> (methods without body).</p>
+            <CodeSnippet>
+                public abstract class Shape
+                {
+                public abstract double GetArea();
+                }
+
+                public class Circle : Shape
+                {
+                public double Radius { get; set; }
+                public override double GetArea() =&gt; Math.PI * Radius * Radius;
+                }
+            </CodeSnippet>
+            <h4>✅ Interfaces</h4>
+            <p>Interfaces define a contract. Classes that implement interfaces must provide implementation for all methods.</p>
+            <CodeSnippet>
+                public interface ILogger
+                {
+                void Log(string message);
+                }
+
+                public class ConsoleLogger : ILogger
+                {
+                public void Log(string message) =&gt; Console.WriteLine(message);
+                }
+            </CodeSnippet>
+            <blockquote>
+                <p>🔸 Use interfaces to support <strong>loose coupling</strong> and <strong>dependency injection</strong>.</p>
+            </blockquote>
+            <hr />
+            <h3>🔹 2. <strong>Delegates and Events</strong></h3>
+            <h4>✅ Delegates</h4>
+            <p>A delegate is a <strong>type-safe function pointer</strong>.</p>
+            <CodeSnippet>
+                public delegate void Notify(); // Delegate type
+
+                public class Process
+                {
+                public Notify OnComplete;
+
+                public void Start()
+                {
+                Console.WriteLine("Processing...");
+                OnComplete?.Invoke(); // Call the delegate
+                }
+                }
+            </CodeSnippet>
+            <h4>✅ Events</h4>
+            <p>Events are special delegate types designed for <strong>event-driven programming</strong>.</p>
+            <CodeSnippet>
+                public class Button
+                {
+                public event EventHandler Clicked;
+
+                public void Click()
+                {
+                Console.WriteLine("Button Clicked");
+                Clicked?.Invoke(this, EventArgs.Empty);
+                }
+                }
+            </CodeSnippet>
+            <hr />
+            <h3>🔹 3. <strong>Generics</strong></h3>
+            <p>Generics allow you to define <strong>type-safe</strong> classes and methods <strong>without committing to a specific data type</strong>.</p>
+            <CodeSnippet>
+                public class Box&lt;T&gt;
+                {
+                public T Value { get; set; }
+                }
+
+                Box&lt;int&gt; intBox = new Box&lt;int&gt; { Value = 10 };
+                Box&lt;string&gt; strBox = new Box&lt;string&gt; { Value = "Hello" };
+            </CodeSnippet>
+            <h4>Generic Constraints</h4>
+            <p>You can <strong>limit what types</strong> can be used with a generic type.</p>
+            <CodeSnippet>
+                public class Repository&lt;T&gt; where T : class
+                {
+                public void Add(T entity) { /* ... */ }
+                }
+            </CodeSnippet>
+            <hr />
+            <h3>🔹 4. <strong>LINQ (Language Integrated Query)</strong></h3>
+            <p>LINQ allows you to <strong>query collections</strong> using SQL-like syntax in a type-safe way.</p>
+            <CodeSnippet>
+                int[] numbers = { 1, 2, 3, 4, 5 };
+                var evens = numbers.Where(n =&gt; n % 2 == 0).ToList();
+
+                var result = from n in numbers
+                where n &gt; 2
+                select n;
+            </CodeSnippet>
+            <h4>Key LINQ Operators</h4>
             <ul>
-                <li><strong>public</strong>: Accessible from any class.</li>
-                <li><strong>private</strong>: Accessible only within the same class.</li>
-                <li><strong>protected</strong>: Accessible within the same class or subclasses.</li>
-                <li><strong>internal</strong>: Accessible only within the same assembly.</li>
+                <li>
+                    <p><code>Where</code>, <code>Select</code>, <code>OrderBy</code>, <code>GroupBy</code></p>
+                </li>
+                <li>
+                    <p><code>First</code>, <code>FirstOrDefault</code>, <code>Any</code>, <code>All</code></p>
+                </li>
+                <li>
+                    <p><code>Join</code>, <code>Distinct</code>, <code>Aggregate</code>, <code>Sum</code>, etc.</p>
+                </li>
             </ul>
+            <hr />
+            <h3>🔹 5. <strong>Asynchronous Programming (async/await)</strong></h3>
+            <p>Allows non-blocking code execution, critical for I/O-bound operations (e.g., HTTP requests, file access).</p>
             <CodeSnippet>
-class MyClass
-{
-    public int PublicVar;    // Accessible anywhere
-    private int PrivateVar;  // Accessible only within MyClass
-}
+                public async Task&lt;string&gt; GetDataAsync()
+                {
+                using HttpClient client = new HttpClient();
+                string result = await client.GetStringAsync("https://example.com");
+                return result;
+                }
             </CodeSnippet>
+            <ul>
+                <li>
+                    <p><code>async</code> modifies the method to allow <code>await</code> inside.</p>
+                </li>
+                <li>
+                    <p><code>await</code> pauses execution until the task completes.</p>
+                </li>
+                <li>
+                    <p>Prevents blocking the main thread (especially in UI apps).</p>
+                </li>
+            </ul>
+            <hr />
+            <h3>🔹 6. <strong>Reflection</strong></h3>
+            <p>Reflection allows you to inspect and interact with <strong>types and members</strong> at runtime.</p>
+            <CodeSnippet>
+                Type type = typeof(String);
+                var methods = type.GetMethods();
+
+                foreach (var method in methods)
+                {
+                Console.WriteLine(method.Name);
+                }
+            </CodeSnippet>
+            <blockquote>
+                <p>⚠️ Use with caution. Reflection can impact performance and bypass compile-time checks.</p>
+            </blockquote>
+            <hr />
+            <h3>🔹 7. <strong>Attributes and Annotations</strong></h3>
+            <p>Attributes add <strong>metadata</strong> to your code, which can be accessed via <strong>Reflection</strong>.</p>
+            <CodeSnippet>
+                [Obsolete("Use NewMethod instead")]
+                public void OldMethod()
+                {
+                // ...
+                }
+            </CodeSnippet>
+            <h4>Custom Attributes</h4>
+            <CodeSnippet>
+                public class AuthorAttribute : Attribute
+                {
+                public string Name { get; }
+                public AuthorAttribute(string name) =&gt; Name = name;
+                }
+
+                [Author("Alice")]
+                public class MyClass { }
+            </CodeSnippet>
+            <hr />
+            <h3>🔹 8. <strong>Dependency Injection (DI)</strong></h3>
+            <p>DI is a design pattern for achieving <strong>loose coupling</strong> by injecting dependencies rather than creating them directly.</p>
+            <CodeSnippet>
+                public class Service
+                {
+                private readonly ILogger _logger;
+
+                public Service(ILogger logger)
+                {
+                _logger = logger;
+                }
+
+                public void DoWork()
+                {
+                _logger.Log("Working...");
+                }
+                }
+            </CodeSnippet>
+            <h4>Built-in DI in ASP.NET Core</h4>
+            <CodeSnippet>
+                services.AddScoped&lt;IService, MyService&gt;();
+            </CodeSnippet>
+            <hr />
+            <h3>🔹 9. <strong>Memory Management &amp; Garbage Collection</strong></h3>
+            <p>C# uses <strong>automatic garbage collection</strong>, but you can manage resources manually with <code>IDisposable</code>.</p>
+            <CodeSnippet>
+                public class Resource : IDisposable
+                {
+                public void Dispose()
+                {
+                Console.WriteLine("Cleaned up!");
+                }
+                }
+
+                // Usage
+                using (var r = new Resource())
+                {
+                // Use the resource
+                }
+            </CodeSnippet>
+            <hr />
+            <h3>🔹 10. <strong>Nullable Reference Types (C# 8+)</strong></h3>
+            <p>Helps reduce null-reference exceptions.</p>
+            <CodeSnippet>
+                #nullable enable
+
+                string? name = null;  // Nullable
+                string notNull = "Hello"; // Not nullable
+            </CodeSnippet>
+            <hr />
+            <h3>🔹 11. <strong>Tuples and Deconstruction</strong></h3>
+            <p>Tuples allow multiple values to be returned from a method.</p>
+            <CodeSnippet>
+                (string, int) GetUser() =&gt; ("Alice", 30);
+
+                var (name, age) = GetUser();
+            </CodeSnippet>
+            <hr />
+            <h3>🔹 12. <strong>Records (C# 9+)</strong></h3>
+            <p>Records are <strong>immutable reference types</strong> used for data modeling.</p>
+            <CodeSnippet>
+                public record Person(string Name, int Age);
+            </CodeSnippet>
+            <p>They support <strong>value-based equality</strong> and are great for DTOs or simple models.</p>
+            <hr />
+            <h3>🔹 13. <strong>Pattern Matching</strong></h3>
+            <p>Pattern matching enhances the <code>switch</code> statement and <code>is</code> keyword.</p>
+            <CodeSnippet>
+                object obj = "hello";
+
+                if (obj is string s &amp;&amp; s.Length &gt; 0)
+                {
+                Console.WriteLine($"String of length {s.Length}");
+                }
+            </CodeSnippet>
+            <h4>Switch Expressions</h4>
+            <CodeSnippet>
+                string GetColor(int code) =&gt; code switch
+                {
+                1 =&gt; "Red",
+                2 =&gt; "Green",
+                _ =&gt; "Unknown"
+                };
+            </CodeSnippet>
+            <hr />
+            <h3>🔹 14. <strong>File I/O (Async)</strong></h3>
+            <CodeSnippet>
+                string path = "data.txt";
+                await File.WriteAllTextAsync(path, "Hello, file!");
+                string content = await File.ReadAllTextAsync(path);
+            </CodeSnippet>
+            <hr />
+            <h3>🔹 15. <strong>Multithreading &amp; Parallelism</strong></h3>
+            <h4><code>Task</code>, <code>Thread</code>, <code>ThreadPool</code>, <code>Parallel</code></h4>
+            <CodeSnippet>
+                Task.Run(() =&gt; DoWork());
+
+                Parallel.For(0, 10, i =&gt; Console.WriteLine(i));
+            </CodeSnippet>
+            <blockquote>
+                <p>Use <code>async/await</code> for <strong>I/O-bound</strong> tasks and <code>Parallel</code>/<code>Task</code> for <strong>CPU-bound</strong> tasks.</p>
+            </blockquote>
+            <hr />
+            <h3>🔹 16. <strong>Dynamic Type</strong></h3>
+            <p><code>dynamic</code> allows bypassing compile-time type checking.</p>
+            <CodeSnippet>
+                dynamic value = "Hello";
+                Console.WriteLine(value.Length); // No intellisense, but runs
+            </CodeSnippet>
+            <blockquote>
+                <p>Use with caution; useful in interop scenarios (e.g., COM, Reflection).</p>
+            </blockquote>
+            <hr />
+            <h2>🧰 Tools &amp; Libraries You Should Know</h2>
+            <ul>
+                <li>
+                    <p><strong>ASP.NET Core</strong> &ndash; Web development</p>
+                </li>
+                <li>
+                    <p><strong>Entity Framework Core</strong> &ndash; ORM for database access</p>
+                </li>
+                <li>
+                    <p><strong>Blazor</strong> &ndash; Web UI with C#</p>
+                </li>
+                <li>
+                    <p><strong>XUnit / NUnit / MSTest</strong> &ndash; Testing frameworks</p>
+                </li>
+                <li>
+                    <p><strong>Serilog / NLog</strong> &ndash; Logging libraries</p>
+                </li>
+                <li>
+                    <p><strong>AutoMapper</strong> &ndash; Object-to-object mapping</p>
+                </li>
+            </ul>
+            <hr />
+            <h2>✅ Summary Table</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Concept</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Delegates &amp; Events</td>
+                        <td>Function pointers &amp; event-driven programming</td>
+                    </tr>
+                    <tr>
+                        <td>Generics</td>
+                        <td>Type-safe reusable code</td>
+                    </tr>
+                    <tr>
+                        <td>LINQ</td>
+                        <td>Query collections elegantly</td>
+                    </tr>
+                    <tr>
+                        <td>Async/Await</td>
+                        <td>Non-blocking I/O operations</td>
+                    </tr>
+                    <tr>
+                        <td>Reflection</td>
+                        <td>Inspect metadata at runtime</td>
+                    </tr>
+                    <tr>
+                        <td>Attributes</td>
+                        <td>Metadata annotations</td>
+                    </tr>
+                    <tr>
+                        <td>Dependency Injection</td>
+                        <td>Loose coupling</td>
+                    </tr>
+                    <tr>
+                        <td>Nullable Types</td>
+                        <td>Safer code with null-awareness</td>
+                    </tr>
+                    <tr>
+                        <td>Pattern Matching</td>
+                        <td>Concise conditional logic</td>
+                    </tr>
+                    <tr>
+                        <td>Records</td>
+                        <td>Immutable data models</td>
+                    </tr>
+                    <tr>
+                        <td>Multithreading</td>
+                        <td>Parallel &amp; concurrent execution</td>
+                    </tr>
+                </tbody>
+            </table>
+
         </div>
     </TabPage>
     <TabPage Title="Features">
@@ -329,24 +765,24 @@ class MyClass
                         </li>
                     </ul>
                     <CodeSnippet>
-class BankAccount
-{
-    private decimal balance; // Encapsulated field
+                        class BankAccount
+                        {
+                        private decimal balance; // Encapsulated field
 
-    public void Deposit(decimal amount)
-    {
-        if (amount &gt; 0)
-        {
-            balance += amount;
-        }
-    }
+                        public void Deposit(decimal amount)
+                        {
+                        if (amount &gt; 0)
+                        {
+                        balance += amount;
+                        }
+                        }
 
-    public decimal GetBalance()
-    {
-        return balance; // Controlled access to the balance
-    }
-}    
-                    </CodeSnippet>                    
+                        public decimal GetBalance()
+                        {
+                        return balance; // Controlled access to the balance
+                        }
+                        }
+                    </CodeSnippet>
                 </li>
                 <li>
                     <p><strong>Inheritance</strong></p>
@@ -359,26 +795,26 @@ class BankAccount
                         <li>It enables <strong>code reuse</strong> and helps establish relationships between classes.</li>
                     </ul>
                     <CodeSnippet>
-class Animal
-{
-    public void Eat()
-    {
-        Console.WriteLine("Eating...");
-    }
-}
+                        class Animal
+                        {
+                        public void Eat()
+                        {
+                        Console.WriteLine("Eating...");
+                        }
+                        }
 
-class Dog : Animal // Dog inherits from Animal
-{
-    public void Bark()
-    {
-        Console.WriteLine("Barking...");
-    }
-}
+                        class Dog : Animal // Dog inherits from Animal
+                        {
+                        public void Bark()
+                        {
+                        Console.WriteLine("Barking...");
+                        }
+                        }
 
-// Usage
-Dog dog = new Dog();
-dog.Eat(); // Inherited method
-dog.Bark();    
+                        // Usage
+                        Dog dog = new Dog();
+                        dog.Eat(); // Inherited method
+                        dog.Bark();
                     </CodeSnippet>
                 </li>
                 <li>
@@ -396,26 +832,26 @@ dog.Bark();
                         </li>
                     </ul>
                     <CodeSnippet>
-class Animal
-{
-    public virtual void Speak()
-    {
-        Console.WriteLine("Animal sound");
-    }
-}
+                        class Animal
+                        {
+                        public virtual void Speak()
+                        {
+                        Console.WriteLine("Animal sound");
+                        }
+                        }
 
-class Dog : Animal
-{
-    public override void Speak()
-    {
-        Console.WriteLine("Woof!");
-    }
-}
+                        class Dog : Animal
+                        {
+                        public override void Speak()
+                        {
+                        Console.WriteLine("Woof!");
+                        }
+                        }
 
-// Usage
-Animal myDog = new Dog();
-myDog.Speak(); // Outputs: Woof!  
-                     </CodeSnippet>
+                        // Usage
+                        Animal myDog = new Dog();
+                        myDog.Speak(); // Outputs: Woof!
+                    </CodeSnippet>
                 </li>
                 <li>
                     <p><strong>Abstraction</strong></p>
@@ -430,25 +866,25 @@ myDog.Speak(); // Outputs: Woof!
                         </li>
                     </ul>
                     <CodeSnippet>
-abstract class Shape
-{
-    public abstract double GetArea(); // Abstract method with no implementation
-}
+                        abstract class Shape
+                        {
+                        public abstract double GetArea(); // Abstract method with no implementation
+                        }
 
-class Circle : Shape
-{
-    private double radius;
+                        class Circle : Shape
+                        {
+                        private double radius;
 
-    public Circle(double radius)
-    {
-        this.radius = radius;
-    }
+                        public Circle(double radius)
+                        {
+                        this.radius = radius;
+                        }
 
-    public override double GetArea()
-    {
-        return Math.PI * radius * radius;
-    }
-}
+                        public override double GetArea()
+                        {
+                        return Math.PI * radius * radius;
+                        }
+                        }
 
                     </CodeSnippet>
                 </li>
@@ -485,25 +921,25 @@ class Circle : Shape
                         <li>Awaiting a task makes the program non-blocking and improves responsiveness.</li>
                     </ul>
                     <CodeSnippet>
-using System;
-using System.Threading.Tasks;
+                        using System;
+                        using System.Threading.Tasks;
 
-class Program
-{
-    static async Task Main()
-    {
-        Console.WriteLine("Starting...");
-        await PerformTaskAsync();
-        Console.WriteLine("Finished.");
-    }
+                        class Program
+                        {
+                        static async Task Main()
+                        {
+                        Console.WriteLine("Starting...");
+                        await PerformTaskAsync();
+                        Console.WriteLine("Finished.");
+                        }
 
-    static async Task PerformTaskAsync()
-    {
-        Console.WriteLine("Waiting for 3 seconds...");
-        await Task.Delay(3000); // Simulates a long-running task
-        Console.WriteLine("Task Complete.");
-    }
-}
+                        static async Task PerformTaskAsync()
+                        {
+                        Console.WriteLine("Waiting for 3 seconds...");
+                        await Task.Delay(3000); // Simulates a long-running task
+                        Console.WriteLine("Task Complete.");
+                        }
+                        }
                     </CodeSnippet>
                     <p><strong>Explanation</strong>:</p>
                     <ul>
@@ -555,33 +991,33 @@ class Program
                         <li><strong>Aggregate</strong>: Performs a custom aggregation operation.</li>
                         <li><strong>Sum/Count/Min/Max</strong>: Standard aggregate functions.</li>
                     </ul>
-                        <CodeSnippet>
-using System;
-using System.Collections.Generic;
-using System.Linq;
+                    <CodeSnippet>
+                        using System;
+                        using System.Collections.Generic;
+                        using System.Linq;
 
-class Program
-{
-    static void Main()
-    {
-        List&lt;int&gt; numbers = new List&lt;int&gt; { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+                        class Program
+                        {
+                        static void Main()
+                        {
+                        List&lt;int&gt; numbers = new List&lt;int&gt; { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-        // Query syntax example
-        var evenNumbers = from num in numbers
-                          where num % 2 == 0
-                          select num;
+                        // Query syntax example
+                        var evenNumbers = from num in numbers
+                        where num % 2 == 0
+                        select num;
 
-        // Method syntax example
-        var evenNumbersMethod = numbers.Where(num =&gt; num % 2 == 0);
+                        // Method syntax example
+                        var evenNumbersMethod = numbers.Where(num =&gt; num % 2 == 0);
 
-        Console.WriteLine("Even numbers:");
-        foreach (var num in evenNumbers)
-        {
-            Console.WriteLine(num);
-        }
-    }
-}
-                        </CodeSnippet>
+                        Console.WriteLine("Even numbers:");
+                        foreach (var num in evenNumbers)
+                        {
+                        Console.WriteLine(num);
+                        }
+                        }
+                        }
+                    </CodeSnippet>
                     <p><strong>Explanation</strong>:</p>
                     <ul>
                         <li>The <code>Where</code> method filters numbers to include only even numbers.</li>
@@ -631,34 +1067,34 @@ class Program
                 <li><strong>Invocation</strong>: Call the delegate as if it were a method.</li>
             </ul>
             <CodeSnippet>
-using System;
+                using System;
 
-public delegate int MathOperation(int x, int y); // Delegate declaration
+                public delegate int MathOperation(int x, int y); // Delegate declaration
 
-class Program
-{
-    static int Add(int a, int b)
-    {
-        return a + b;
-    }
+                class Program
+                {
+                static int Add(int a, int b)
+                {
+                return a + b;
+                }
 
-    static int Multiply(int a, int b)
-    {
-        return a * b;
-    }
+                static int Multiply(int a, int b)
+                {
+                return a * b;
+                }
 
-    static void Main()
-    {
-        MathOperation operation;
+                static void Main()
+                {
+                MathOperation operation;
 
-        operation = Add; // Assigning a method to the delegate
-        Console.WriteLine("Addition: " + operation(5, 3));
+                operation = Add; // Assigning a method to the delegate
+                Console.WriteLine("Addition: " + operation(5, 3));
 
-        operation = Multiply; // Reassigning a different method
-        Console.WriteLine("Multiplication: " + operation(5, 3));
-    }
-}
-                </CodeSnippet>
+                operation = Multiply; // Reassigning a different method
+                Console.WriteLine("Multiplication: " + operation(5, 3));
+                }
+                }
+            </CodeSnippet>
             <p><strong>Explanation</strong>:</p>
             <ul>
                 <li>
@@ -691,36 +1127,36 @@ class Program
                 </li>
             </ul>
             <CodeSnippet>
-using System;
+                using System;
 
-public delegate void Notify(); // Declare delegate
+                public delegate void Notify(); // Declare delegate
 
-class Process
-{
-    public event Notify ProcessCompleted; // Declare event
+                class Process
+                {
+                public event Notify ProcessCompleted; // Declare event
 
-    public void StartProcess()
-    {
-        Console.WriteLine("Process Started!");
-        // Raise the event
-        ProcessCompleted?.Invoke(); // Check if the event has subscribers before invoking
-    }
-}
+                public void StartProcess()
+                {
+                Console.WriteLine("Process Started!");
+                // Raise the event
+                ProcessCompleted?.Invoke(); // Check if the event has subscribers before invoking
+                }
+                }
 
-class Program
-{
-    static void Main()
-    {
-        Process process = new Process();
-        process.ProcessCompleted += ProcessCompletedHandler; // Subscribe to event
-        process.StartProcess();
-    }
+                class Program
+                {
+                static void Main()
+                {
+                Process process = new Process();
+                process.ProcessCompleted += ProcessCompletedHandler; // Subscribe to event
+                process.StartProcess();
+                }
 
-    static void ProcessCompletedHandler()
-    {
-        Console.WriteLine("Process Completed!");
-    }
-}
+                static void ProcessCompletedHandler()
+                {
+                Console.WriteLine("Process Completed!");
+                }
+                }
             </CodeSnippet>
             <p><strong>Explanation</strong>:</p>
             <ul>
@@ -753,36 +1189,36 @@ class Program
                 </li>
             </ul>
             <CodeSnippet>
-using System;
+                using System;
 
-public class Box&lt;t&gt;
-{
-    private T content;
+                public class Box&lt;t&gt;
+                {
+                private T content;
 
-    public void Add(T item)
-    {
-        content = item;
-    }
+                public void Add(T item)
+                {
+                content = item;
+                }
 
-    public T Get()
-    {
-        return content;
-    }
-}
+                public T Get()
+                {
+                return content;
+                }
+                }
 
-class Program
-{
-    static void Main()
-    {
-        Box&lt;int&gt; intBox = new Box&lt;int&gt;();
-        intBox.Add(10);
-        Console.WriteLine("IntBox contains: " + intBox.Get());
+                class Program
+                {
+                static void Main()
+                {
+                Box&lt;int&gt; intBox = new Box&lt;int&gt;();
+                intBox.Add(10);
+                Console.WriteLine("IntBox contains: " + intBox.Get());
 
-        Box&lt;string&gt; stringBox = new Box&lt;string&gt;();
-        stringBox.Add("Hello");
-        Console.WriteLine("StringBox contains: " + stringBox.Get());
-    }
-}
+                Box&lt;string&gt; stringBox = new Box&lt;string&gt;();
+                stringBox.Add("Hello");
+                Console.WriteLine("StringBox contains: " + stringBox.Get());
+                }
+                }
             </CodeSnippet>
             <p><strong>Explanation</strong>:</p>
             <ul>
@@ -809,46 +1245,46 @@ class Program
                 <li><strong>Method Injection</strong>: Dependencies are passed directly into methods.</li>
             </ul>
             <CodeSnippet>
-using System;
+                using System;
 
-public interface ILogger
-{
-    void Log(string message);
-}
+                public interface ILogger
+                {
+                void Log(string message);
+                }
 
-public class ConsoleLogger : ILogger
-{
-    public void Log(string message)
-    {
-        Console.WriteLine("Log: " + message);
-    }
-}
+                public class ConsoleLogger : ILogger
+                {
+                public void Log(string message)
+                {
+                Console.WriteLine("Log: " + message);
+                }
+                }
 
-public class AppService
-{
-    private readonly ILogger _logger;
+                public class AppService
+                {
+                private readonly ILogger _logger;
 
-    // Constructor Injection
-    public AppService(ILogger logger)
-    {
-        _logger = logger;
-    }
+                // Constructor Injection
+                public AppService(ILogger logger)
+                {
+                _logger = logger;
+                }
 
-    public void Run()
-    {
-        _logger.Log("AppService is running.");
-    }
-}
+                public void Run()
+                {
+                _logger.Log("AppService is running.");
+                }
+                }
 
-class Program
-{
-    static void Main()
-    {
-        ILogger logger = new ConsoleLogger();
-        AppService service = new AppService(logger); // Inject dependency
-        service.Run();
-    }
-}
+                class Program
+                {
+                static void Main()
+                {
+                ILogger logger = new ConsoleLogger();
+                AppService service = new AppService(logger); // Inject dependency
+                service.Run();
+                }
+                }
             </CodeSnippet>
             <p><strong>Explanation</strong>:</p>
             <ul>
@@ -956,35 +1392,35 @@ class Program
                 <li>
                     <p><strong>Define Interfaces and Classes</strong>:</p>
                     <CodeSnippet>
-public interface ILogger
-{
-    void Log(string message);
-}
+                        public interface ILogger
+                        {
+                        void Log(string message);
+                        }
 
-public class ConsoleLogger : ILogger
-{
-    public void Log(string message)
-    {
-        Console.WriteLine("Log: " + message);
-    }
-}
+                        public class ConsoleLogger : ILogger
+                        {
+                        public void Log(string message)
+                        {
+                        Console.WriteLine("Log: " + message);
+                        }
+                        }
 
-public class AppService
-{
-    private readonly ILogger _logger;
+                        public class AppService
+                        {
+                        private readonly ILogger _logger;
 
-    // The logger dependency is injected here
-    public AppService(ILogger logger)
-    {
-        _logger = logger;
-    }
+                        // The logger dependency is injected here
+                        public AppService(ILogger logger)
+                        {
+                        _logger = logger;
+                        }
 
-    public void Run()
-    {
-        _logger.Log("AppService is running.");
-    }
-}
-                </CodeSnippet>
+                        public void Run()
+                        {
+                        _logger.Log("AppService is running.");
+                        }
+                        }
+                    </CodeSnippet>
                 </li>
                 <li>
                     <p><strong>Register Dependencies with the IoC Container</strong>:</p>
@@ -992,20 +1428,20 @@ public class AppService
                         <li>This is typically done in a <code>ConfigureServices</code> method in ASP.NET Core.</li>
                     </ul>
                     <CodeSnippet>
-using Microsoft.Extensions.DependencyInjection;
+                        using Microsoft.Extensions.DependencyInjection;
 
-    var serviceProvider = new ServiceCollection()
-        .AddSingleton&lt;ilogger, consolelogger=""&gt;() // Register ILogger to resolve to ConsoleLogger
-        .AddTransient&lt;appservice&gt;() // Register AppService with a transient lifetime
-        .BuildServiceProvider();
-                </CodeSnippet>
+                        var serviceProvider = new ServiceCollection()
+                        .AddSingleton&lt;ilogger, consolelogger=""&gt;() // Register ILogger to resolve to ConsoleLogger
+                        .AddTransient&lt;appservice&gt;() // Register AppService with a transient lifetime
+                        .BuildServiceProvider();
+                    </CodeSnippet>
 
                 </li>
                 <li>
                     <p><strong>Request an Instance from the IoC Container</strong>:</p>
                     <CodeSnippet>
-var appService = serviceProvider.GetService&lt;appservice&gt;();
-appService?.Run();
+                        var appService = serviceProvider.GetService&lt;appservice&gt;();
+                        appService?.Run();
                     </CodeSnippet>
                     <p><strong>Explanation</strong>:</p>
                     <ul>
@@ -1083,37 +1519,37 @@ appService?.Run();
                 <li><strong><code>Activator</code></strong>: Allows creating instances of types dynamically.</li>
             </ul>
             <CodeSnippet>
- using System;
- using System.Reflection;
- 
- public class Person
- {
-     public string Name { get; set; }
-     public void Greet()
-     {
-         Console.WriteLine($"Hello, my name is {Name}!");
-     }
- }
- 
- class Program
- {
-     static void Main()
-     {
-         // Get Type metadata for Person
-         Type type = typeof(Person);
- 
-         // Create an instance of Person dynamically
-         object personInstance = Activator.CreateInstance(type);
- 
-         // Set the Name property
-         PropertyInfo nameProperty = type.GetProperty("Name");
-         nameProperty.SetValue(personInstance, "Alice");
- 
-         // Invoke the Greet method
-         MethodInfo greetMethod = type.GetMethod("Greet");
-         greetMethod.Invoke(personInstance, null);
-     }
- }
+                using System;
+                using System.Reflection;
+
+                public class Person
+                {
+                public string Name { get; set; }
+                public void Greet()
+                {
+                Console.WriteLine($"Hello, my name is {Name}!");
+                }
+                }
+
+                class Program
+                {
+                static void Main()
+                {
+                // Get Type metadata for Person
+                Type type = typeof(Person);
+
+                // Create an instance of Person dynamically
+                object personInstance = Activator.CreateInstance(type);
+
+                // Set the Name property
+                PropertyInfo nameProperty = type.GetProperty("Name");
+                nameProperty.SetValue(personInstance, "Alice");
+
+                // Invoke the Greet method
+                MethodInfo greetMethod = type.GetMethod("Greet");
+                greetMethod.Invoke(personInstance, null);
+                }
+                }
             </CodeSnippet>
             <hr>
 
@@ -1128,24 +1564,24 @@ appService?.Run();
                 <li><strong>Syntax</strong>: <code>(parameters) =&gt; expression</code></li>
                 <li>Lambdas can be used with LINQ and other data processing operations to filter, map, and reduce data.</li>
             </ul>
-             <CodeSnippet>
-using System;
-using System.Collections.Generic;
-using System.Linq;
+            <CodeSnippet>
+                using System;
+                using System.Collections.Generic;
+                using System.Linq;
 
-class Program
-{
-    static void Main()
-    {
-        List&lt;int&gt; numbers = new List&lt;int&gt; { 1, 2, 3, 4, 5 };
+                class Program
+                {
+                static void Main()
+                {
+                List&lt;int&gt; numbers = new List&lt;int&gt; { 1, 2, 3, 4, 5 };
 
-        // Use a lambda expression to filter even numbers
-        var evens = numbers.Where(n =&gt; n % 2 == 0);
+                // Use a lambda expression to filter even numbers
+                var evens = numbers.Where(n =&gt; n % 2 == 0);
 
-        Console.WriteLine(string.Join(", ", evens)); // Output: 2, 4
-    }
-}
-             </CodeSnippet>
+                Console.WriteLine(string.Join(", ", evens)); // Output: 2, 4
+                }
+                }
+            </CodeSnippet>
             <hr>
             <h3>3. <strong>LINQ (Language Integrated Query) and LINQ Expressions</strong></h3>
             <p>
@@ -1154,24 +1590,24 @@ class Program
                 for building complex queries.
             </p>
             <CodeSnippet>
-using System;
-using System.Collections.Generic;
-using System.Linq;
+                using System;
+                using System.Collections.Generic;
+                using System.Linq;
 
-class Program
-{
-    static void Main()
-    {
-        List&lt;string&gt; fruits = new List&lt;string&gt; { "Apple", "Banana", "Cherry" };
+                class Program
+                {
+                static void Main()
+                {
+                List&lt;string&gt; fruits = new List&lt;string&gt; { "Apple", "Banana", "Cherry" };
 
-        // Query syntax
-        var result = from fruit in fruits
-                     where fruit.Contains("a")
-                     select fruit;
+                // Query syntax
+                var result = from fruit in fruits
+                where fruit.Contains("a")
+                select fruit;
 
-        Console.WriteLine(string.Join(", ", result)); // Output: Banana
-    }
-}
+                Console.WriteLine(string.Join(", ", result)); // Output: Banana
+                }
+                }
             </CodeSnippet>
             <hr>
             <h3>4. <strong>Async Programming and Parallelism</strong></h3>
@@ -1185,18 +1621,18 @@ class Program
                 </strong> help leverage multiple processors for concurrent execution.
             </p>
             <CodeSnippet>
-using System;
-using System.Threading.Tasks;
+                using System;
+                using System.Threading.Tasks;
 
-class Program
-{
-    static async Task Main()
-    {
-        Console.WriteLine("Starting...");
-        await Task.Delay(2000); // Simulate async work
-        Console.WriteLine("Completed!");
-    }
-}
+                class Program
+                {
+                static async Task Main()
+                {
+                Console.WriteLine("Starting...");
+                await Task.Delay(2000); // Simulate async work
+                Console.WriteLine("Completed!");
+                }
+                }
             </CodeSnippet>
             <hr>
             <h3>5. <strong>Extension Methods</strong></h3>
@@ -1208,24 +1644,24 @@ class Program
                 you don’t own or cannot modify, such as <code>System.String</code>.
             </p>
             <CodeSnippet>
-using System;
+                using System;
 
-public static class StringExtensions
-{
-    public static bool IsLongerThan(this string str, int length)
-    {
-        return str.Length &gt; length;
-    }
-}
+                public static class StringExtensions
+                {
+                public static bool IsLongerThan(this string str, int length)
+                {
+                return str.Length &gt; length;
+                }
+                }
 
-class Program
-{
-    static void Main()
-    {
-        string message = "Hello, World!";
-        Console.WriteLine(message.IsLongerThan(5)); // Output: True
-    }
-}
+                class Program
+                {
+                static void Main()
+                {
+                string message = "Hello, World!";
+                Console.WriteLine(message.IsLongerThan(5)); // Output: True
+                }
+                }
             </CodeSnippet>
             <hr>
 
@@ -1236,16 +1672,16 @@ class Program
                 where the structure may be unknown at compile time.
             </p>
             <CodeSnippet>
-using System;
+                using System;
 
-class Program
-{
-    static void Main()
-    {
-        dynamic obj = "Hello, Dynamic World!";
-        Console.WriteLine(obj.Length); // Runtime resolves Length property
-    }
-}
+                class Program
+                {
+                static void Main()
+                {
+                dynamic obj = "Hello, Dynamic World!";
+                Console.WriteLine(obj.Length); // Runtime resolves Length property
+                }
+                }
             </CodeSnippet>
             <hr>
             <h3>7. <strong>Dependency Injection (DI) and IoC Containers</strong></h3>
@@ -1258,34 +1694,34 @@ class Program
                 <code>Microsoft.Extensions.DependencyInjection</code> manage object creation and lifecycle automatically.
             </p>
             <CodeSnippet>
-using System;
-using Microsoft.Extensions.DependencyInjection;
+                using System;
+                using Microsoft.Extensions.DependencyInjection;
 
-public interface ILogger
-{
-    void Log(string message);
-}
+                public interface ILogger
+                {
+                void Log(string message);
+                }
 
-public class ConsoleLogger : ILogger
-{
-    public void Log(string message)
-    {
-        Console.WriteLine(message);
-    }
-}
+                public class ConsoleLogger : ILogger
+                {
+                public void Log(string message)
+                {
+                Console.WriteLine(message);
+                }
+                }
 
-class Program
-{
-    static void Main()
-    {
-        var serviceProvider = new ServiceCollection()
-            .AddSingleton&lt;ilogger, consolelogger=""&gt;()
-            .BuildServiceProvider();
+                class Program
+                {
+                static void Main()
+                {
+                var serviceProvider = new ServiceCollection()
+                .AddSingleton&lt;ilogger, consolelogger=""&gt;()
+                .BuildServiceProvider();
 
-        ILogger logger = serviceProvider.GetService&lt;ilogger&gt;();
-        logger.Log("Dependency Injection in action!");
-    }
-}
+                ILogger logger = serviceProvider.GetService&lt;ilogger&gt;();
+                logger.Log("Dependency Injection in action!");
+                }
+                }
             </CodeSnippet>
             <hr>
             <h3>8. <strong>Memory Management and Span&lt;T&gt;</strong></h3>
@@ -1296,16 +1732,16 @@ class Program
                 minimal allocations.
             </p>
             <CodeSnippet>
-using System;
+                using System;
 
-class Program
-{
-    static void Main()
-    {
-        Span&lt;int&gt; numbers = stackalloc int[] { 1, 2, 3, 4, 5 }; // Stack allocation
-        Console.WriteLine(numbers[1]); // Output: 2
-    }
-}
+                class Program
+                {
+                static void Main()
+                {
+                Span&lt;int&gt; numbers = stackalloc int[] { 1, 2, 3, 4, 5 }; // Stack allocation
+                Console.WriteLine(numbers[1]); // Output: 2
+                }
+                }
             </CodeSnippet>
             <hr>
 
@@ -1316,28 +1752,28 @@ class Program
                 functional approach to type-checking and control flow.
             </p>
             <CodeSnippet>
-using System;
+                using System;
 
-class Program
-{
-    static void Main()
-    {
-        object obj = "Hello";
+                class Program
+                {
+                static void Main()
+                {
+                object obj = "Hello";
 
-        switch (obj)
-        {
-            case int i:
+                switch (obj)
+                {
+                case int i:
                 Console.WriteLine($"Integer: {i}");
                 break;
-            case string s:
+                case string s:
                 Console.WriteLine($"String: {s}");
                 break;
-            default:
+                default:
                 Console.WriteLine("Unknown type");
                 break;
-        }
-    }
-} 
+                }
+                }
+                }
             </CodeSnippet>
             <hr>
 
@@ -1350,18 +1786,18 @@ class Program
                 immutable data objects with value-based equality rather than reference-based.
             </p>
             <CodeSnippet>
-public record Person(string FirstName, string LastName);
+                public record Person(string FirstName, string LastName);
 
-class Program
-{
-    static void Main()
-    {
-        var person1 = new Person("John", "Doe");
-        var person2 = new Person("John", "Doe");
+                class Program
+                {
+                static void Main()
+                {
+                var person1 = new Person("John", "Doe");
+                var person2 = new Person("John", "Doe");
 
-        Console.WriteLine(person1 == person2); // True, checks value equality
-    }
-}
+                Console.WriteLine(person1 == person2); // True, checks value equality
+                }
+                }
             </CodeSnippet>
             <hr>
 
@@ -1374,23 +1810,715 @@ class Program
                 code by encouraging developers to handle <code>null</code> values explicitly.
             </p>
             <CodeSnippet>
-#nullable enable
+                #nullable enable
 
-public class Person
-{
-    public string? Name { get; set; } // Nullable reference type
-}
+                public class Person
+                {
+                public string? Name { get; set; } // Nullable reference type
+                }
 
-class Program
-{
-    static void Main()
-    {
-        Person person = new Person();
-        Console.WriteLine(person.Name?.Length); // Safe access
-    }
-}
+                class Program
+                {
+                static void Main()
+                {
+                Person person = new Person();
+                Console.WriteLine(person.Name?.Length); // Safe access
+                }
+                }
             </CodeSnippet>
-            
+
+        </div>
+    </TabPage>
+    <TabPage Title="General">
+        <div class="content">
+            <Toggle Title="classes, structs, and records">
+                <div>
+                    <h3><strong>classes, structs, and records</strong></h3>
+                    <p>In C#, classes, structs, and records are different types of data structures that you can use to define custom types. Each has its own characteristics and use cases. Here&rsquo;s a comparison of classes, structs, and records in C#:</p>
+                    <h3>Class</h3>
+                    <p><strong>Key Characteristics:</strong></p>
+                    <ol>
+                        <li>
+                            <p><strong>Reference Type</strong>: Classes are reference types. When you assign a class object to a new variable, you are copying the reference, not the actual object. This means changes to the object through one reference are visible through all other references.</p>
+                        </li>
+                        <li>
+                            <p><strong>Heap Allocation</strong>: Instances of classes are allocated on the heap, which can introduce overhead due to garbage collection.</p>
+                        </li>
+                        <li>
+                            <p><strong>Inheritance</strong>: Classes support inheritance, which allows you to create a hierarchy of classes and reuse code through base classes.</p>
+                        </li>
+                        <li>
+                            <p><strong>Mutable by Default</strong>: By default, class instances are mutable, meaning their fields and properties can be changed after the object is created.</p>
+                        </li>
+                        <li>
+                            <p><strong>Use Cases</strong>: Classes are suitable for complex data structures that require behavior (methods) or need to be passed by reference.</p>
+                        </li>
+                    </ol>
+                    <p><strong>Example:</strong></p>
+                    <CodeSnippet>
+                        public class Person
+                        {
+                        public string Name { get; set; }
+                        public int Age { get; set; }
+                        }
+                    </CodeSnippet>
+                    <h3>Struct</h3>
+                    <p><strong>Key Characteristics:</strong></p>
+                    <ol>
+                        <li>
+                            <p><strong>Value Type</strong>: Structs are value types. When you assign a struct to a new variable, you copy the entire value. Changes to one copy do not affect other copies.</p>
+                        </li>
+                        <li>
+                            <p><strong>Stack Allocation</strong>: Structs are typically allocated on the stack, which can be more efficient than heap allocation, especially for small data structures.</p>
+                        </li>
+                        <li>
+                            <p><strong>No Inheritance</strong>: Structs do not support inheritance (except implementing interfaces), which means they cannot inherit from other structs or classes.</p>
+                        </li>
+                        <li>
+                            <p><strong>Immutable by Default</strong>: While structs can be mutable, it's recommended to make them immutable by not providing setters for properties to prevent unintended changes.</p>
+                        </li>
+                        <li>
+                            <p><strong>Use Cases</strong>: Structs are best for small, simple data structures that are frequently created and destroyed, such as points, complex numbers, or small records.</p>
+                        </li>
+                    </ol>
+                    <p><strong>Example:</strong></p>
+                    <CodeSnippet>
+                        public struct Point
+                        {
+                        public int X { get; }
+                        public int Y { get; }
+                        public Point(int x, int y)
+                        {
+                        X = x;
+                        Y = y;
+                        }
+                        }
+                    </CodeSnippet>
+                    <h3>Record</h3>
+                    <p><strong>Key Characteristics:</strong></p>
+                    <ol>
+                        <li>
+                            <p><strong>Reference Type (C# 9.0+)</strong>: Records are reference types, like classes. However, they are designed to represent immutable data.</p>
+                        </li>
+                        <li>
+                            <p><strong>Value Equality</strong>: Records provide built-in value equality, meaning two record instances are considered equal if all their properties are equal, regardless of their references.</p>
+                        </li>
+                        <li>
+                            <p><strong>Immutability</strong>: By default, records are immutable, meaning their properties are read-only and set at initialization. You can make them mutable, but this is not the typical use case.</p>
+                        </li>
+                        <li>
+                            <p><strong>Concise Syntax</strong>: Records can be declared with concise syntax, making them convenient for defining data-only types.</p>
+                        </li>
+                        <li>
+                            <p><strong>Use Cases</strong>: Records are ideal for data models, DTOs, or other scenarios where the primary concern is the data being held rather than behavior.</p>
+                        </li>
+                    </ol>
+                    <p><strong>Example:</strong></p>
+                    <CodeSnippet>
+                        public record Person
+                        {
+                        public string Name { get; init; }
+                        public int Age { get; init; }
+                        }
+                        // Concise syntax
+                        public record Person(string Name, int Age);
+                    </CodeSnippet>
+                    <h3>Summary</h3>
+                    <ul>
+                        <li>
+                            <p><strong>Classes</strong> are suitable for complex data structures where identity and behavior are important, and you want to use inheritance and reference semantics.</p>
+                        </li>
+                        <li>
+                            <p><strong>Structs</strong> are best for simple, small data types that should be value types, where performance is a critical concern, and you want to avoid heap allocation.</p>
+                        </li>
+                        <li>
+                            <p><strong>Records</strong> are ideal for immutable data structures where you want value-based equality, concise syntax, and are primarily focused on the data rather than behavior. They are particularly useful in scenarios involving data transfer and pattern matching.</p>
+                        </li>
+                    </ul>
+                </div>
+            </Toggle>
+
+            <hr />
+
+            <div>
+                <h3><strong>Async vs parallel</strong></h3>
+                <p>In C#, asynchronous calls and parallel calls are both used to improve the efficiency and performance of applications, but they serve different purposes and are used in different scenarios. Here&rsquo;s a detailed explanation of the differences between the two:</p>
+                <h3>Asynchronous Calls</h3>
+                <p><strong>Purpose</strong>: Asynchronous programming is primarily used to handle I/O-bound operations without blocking the main thread, making the application more responsive. It's about non-blocking operations that free up the thread to perform other work while waiting for an operation to complete.</p>
+                <p><strong>Key Characteristics</strong>:</p>
+                <ol>
+                    <li>
+                        <p><strong>Non-blocking</strong>: Asynchronous calls allow the main thread to continue executing other code while waiting for an I/O operation (such as reading from a file, network communication, or database query) to complete.</p>
+                    </li>
+                    <li>
+                        <p><strong><code>async</code> and <code>await</code> Keywords</strong>: In C#, you use the <code>async</code> modifier and the <code>await</code> keyword to work with asynchronous methods. The <code>await</code> keyword suspends the execution of the method until the awaited task is complete, without blocking the thread.</p>
+                        <CodeSnippet>
+                            public async Task&lt;string&gt; GetDataAsync()
+                            {
+                            HttpClient client = new HttpClient();
+                            string result = await client.GetStringAsync("https://example.com");
+                            return result;
+                            }
+                        </CodeSnippet>
+                    </li>
+                    <li>
+                        <p><strong>Task-Based</strong>: Asynchronous programming often involves <code>Task</code> and <code>Task&lt;T&gt;</code>, which represent operations that can be awaited.</p>
+                    </li>
+                    <li>
+                        <p><strong>Concurrency</strong>: While asynchronous programming can be concurrent, it doesn't imply parallel execution. It often involves one operation at a time being processed without blocking.</p>
+                    </li>
+                </ol>
+                <p><strong>Use Cases</strong>: Ideal for I/O-bound operations like web requests, database access, and file I/O, where the operation is waiting for external resources.</p>
+                <h3>Parallel Calls</h3>
+                <p><strong>Purpose</strong>: Parallel programming is used to perform CPU-bound operations concurrently across multiple processors or cores, aiming to complete tasks faster by utilizing more computing resources.</p>
+                <p><strong>Key Characteristics</strong>:</p>
+                <ol>
+                    <li>
+                        <p><strong>Parallel Execution</strong>: Parallel programming divides tasks into smaller sub-tasks and executes them simultaneously across multiple threads or cores.</p>
+                    </li>
+                    <li>
+                        <p><strong>Parallel Library</strong>: In C#, you can use the <code>Parallel</code> class or PLINQ (Parallel LINQ) to run operations in parallel.</p>
+                        <CodeSnippet>
+                            Parallel.For(0, 100, i =&gt;
+                            {
+                            // Perform a CPU-bound operation
+                            Console.WriteLine($"Processing {i}");
+                            });
+                        </CodeSnippet>
+                    </li>
+                    <li>
+                        <p><strong>Task Parallel Library (TPL)</strong>: The TPL provides more control over task creation and execution, allowing you to manage parallel operations.</p>
+                    </li>
+                    <li>
+                        <p><strong>CPU-Bound</strong>: Parallel programming is typically used for CPU-bound operations where you want to take advantage of multiple cores to improve performance.</p>
+                    </li>
+                </ol>
+                <p><strong>Use Cases</strong>: Suitable for CPU-intensive tasks such as processing large datasets, image processing, or complex calculations that can be broken down into smaller parallel tasks.</p>
+                <h3>Key Differences</h3>
+                <ul>
+                    <li>
+                        <p><strong>Nature of Operations</strong>: Asynchronous programming is best for I/O-bound tasks to prevent blocking, while parallel programming is for CPU-bound tasks to maximize resource usage.</p>
+                    </li>
+                    <li>
+                        <p><strong>Execution Model</strong>: Asynchronous operations can be single-threaded and non-blocking, relying on callbacks or continuation tasks, whereas parallel operations involve multi-threading to perform tasks simultaneously.</p>
+                    </li>
+                    <li>
+                        <p><strong>Resource Utilization</strong>: Asynchronous operations often involve fewer threads and rely on efficient resource waiting, while parallel operations use multiple threads to speed up processing.</p>
+                    </li>
+                </ul>
+                <p>In summary, use asynchronous calls when you need to wait for I/O-bound operations without blocking your main application thread, and use parallel calls when you want to perform computations concurrently to utilize CPU resources effectively.</p>
+
+            </div>
+            <hr />
+
+            <div>
+                <h3><strong>OOPS</strong></h3>
+                <p>Object-Oriented Programming (OOP) is a programming paradigm centered around objects and classes. It aims to organize software design around data, or objects, rather than functions and logic. OOP has four core concepts: encapsulation, abstraction, inheritance, and polymorphism. Here&rsquo;s a brief explanation of each:</p>
+                <h3>1. Encapsulation</h3>
+                <p><strong>Definition</strong>: Encapsulation is the concept of bundling data (fields) and methods (functions) that operate on the data into a single unit, or class. It restricts direct access to some of the object's components and can prevent the accidental modification of data.</p>
+                <p><strong>Purpose</strong>: The primary goal is to protect the internal state of an object and ensure that it is modified only through a defined interface.</p>
+                <p><strong>Example</strong>:</p>
+                <CodeSnippet>
+                    public class Car
+                    {
+                    private string color; // Private field
+
+                    // Public method to access the private field
+                    public string GetColor()
+                    {
+                    return color;
+                    }
+
+                    // Public method to modify the private field
+                    public void SetColor(string newColor)
+                    {
+                    color = newColor;
+                    }
+                    }
+                </CodeSnippet>
+                <h3>2. Abstraction</h3>
+                <p><strong>Definition</strong>: Abstraction involves hiding the complex implementation details of a system and exposing only the essential features. It allows users to interact with an object at a higher level without needing to understand the intricate details of how it works.</p>
+                <p><strong>Purpose</strong>: It simplifies the complexity of the system by providing a simplified interface.</p>
+                <p><strong>Example</strong>:</p>
+                <CodeSnippet>
+                    public abstract class Animal
+                    {
+                    // Abstract method (no implementation)
+                    public abstract void MakeSound();
+
+                    // Concrete method
+                    public void Eat()
+                    {
+                    Console.WriteLine("Eating...");
+                    }
+                    }
+
+                    public class Dog : Animal
+                    {
+                    public override void MakeSound()
+                    {
+                    Console.WriteLine("Bark");
+                    }
+                    }
+                </CodeSnippet>
+                <h3>3. Inheritance</h3>
+                <p><strong>Definition</strong>: Inheritance is the mechanism by which one class (the child or derived class) can inherit properties and behaviors (methods) from another class (the parent or base class). It allows for code reusability and the creation of hierarchical relationships between classes.</p>
+                <p><strong>Purpose</strong>: It promotes code reusability and establishes a natural hierarchy between classes.</p>
+                <p><strong>Example</strong>:</p>
+                <CodeSnippet>
+                    public class Vehicle
+                    {
+                    public void Start()
+                    {
+                    Console.WriteLine("Vehicle started.");
+                    }
+                    }
+
+                    public class Car : Vehicle
+                    {
+                    public void Drive()
+                    {
+                    Console.WriteLine("Car is driving.");
+                    }
+                    }
+
+                    // Usage
+                    Car myCar = new Car();
+                    myCar.Start(); // Inherited method
+                    myCar.Drive(); // Car's own method
+                </CodeSnippet>
+                <h3>4. Polymorphism</h3>
+                <p><strong>Definition</strong>: Polymorphism allows objects to be treated as instances of their parent class. It enables a single function or method to work in different ways based on the object it is acting upon.</p>
+                <p><strong>Purpose</strong>: It allows for flexibility and the ability to extend code without modifying existing code.</p>
+                <p><strong>Types</strong>:</p>
+                <ul>
+                    <li>
+                        <p><strong>Compile-time Polymorphism (Method Overloading)</strong>: Multiple methods with the same name but different signatures.</p>
+                    </li>
+                    <li>
+                        <p><strong>Runtime Polymorphism (Method Overriding)</strong>: A child class can provide a specific implementation of a method already defined in its parent class.</p>
+                    </li>
+                </ul>
+                <p><strong>Example</strong>:</p>
+                <CodeSnippet>
+                    public class Animal
+                    {
+                    public virtual void MakeSound()
+                    {
+                    Console.WriteLine("Animal sound");
+                    }
+                    }
+
+                    public class Cat : Animal
+                    {
+                    public override void MakeSound()
+                    {
+                    Console.WriteLine("Meow");
+                    }
+                    }
+
+                    public class Dog : Animal
+                    {
+                    public override void MakeSound()
+                    {
+                    Console.WriteLine("Bark");
+                    }
+                    }
+
+                    // Usage
+                    Animal myAnimal1 = new Cat();
+                    Animal myAnimal2 = new Dog();
+
+                    myAnimal1.MakeSound(); // Output: Meow
+                    myAnimal2.MakeSound(); // Output: Bark
+                </CodeSnippet>
+                <h3>Summary</h3>
+                <ul>
+                    <li>
+                        <p><strong>Encapsulation</strong> helps protect an object's internal state.</p>
+                    </li>
+                    <li>
+                        <p><strong>Abstraction</strong> simplifies complex systems by exposing only essential features.</p>
+                    </li>
+                    <li>
+                        <p><strong>Inheritance</strong> promotes code reuse and establishes hierarchies.</p>
+                    </li>
+                    <li>
+                        <p><strong>Polymorphism</strong> allows for flexibility and dynamic method invocation.</p>
+                    </li>
+                </ul>
+                <p>These concepts collectively enable developers to build flexible, scalable, and maintainable software systems.</p>
+            </div>
+            <hr />
+
+            <div>
+                <h3><strong>MVC</strong></h3>
+                <p>ASP.NET MVC (Model-View-Controller) is a framework for building web applications using the MVC design pattern. Understanding its essential concepts is crucial for developing robust and maintainable applications. Here are the key concepts you should know:</p>
+                <h3>1. Model-View-Controller (MVC) Pattern</h3>
+                <ul>
+                    <li>
+                        <p><strong>Model</strong>: Represents the application's data and business logic. It retrieves and stores model state in a database. Models are typically used to implement data access logic and validation.</p>
+                    </li>
+                    <li>
+                        <p><strong>View</strong>: Responsible for displaying the user interface. It presents data from the model to the user and provides a way to interact with it. Views are typically HTML pages using Razor syntax to render dynamic content.</p>
+                    </li>
+                    <li>
+                        <p><strong>Controller</strong>: Handles user input and interactions. It processes incoming requests, interacts with the model to manipulate data, and selects a view to render the user interface.</p>
+                    </li>
+                </ul>
+                <h3>2. Routing</h3>
+                <ul>
+                    <li>
+                        <p><strong>Purpose</strong>: Routing in ASP.NET MVC maps incoming HTTP requests to the appropriate controller actions. It defines URL patterns and handles URL-to-controller-action mappings.</p>
+                    </li>
+                    <li>
+                        <p><strong>Route Configuration</strong>: You can configure routes in the <code>RouteConfig.cs</code> file, typically located in the <code>App_Start</code> directory.</p>
+                        <CodeSnippet>
+                            public class RouteConfig
+                            {
+                            public static void RegisterRoutes(RouteCollection routes)
+                            {
+                            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+                            routes.MapRoute(
+                            name: "Default",
+                            url: "{controller}/{action}/{id}",
+                            defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                            );
+                            }
+                            }
+                        </CodeSnippet>
+                    </li>
+                </ul>
+                <h3>3. Controllers</h3>
+                <ul>
+                    <li>
+                        <p><strong>Actions</strong>: Controllers contain action methods, which respond to HTTP requests. Each action method returns an <code>ActionResult</code>, which can render a view, redirect to another action, or return data.</p>
+                    </li>
+                    <li>
+                        <p><strong>Example</strong>:</p>
+                        <CodeSnippet>
+                            public class HomeController : Controller
+                            {
+                            public ActionResult Index()
+                            {
+                            return View();
+                            }
+
+                            public ActionResult Details(int id)
+                            {
+                            var model = GetModelById(id);
+                            return View(model);
+                            }
+                            }
+                        </CodeSnippet>
+                    </li>
+                </ul>
+                <h3>4. Views</h3>
+                <ul>
+                    <li>
+                        <p><strong>Razor Syntax</strong>: Views use Razor syntax (<code>.cshtml</code> files) to render dynamic content. Razor provides a clean and easy way to embed server-based code into HTML markup.</p>
+                    </li>
+                    <li>
+                        <p><strong>Example</strong>:</p>
+                        <CodeSnippet>
+                            model MyApp.Models.MyModel
+
+                            &lt;h2&gt;Model.Title&lt;/h2&gt;
+                            &lt;p&gt;Model.Description&lt;/p&gt;
+                        </CodeSnippet>
+                    </li>
+                </ul>
+                <h3>5. Models</h3>
+                <ul>
+                    <li>
+                        <p><strong>Data Representation</strong>: Models represent data and typically include validation logic and data access methods. They can interact with databases using Entity Framework or other data access technologies.</p>
+                    </li>
+                    <li>
+                        <p><strong>Example</strong>:</p>
+                        <CodeSnippet>
+                            public class Product
+                            {
+                            public int ProductId { get; set; }
+                            public string Name { get; set; }
+                            public decimal Price { get; set; }
+                            }
+                        </CodeSnippet>
+                    </li>
+                </ul>
+                <h3>6. Data Binding and Validation</h3>
+                <ul>
+                    <li>
+                        <p><strong>Data Binding</strong>: Automatically maps HTTP request data to action method parameters and model properties.</p>
+                    </li>
+                    <li>
+                        <p><strong>Validation</strong>: ASP.NET MVC supports model validation using data annotations to specify validation rules directly on model properties.</p>
+                        <CodeSnippet>
+                            public class Product
+                            {
+                            [Required]
+                            public string Name { get; set; }
+
+                            [Range(0.01, 1000.00)]
+                            public decimal Price { get; set; }
+                            }
+                        </CodeSnippet>
+                    </li>
+                </ul>
+                <h3>7. Dependency Injection</h3>
+                <ul>
+                    <li>
+                        <p><strong>Purpose</strong>: Dependency Injection (DI) is used to achieve loose coupling between components and to manage the lifetime of dependencies.</p>
+                    </li>
+                    <li>
+                        <p><strong>Integration</strong>: ASP.NET MVC supports DI, and you can use frameworks like Autofac, Unity, or the built-in .NET Core DI container.</p>
+                    </li>
+                </ul>
+                <h3>8. Filters</h3>
+                <ul>
+                    <li>
+                        <p><strong>Types</strong>: Filters are used to execute code before or after an action method. Common filter types include authorization, action, result, and exception filters.</p>
+                    </li>
+                    <li>
+                        <p><strong>Usage</strong>: You can apply filters globally, at the controller level, or at the action method level.</p>
+                        <CodeSnippet>
+                            [Authorize]
+                            public class AccountController : Controller
+                            {
+                            // Actions
+                            }
+                        </CodeSnippet>
+                    </li>
+                </ul>
+                <h3>9. Areas</h3>
+                <ul>
+                    <li>
+                        <p><strong>Purpose</strong>: Areas are used to divide a large application into smaller sections, each with its own controllers, views, and models. This helps organize the application structure, especially in large projects.</p>
+                    </li>
+                </ul>
+                <h3>10. Bundling and Minification</h3>
+                <ul>
+                    <li>
+                        <p><strong>Purpose</strong>: Bundling and minification improve page load performance by reducing the size of CSS and JavaScript files and decreasing the number of HTTP requests.</p>
+                    </li>
+                    <li>
+                        <p><strong>Configuration</strong>: You can configure bundling in the <code>BundleConfig.cs</code> file.</p>
+                        <CodeSnippet>
+                            public class BundleConfig
+                            {
+                            public static void RegisterBundles(BundleCollection bundles)
+                            {
+                            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+                            "~/Scripts/jquery-{version}.js"));
+
+                            bundles.Add(new StyleBundle("~/Content/css").Include(
+                            "~/Content/site.css"));
+                            }
+                            }
+                        </CodeSnippet>
+                    </li>
+                </ul>
+                <h3>Conclusion</h3>
+                <p>Understanding these essential concepts of ASP.NET MVC will help you build structured, maintainable, and scalable web applications. By leveraging the MVC design pattern and other features like routing, filters, and dependency injection, you can create robust applications that are easy to test and extend.</p>
+            </div>
+            <hr />
+
+            <div>
+
+                <p>In C#, LINQ (Language Integrated Query) is a powerful feature for querying and manipulating data in a declarative way. <code>Enumerable</code> is a static class in the <code>System.Linq</code> namespace that provides a set of extension methods for querying objects that implement <code>IEnumerable&lt;T&gt;</code>. Here's how LINQ and <code>Enumerable</code> are connected:</p>
+                <h3>Connection between LINQ and <code>Enumerable</code></h3>
+                <ol>
+                    <li>
+                        <p><strong>LINQ to Objects</strong>: LINQ to Objects allows you to use LINQ queries directly on collections that implement <code>IEnumerable&lt;T&gt;</code>. The <code>Enumerable</code> class provides the implementation for most of the LINQ operators used in LINQ to Objects.</p>
+                    </li>
+                    <li>
+                        <p><strong>Extension Methods</strong>: The <code>Enumerable</code> class contains static methods that extend <code>IEnumerable&lt;T&gt;</code>. These methods are called extension methods, and they enable you to use LINQ query syntax or method syntax on collections.</p>
+                    </li>
+                    <li>
+                        <p><strong>Query Operators</strong>: The <code>Enumerable</code> class includes a wide range of standard query operators such as <code>Select</code>, <code>Where</code>, <code>OrderBy</code>, <code>GroupBy</code>, <code>Join</code>, <code>Aggregate</code>, and more. These operators allow you to perform various operations on data sequences.</p>
+                    </li>
+                    <li>
+                        <p><strong>Deferred Execution</strong>: Many methods in the <code>Enumerable</code> class use deferred execution, meaning they don't process data until you iterate over the results. This allows for efficient querying, as it avoids unnecessary computations until absolutely needed.</p>
+                    </li>
+                    <li>
+                        <p><strong>Integration</strong>: By using <code>Enumerable</code> methods, you can seamlessly integrate LINQ with any collection that implements <code>IEnumerable&lt;T&gt;</code>, including arrays, lists, and other custom collections.</p>
+                    </li>
+                </ol>
+                <h3>Example of Using LINQ with <code>Enumerable</code></h3>
+                <p>Here's a simple example demonstrating how LINQ and <code>Enumerable</code> work together to query a list of integers:</p>
+                <CodeSnippet>
+                    using System;
+                    using System.Collections.Generic;
+                    using System.Linq;
+
+                    class Program
+                    {
+                    static void Main()
+                    {
+                    List&lt;int&gt; numbers = new List&lt;int&gt; { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+                    // Using LINQ query syntax
+                    var evenNumbersQuery = from number in numbers
+                    where number % 2 == 0
+                    select number;
+
+                    Console.WriteLine("Even numbers (query syntax):");
+                    foreach (var num in evenNumbersQuery)
+                    {
+                    Console.WriteLine(num);
+                    }
+
+                    // Using LINQ method syntax with Enumerable methods
+                    var evenNumbersMethod = numbers.Where(n =&gt; n % 2 == 0);
+
+                    Console.WriteLine("Even numbers (method syntax):");
+                    foreach (var num in evenNumbersMethod)
+                    {
+                    Console.WriteLine(num);
+                    }
+                    }
+                    }
+                </CodeSnippet>
+                <h3>Key Points</h3>
+                <ul>
+                    <li>
+                        <p><strong>Query Syntax vs. Method Syntax</strong>: LINQ provides two syntaxes for queries. Query syntax is more SQL-like, while method syntax uses the extension methods in the <code>Enumerable</code> class.</p>
+                    </li>
+                    <li>
+                        <p><strong>IEnumerable</strong>: To use <code>Enumerable</code> methods, your data source must implement <code>IEnumerable&lt;T&gt;</code>. This is the common interface that allows LINQ to query different types of data sources.</p>
+                    </li>
+                    <li>
+                        <p><strong>Functional Programming</strong>: The methods in the <code>Enumerable</code> class encourage a functional programming style by enabling the composition of complex operations through chaining.</p>
+                    </li>
+                    <li>
+                        <p><strong>Reusability</strong>: By using <code>Enumerable</code> extension methods, you can create reusable and composable query logic that works with any <code>IEnumerable&lt;T&gt;</code> data source.</p>
+                    </li>
+                </ul>
+                <p>The <code>Enumerable</code> class is central to LINQ's ability to operate on collections in memory, providing the core functionality that makes LINQ to Objects a powerful and flexible querying tool in C#.</p>
+            </div>
+
+            <hr />
+
+            <div>
+
+                <p>Creating thread-safe code in C# involves ensuring that multiple threads can access shared resources or execute code concurrently without causing data corruption or inconsistent behavior. Here are several techniques and tools you can use in C# to achieve thread safety:</p>
+                <h3>1. Locking</h3>
+                <p><strong>Lock Statement</strong>: The <code>lock</code> statement is used to ensure that a block of code can be accessed by only one thread at a time. It is a simple way to protect shared resources.</p>
+                <CodeSnippet>
+                    private readonly object _lockObject = new object();
+
+                    public void ThreadSafeMethod()
+                    {
+                    lock (_lockObject)
+                    {
+                    // Code that accesses shared resources
+                    }
+                    }
+                </CodeSnippet>
+                <p><strong>Monitor Class</strong>: The <code>Monitor</code> class provides more control over locking, allowing you to wait and pulse threads.</p>
+                <CodeSnippet>
+                    public void ThreadSafeMethod()
+                    {
+                    Monitor.Enter(_lockObject);
+                    try
+                    {
+                    // Code that accesses shared resources
+                    }
+                    finally
+                    {
+                    Monitor.Exit(_lockObject);
+                    }
+                    }
+                </CodeSnippet>
+                <h3>2. Volatile Keyword</h3>
+                <p>The <code>volatile</code> keyword ensures that the most recent value of a field is always read by threads, preventing the compiler from caching the field's value.</p>
+                <CodeSnippet>
+                    private volatile int _sharedValue;
+
+                    public void UpdateValue(int newValue)
+                    {
+                    _sharedValue = newValue;
+                    }
+                </CodeSnippet>
+                <h3>3. Interlocked Class</h3>
+                <p>The <code>Interlocked</code> class provides atomic operations for variables shared between multiple threads, such as incrementing or decrementing.</p>
+                <CodeSnippet>
+                    private int _counter;
+
+                    public void IncrementCounter()
+                    {
+                    Interlocked.Increment(ref _counter);
+                    }
+                </CodeSnippet>
+                <h3>4. ReaderWriterLockSlim</h3>
+                <p>This is used when you need to handle scenarios where there are multiple readers and a few writers, allowing more concurrency for read operations.</p>
+                <CodeSnippet>
+                    private ReaderWriterLockSlim _lock = new ReaderWriterLockSlim();
+
+                    public void ReadOperation()
+                    {
+                    _lock.EnterReadLock();
+                    try
+                    {
+                    // Read data
+                    }
+                    finally
+                    {
+                    _lock.ExitReadLock();
+                    }
+                    }
+
+                    public void WriteOperation()
+                    {
+                    _lock.EnterWriteLock();
+                    try
+                    {
+                    // Write data
+                    }
+                    finally
+                    {
+                    _lock.ExitWriteLock();
+                    }
+                    }
+                </CodeSnippet>
+                <h3>5. Concurrent Collections</h3>
+                <p>Use collections from the <code>System.Collections.Concurrent</code> namespace, which are designed to be thread-safe. Examples include <code>ConcurrentDictionary</code>, <code>ConcurrentQueue</code>, and <code>ConcurrentBag</code>.</p>
+                <CodeSnippet>
+                    private ConcurrentDictionary&lt;int, string&gt; _concurrentDictionary = new ConcurrentDictionary&lt;int, string&gt;();
+
+                    public void AddOrUpdateItem(int key, string value)
+                    {
+                    _concurrentDictionary.AddOrUpdate(key, value, (k, v) =&gt; value);
+                    }
+                </CodeSnippet>
+                <h3>6. Task Parallel Library (TPL)</h3>
+                <p>Using tasks and asynchronous programming models, like <code>async</code> and <code>await</code>, can help manage thread safety by structuring code to run concurrently without explicit thread management.</p>
+                <CodeSnippet>
+                    public async Task DoWorkAsync()
+                    {
+                    await Task.Run(() =&gt;
+                    {
+                    // Do work on a separate thread
+                    });
+                    }
+                </CodeSnippet>
+                <h3>Best Practices</h3>
+                <ul>
+                    <li>
+                        <p><strong>Minimize Shared State</strong>: Reduce the number of shared variables between threads to lower the risk of concurrency issues.</p>
+                    </li>
+                    <li>
+                        <p><strong>Immutable Objects</strong>: Design objects that do not change state after creation. This approach naturally avoids many thread-safety issues.</p>
+                    </li>
+                    <li>
+                        <p><strong>Granularity of Locking</strong>: Be cautious with the scope and granularity of locks to avoid deadlocks and minimize contention.</p>
+                    </li>
+                </ul>
+                <p>By applying these techniques appropriately, you can create thread-safe code in C# that performs well and maintains data integrity.</p>
+            </div>
+            <hr />
+
+
         </div>
     </TabPage>
     <TabPage Title="References">

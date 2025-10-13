@@ -1,4 +1,11 @@
-﻿<div class="blazor-tabs">
+﻿
+<style>
+    p {
+        margin: 0 0 0 0 !important;
+    }
+</style>
+
+<div class="blazor-tabs">
     <!-- Tab Headers -->
     <ul class="nav nav-tabs">
         @foreach (var page in Pages)
@@ -14,7 +21,7 @@
 
     <!-- Tab Content -->
     @* <div class="tab-content mt-3">
-        @ChildContent
+    @ChildContent
     </div> *@
 </div>
 

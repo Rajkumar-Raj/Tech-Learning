@@ -1,0 +1,857 @@
+﻿@page "/coding-samples"
+
+<TabControl>
+    <TabPage Title="Tips and Tricks">
+        <div class="content">
+            <p>Here are some tips and tricks for solving coding test interviews:</p>
+            <ol>
+                <li>
+                    <p><strong>Understand the Problem</strong>: Make sure you understand the problem statement completely before jumping into coding. Ask clarifying questions if needed.</p>
+                </li>
+                <li>
+                    <p><strong>Break Down the Problem</strong>: Break the problem into smaller, manageable sub-problems. This makes it easier to solve and also helps in tackling complex problems effectively.</p>
+                </li>
+                <li>
+                    <p><strong>Design Before Coding</strong>: Think about the approach or algorithm you&apos;ll use to solve the problem before you start coding. This helps in writing cleaner and more efficient code.</p>
+                </li>
+                <li>
+                    <p><strong>Choose the Right Data Structures and Algorithms</strong>: Depending on the problem, choose appropriate data structures and algorithms that will make your solution efficient. This often involves understanding the time and space complexity trade-offs.</p>
+                </li>
+                <li>
+                    <p><strong>Write Pseudocode</strong>: Before diving into actual code, write pseudocode to outline the logic of your solution. This helps in organizing your thoughts and ensures you&apos;re on the right track.</p>
+                </li>
+                <li>
+                    <p><strong>Handle Edge Cases</strong>: Consider edge cases and corner cases while designing your solution. Make sure your code handles these cases gracefully.</p>
+                </li>
+                <li>
+                    <p><strong>Test Your Code</strong>: Test your code thoroughly with sample inputs, including edge cases, to ensure it works as expected. Debug any errors or unexpected behaviors.</p>
+                </li>
+                <li>
+                    <p><strong>Optimize Your Solution</strong>: Once you have a working solution, think about ways to optimize it for better performance. This could involve reducing time complexity, minimizing space usage, or optimizing specific parts of the code.</p>
+                </li>
+                <li>
+                    <p><strong>Practice Coding Challenges</strong>: Regularly practice coding challenges on platforms like LeetCode, HackerRank, or CodeSignal. This helps in improving your problem-solving skills and familiarizing yourself with common coding patterns.</p>
+                </li>
+                <li>
+                    <p><strong>Review and Refactor</strong>: After solving a problem, take some time to review your code. Look for areas where you can improve readability, efficiency, or overall design. Refactor your code if necessary.</p>
+                </li>
+                <li>
+                    <p><strong>Stay Calm and Communicate</strong>: During the interview, stay calm and composed. Think out loud as you solve the problem, explaining your thought process and approach to the interviewer. Communication is key, and it helps the interviewer understand your thinking process.</p>
+                </li>
+                <li>
+                    <p><strong>Learn from Feedback</strong>: If you receive feedback after the interview, whether it&apos;s positive or constructive criticism, use it to improve your skills for future interviews.</p>
+                </li>
+            </ol>
+            <hr>
+
+            <p>Here are some specific tips and tricks for solving C# coding test interviews:</p>
+            <ol>
+                <li>
+                    <p><strong>Know the Basics</strong>: Ensure you have a strong understanding of basic C# concepts such as data types, control structures, loops, arrays, classes, inheritance, polymorphism, and exception handling.</p>
+                </li>
+                <li>
+                    <p><strong>Familiarize Yourself with .NET Framework</strong>: Understand the .NET Framework and its libraries, including collections (List, Dictionary, etc.), LINQ (Language-Integrated Query), and System.IO for file handling.</p>
+                </li>
+                <li>
+                    <p><strong>Practice Problem-Solving</strong>: Regularly practice solving coding challenges using C#. Websites like LeetCode, HackerRank, and CodeSignal offer a wide range of problems to solve in C#.</p>
+                </li>
+                <li>
+                    <p><strong>Understand Object-Oriented Programming (OOP)</strong>: Be comfortable with OOP principles such as encapsulation, inheritance, and polymorphism. Many interview questions involve designing and implementing classes and their relationships.</p>
+                </li>
+                <li>
+                    <p><strong>Use Visual Studio or Visual Studio Code</strong>: These are popular IDEs for C# development and offer features like IntelliSense and debugging tools, which can be helpful during coding interviews.</p>
+                </li>
+                <li>
+                    <p><strong>Handle Exceptions Properly</strong>: Know how to handle exceptions gracefully using try-catch blocks. Be aware of when and where to catch exceptions and how to handle them appropriately.</p>
+                </li>
+                <li>
+                    <p><strong>Practice with Data Structures and Algorithms</strong>: Understand common data structures (arrays, linked lists, stacks, queues, trees, graphs) and algorithms (sorting, searching, dynamic programming) and how to implement them in C#.</p>
+                </li>
+                <li>
+                    <p><strong>Optimize Your Code</strong>: Write clean, efficient, and optimized code. Pay attention to time and space complexity, and strive to find the most efficient solution to a problem.</p>
+                </li>
+                <li>
+                    <p><strong>Read and Understand Requirements Carefully</strong>: When presented with a problem, carefully read and understand the requirements before starting to code. Ask clarifying questions if necessary.</p>
+                </li>
+                <li>
+                    <p><strong>Test Your Code Thoroughly</strong>: Write test cases to validate your code&apos;s correctness and edge cases. Make sure your code handles different scenarios and inputs correctly.</p>
+                </li>
+                <li>
+                    <p><strong>Practice Object Initialization</strong>: Understand different ways of initializing objects in C#, including constructors, factory methods, and object initializers.</p>
+                </li>
+                <li>
+                    <p><strong>Know Common C# Design Patterns</strong>: Familiarize yourself with common design patterns such as Singleton, Factory, Strategy, and Observer. Employing these patterns can help in structuring your code effectively.</p>
+                </li>
+                <li>
+                    <p><strong>Stay Updated</strong>: Stay updated with the latest features and updates in C# and the .NET ecosystem. Microsoft regularly releases new versions and updates, so keeping up-to-date can be beneficial.</p>
+                </li>
+                <li>
+                    <p><strong>Review C# Language Features</strong>: Brush up on newer features introduced in C# versions beyond what you might be familiar with. Features like async/await, pattern matching, and records can be particularly useful in interviews.</p>
+                </li>
+                <li>
+                    <p><strong>Stay Calm and Communicate</strong>: During the interview, remain calm and composed. Clearly explain your thought process, approach, and code to the interviewer. Effective communication is essential.</p>
+                </li>
+            </ol>
+            <hr>
+
+            <p>&quot;Cracking the Coding Interview&quot; is a popular book written by Gayle Laakmann McDowell, which offers guidance and preparation strategies for technical interviews, particularly in the field of software engineering. Here are some steps to help you effectively prepare for coding interviews:</p>
+            <ol>
+                <li>
+                    <p><strong>Understand the fundamentals</strong>: Make sure you have a solid understanding of basic data structures (arrays, linked lists, stacks, queues, trees, graphs, etc.) and algorithms (sorting, searching, recursion, dynamic programming, etc.). You should be comfortable implementing these structures and algorithms in your chosen programming language.</p>
+                </li>
+                <li>
+                    <p><strong>Practice coding</strong>: Regularly practice coding problems, preferably from reputable sources such as LeetCode, HackerRank, or CodeSignal. Start with easier problems and gradually move on to more challenging ones.</p>
+                </li>
+                <li>
+                    <p><strong>Learn problem-solving techniques</strong>: Understand different problem-solving techniques such as brute force, greedy algorithms, divide and conquer, dynamic programming, etc. Practice applying these techniques to solve various types of problems.</p>
+                </li>
+                <li>
+                    <p><strong>Analyze solutions</strong>: Once you solve a problem, analyze the solution to understand its time and space complexity. Try to optimize your solutions for better performance whenever possible.</p>
+                </li>
+                <li>
+                    <p><strong>Review common interview questions</strong>: Familiarize yourself with common interview questions asked by top tech companies. &quot;Cracking the Coding Interview&quot; provides a comprehensive list of such questions along with detailed solutions.</p>
+                </li>
+                <li>
+                    <p><strong>Mock interviews</strong>: Practice mock interviews with friends, colleagues, or through online platforms. This will help you get comfortable with the interview format and receive feedback on your performance.</p>
+                </li>
+                <li>
+                    <p><strong>Review your mistakes</strong>: When you make mistakes, take the time to understand why they occurred and how you can avoid them in the future. Learning from your mistakes is an essential part of the preparation process.</p>
+                </li>
+                <li>
+                    <p><strong>Stay updated</strong>: Keep yourself updated with the latest trends and technologies in the field of software engineering. Follow industry blogs, attend tech meetups, and participate in online forums to stay informed.</p>
+                </li>
+                <li>
+                    <p><strong>Stay calm and confident</strong>: Remember to stay calm and confident during the interview. Interviewers not only assess your technical skills but also your problem-solving approach and communication abilities.</p>
+                </li>
+                <li>
+                    <p><strong>Continuous learning</strong>: Interview preparation is an ongoing process. Keep practicing and learning new concepts even after you land a job to stay competitive in the field.</p>
+                </li>
+            </ol>
+            <hr>
+
+            <p>Creating a cheat sheet for coding interviews can be a helpful tool to have during your preparation. Here's a basic outline of what you might include in your cheat sheet:</p>
+            <ol>
+                <li>
+                    <p><strong>Data Structures</strong>:</p>
+                    <ul>
+                        <li>
+                            <p>Arrays</p>
+                        </li>
+                        <li>
+                            <p>Linked Lists</p>
+                        </li>
+                        <li>
+                            <p>Stacks</p>
+                        </li>
+                        <li>
+                            <p>Queues</p>
+                        </li>
+                        <li>
+                            <p>Trees (Binary Trees, Binary Search Trees, AVL Trees, etc.)</p>
+                        </li>
+                        <li>
+                            <p>Graphs (Directed, Undirected, Weighted, etc.)</p>
+                        </li>
+                        <li>
+                            <p>Hash Tables</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Common Algorithms</strong>:</p>
+                    <ul>
+                        <li>
+                            <p>Sorting algorithms (Quick Sort, Merge Sort, Bubble Sort, etc.)</p>
+                        </li>
+                        <li>
+                            <p>Searching algorithms (Binary Search, Depth-First Search, Breadth-First Search, etc.)</p>
+                        </li>
+                        <li>
+                            <p>Dynamic Programming</p>
+                        </li>
+                        <li>
+                            <p>Greedy Algorithms</p>
+                        </li>
+                        <li>
+                            <p>Recursion</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Problem-Solving Techniques</strong>:</p>
+                    <ul>
+                        <li>
+                            <p>Brute Force</p>
+                        </li>
+                        <li>
+                            <p>Two Pointer Technique</p>
+                        </li>
+                        <li>
+                            <p>Sliding Window Technique</p>
+                        </li>
+                        <li>
+                            <p>Divide and Conquer</p>
+                        </li>
+                        <li>
+                            <p>Backtracking</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Complexity Analysis</strong>:</p>
+                    <ul>
+                        <li>
+                            <p>Big O notation</p>
+                        </li>
+                        <li>
+                            <p>Time Complexity of common operations (access, search, insertion, deletion)</p>
+                        </li>
+                        <li>
+                            <p>Space Complexity</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Common Interview Questions</strong>:</p>
+                    <ul>
+                        <li>
+                            <p>Reverse a linked list</p>
+                        </li>
+                        <li>
+                            <p>Implement a stack using arrays or linked lists</p>
+                        </li>
+                        <li>
+                            <p>Find the nth node from the end of a linked list</p>
+                        </li>
+                        <li>
+                            <p>Implement binary search</p>
+                        </li>
+                        <li>
+                            <p>Find the maximum subarray sum</p>
+                        </li>
+                        <li>
+                            <p>Check if a binary tree is balanced</p>
+                        </li>
+                        <li>
+                            <p>Implement breadth-first search (BFS) and depth-first search (DFS)</p>
+                        </li>
+                        <li>
+                            <p>Find the shortest path in a graph (Dijkstra's algorithm)</p>
+                        </li>
+                        <li>
+                            <p>Implement a basic sorting algorithm (e.g., Quick Sort, Merge Sort)</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Programming Language Specific</strong>:</p>
+                    <ul>
+                        <li>
+                            <p>Syntax for declaring variables, loops, conditionals, functions, etc.</p>
+                        </li>
+                        <li>
+                            <p>Common built-in functions and methods</p>
+                        </li>
+                        <li>
+                            <p>Tricks and shortcuts specific to your chosen programming language</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Tips for Interviews</strong>:</p>
+                    <ul>
+                        <li>
+                            <p>Clarify the problem before starting</p>
+                        </li>
+                        <li>
+                            <p>Break the problem into smaller parts if needed</p>
+                        </li>
+                        <li>
+                            <p>Test your solution with different inputs</p>
+                        </li>
+                        <li>
+                            <p>Communicate your thought process clearly</p>
+                        </li>
+                        <li>
+                            <p>Handle edge cases</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Examples and Solutions</strong>:</p>
+                    <ul>
+                        <li>
+                            <p>Include small examples and solutions for each data structure and algorithm mentioned above.</p>
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+            <hr>
+
+            <p>Here's a cheat sheet tailored for a .NET Core interview:</p>
+            <ol>
+                <li>
+                    <p><strong>.NET Core Basics</strong>:</p>
+                    <ul>
+                        <li>
+                            <p>Understand the difference between .NET Core, .NET Framework, and .NET Standard.</p>
+                        </li>
+                        <li>
+                            <p>Know how to install and set up .NET Core SDK and runtime.</p>
+                        </li>
+                        <li>
+                            <p>Understand the concept of cross-platform development with .NET Core.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>C# Language</strong>:</p>
+                    <ul>
+                        <li>
+                            <p>Know the syntax and usage of basic language constructs such as variables, loops, conditionals, methods, classes, and inheritance.</p>
+                        </li>
+                        <li>
+                            <p>Understand the difference between value types and reference types.</p>
+                        </li>
+                        <li>
+                            <p>Know how to handle exceptions using try-catch blocks.</p>
+                        </li>
+                        <li>
+                            <p>Be familiar with LINQ (Language Integrated Query) and its usage for querying collections.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>ASP.NET Core</strong>:</p>
+                    <ul>
+                        <li>
+                            <p>Understand the MVC (Model-View-Controller) architectural pattern.</p>
+                        </li>
+                        <li>
+                            <p>Know how to create controllers, views, and models in an ASP.NET Core application.</p>
+                        </li>
+                        <li>
+                            <p>Understand routing and how it maps URLs to controller actions.</p>
+                        </li>
+                        <li>
+                            <p>Know about middleware and how it's used in ASP.NET Core pipeline.</p>
+                        </li>
+                        <li>
+                            <p>Understand the concept of dependency injection and its usage in ASP.NET Core.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Entity Framework Core</strong>:</p>
+                    <ul>
+                        <li>
+                            <p>Understand ORM (Object-Relational Mapping) and its importance in database interactions.</p>
+                        </li>
+                        <li>
+                            <p>Know how to define and use entities, DbContext, and DbSet in Entity Framework Core.</p>
+                        </li>
+                        <li>
+                            <p>Understand migrations and how they are used for database schema changes.</p>
+                        </li>
+                        <li>
+                            <p>Know about LINQ to Entities and how to query databases using LINQ in Entity Framework Core.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Web APIs</strong>:</p>
+                    <ul>
+                        <li>
+                            <p>Understand RESTful principles and HTTP methods (GET, POST, PUT, DELETE).</p>
+                        </li>
+                        <li>
+                            <p>Know how to create and consume Web APIs in ASP.NET Core using controllers and actions.</p>
+                        </li>
+                        <li>
+                            <p>Understand content negotiation and how to return data in different formats (JSON, XML) from Web APIs.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Authentication and Authorization</strong>:</p>
+                    <ul>
+                        <li>
+                            <p>Understand authentication mechanisms such as JWT (JSON Web Tokens), OAuth, and OpenID Connect.</p>
+                        </li>
+                        <li>
+                            <p>Know how to implement authentication and authorization in ASP.NET Core using built-in middleware or third-party libraries like IdentityServer4.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Testing</strong>:</p>
+                    <ul>
+                        <li>
+                            <p>Understand different types of testing such as unit testing, integration testing, and end-to-end testing.</p>
+                        </li>
+                        <li>
+                            <p>Know how to write unit tests for ASP.NET Core controllers and services using frameworks like xUnit or NUnit.</p>
+                        </li>
+                        <li>
+                            <p>Understand mocking and how to use mocking frameworks like Moq for testing.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Deployment</strong>:</p>
+                    <ul>
+                        <li>
+                            <p>Understand different deployment options for ASP.NET Core applications (e.g., IIS, Azure App Service, Docker containers).</p>
+                        </li>
+                        <li>
+                            <p>Know how to configure and deploy ASP.NET Core applications to various hosting environments.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Performance Optimization</strong>:</p>
+                    <ul>
+                        <li>
+                            <p>Understand techniques for optimizing performance in ASP.NET Core applications such as caching, minimizing database round-trips, and using asynchronous programming.</p>
+                        </li>
+                        <li>
+                            <p>Know how to use profiling tools to identify performance bottlenecks and optimize code accordingly.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Security Best Practices</strong>:</p>
+                </li>
+            </ol>
+            <ul>
+                <li>
+                    <p>Understand common security threats such as XSS (Cross-Site Scripting), CSRF (Cross-Site Request Forgery), and SQL Injection.</p>
+                </li>
+                <li>
+                    <p>Know how to mitigate these threats in ASP.NET Core applications using security best practices such as input validation, output encoding, and parameterized queries.</p>
+                </li>
+            </ul>
+            <hr>
+
+            <p>Here are some commonly asked interview questions in .NET Core interviews:</p>
+            <ol>
+                <li>
+                    <p><strong>What is .NET Core, and how does it differ from .NET Framework?</strong></p>
+                    <ul>
+                        <li>
+                            <p>.NET Core is an open-source, cross-platform framework for building modern, cloud-based, and high-performance applications. It is designed to be modular, lightweight, and scalable. Unlike .NET Framework, .NET Core is cross-platform and runs on Windows, macOS, and Linux.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Explain the main components of .NET Core.</strong></p>
+                    <ul>
+                        <li>
+                            <p>The main components of .NET Core include the runtime, the framework libraries, and the SDK (Software Development Kit). The runtime provides the execution environment for .NET Core applications, while the framework libraries contain APIs for common tasks such as I/O, networking, and security. The SDK includes tools for developing, building, and deploying .NET Core applications.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>What are the benefits of using .NET Core?</strong></p>
+                    <ul>
+                        <li>
+                            <p>Some benefits of using .NET Core include cross-platform compatibility, improved performance, reduced memory footprint, and support for modern development practices such as microservices and containerization. It also offers better support for cloud-based development and deployment.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Explain dependency injection and its importance in ASP.NET Core.</strong></p>
+                    <ul>
+                        <li>
+                            <p>Dependency injection is a design pattern that promotes loose coupling between components by allowing dependencies to be injected into a class rather than created internally. In ASP.NET Core, dependency injection is built into the framework and is used to inject services such as database contexts, repositories, and configuration settings into controllers, services, and other components.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>What is middleware in ASP.NET Core?</strong></p>
+                    <ul>
+                        <li>
+                            <p>Middleware is software components that are used to handle requests and responses in the ASP.NET Core pipeline. Middleware components can be added to the pipeline to perform tasks such as authentication, authorization, logging, error handling, and routing. Middleware is executed in the order it is added to the pipeline and can be used to customize the behavior of an ASP.NET Core application.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Explain the difference between authentication and authorization in ASP.NET Core.</strong></p>
+                    <ul>
+                        <li>
+                            <p>Authentication is the process of verifying the identity of a user, typically by validating credentials such as a username and password. Authorization, on the other hand, is the process of determining whether a user has permission to access a particular resource or perform a particular action. In ASP.NET Core, authentication and authorization are handled using middleware components such as Identity and JWT (JSON Web Tokens) authentication middleware.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>What is Entity Framework Core, and how does it differ from Entity Framework?</strong></p>
+                    <ul>
+                        <li>
+                            <p>Entity Framework Core is an open-source, lightweight, and cross-platform Object-Relational Mapping (ORM) framework for .NET Core applications. It is a complete rewrite of Entity Framework (EF) and is optimized for modern development practices such as microservices and cloud-based applications. EF Core is designed to be more lightweight, performant, and flexible than its predecessor.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Explain the concept of routing in ASP.NET Core.</strong></p>
+                    <ul>
+                        <li>
+                            <p>Routing is the process of mapping URLs to controller actions in an ASP.NET Core application. It allows developers to define URL patterns and route requests to the appropriate controller and action method based on the URL. Routing in ASP.NET Core is configured using route templates, which specify the URL pattern and the corresponding controller and action method.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>What is the difference between synchronous and asynchronous programming in .NET Core?</strong></p>
+                    <ul>
+                        <li>
+                            <p>Synchronous programming involves executing code sequentially, where each operation waits for the previous operation to complete before proceeding. Asynchronous programming, on the other hand, allows multiple operations to be executed concurrently, enabling better utilization of system resources and improved performance. In .NET Core, asynchronous programming is achieved using async/await keywords and is commonly used for I/O-bound and CPU-bound operations.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>How do you deploy a .NET Core application?</strong></p>
+                    <ul>
+                        <li>
+                            <p>.NET Core applications can be deployed using various methods, including self-contained deployment, framework-dependent deployment, and containerization. Self-contained deployment packages the .NET Core runtime with the application, allowing it to run independently on any platform. Framework-dependent deployment relies on the presence of the .NET Core runtime installed on the target machine. Containerization involves packaging the application and its dependencies into a container image using Docker and deploying it to a container orchestration platform such as Kubernetes.</p>
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+            <hr>
+
+            <p>Angular is a popular front-end framework for building dynamic web applications. Here are some commonly asked interview questions related to Angular:</p>
+            <ol>
+                <li>
+                    <p><strong>What is Angular?</strong></p>
+                    <ul>
+                        <li>
+                            <p>Angular is a TypeScript-based open-source front-end web application framework led by the Angular Team at Google. It's used for building single-page client-side applications.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Explain the key features of Angular.</strong></p>
+                    <ul>
+                        <li>
+                            <p>Some key features of Angular include two-way data binding, dependency injection, modular architecture with NgModule, reusable components, directives, templates, routing, and HTTP client for making server-side requests.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>What are the differences between AngularJS and Angular?</strong></p>
+                    <ul>
+                        <li>
+                            <p>AngularJS is the first version of Angular released by Google. It's based on JavaScript and has a different architecture compared to Angular, which is based on TypeScript. AngularJS uses controllers and scopes, while Angular uses components and directives. Angular also introduces several new features such as improved performance, Ahead-of-Time (AOT) compilation, and a more modular architecture.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>What is TypeScript, and why is it used in Angular?</strong></p>
+                    <ul>
+                        <li>
+                            <p>TypeScript is a superset of JavaScript that adds static typing, interfaces, classes, and other features to the language. It's used in Angular to provide better tooling support, type checking, and improved maintainability of large-scale applications.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Explain Angular Modules (NgModules).</strong></p>
+                    <ul>
+                        <li>
+                            <p>Angular Modules, or NgModules, are containers for a cohesive block of code dedicated to a particular application domain, workflow, or closely related set of capabilities. They consist of components, directives, pipes, and services that are related and can be combined together into cohesive blocks of functionality.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>What is data binding in Angular, and explain the different types of data binding.</strong></p>
+                    <ul>
+                        <li>
+                            <p>Data binding in Angular allows you to synchronize data between the model and the view. There are four types of data binding in Angular:</p>
+                            <ul>
+                                <li>
+                                    <p>Interpolation ({{}})</p>
+                                </li>
+                                <li>
+                                    <p>Property binding ([...])</p>
+                                </li>
+                                <li>
+                                    <p>Event binding ([...])</p>
+                                </li>
+                                <li>
+                                    <p>Two-way binding ([(...)]) using ngModel</p>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>What are Angular components, and how do you create one?</strong></p>
+                    <ul>
+                        <li>
+                            <p>Angular components are the basic building blocks of Angular applications. They consist of a TypeScript class that defines the component's behavior and properties, along with an HTML template that defines the component's UI. You can create a component using the Angular CLI or manually by creating a TypeScript class and an HTML template file.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>What is Angular CLI, and what are its benefits?</strong></p>
+                    <ul>
+                        <li>
+                            <p>Angular CLI (Command Line Interface) is a command-line tool for creating, scaffolding, building, and testing Angular applications. It provides a convenient way to generate components, services, modules, and other Angular artifacts. It also comes with built-in support for features like TypeScript compilation, bundling, and testing, which helps streamline the development process.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Explain Angular routing and how it works.</strong></p>
+                    <ul>
+                        <li>
+                            <p>Angular routing allows you to navigate between different views or pages in a single-page application. It's based on the URL and routes requests to the corresponding component based on the URL path. Angular routing uses the RouterModule to define routes and the RouterOutlet directive to display routed views.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>How do you handle HTTP requests in Angular?</strong></p>
+                    <ul>
+                        <li>
+                            <p>Angular provides the HttpClient module for making HTTP requests to server-side APIs. You can use methods like get(), post(), put(), delete(), etc., to send HTTP requests and handle responses using observables. Angular also supports interceptors for intercepting and modifying HTTP requests and responses.</p>
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+            <hr>
+
+        </div>
+    </TabPage>
+    <TabPage Title="Common Problems">
+        <div class="content">
+            <p>Below are some common C# coding interview questions along with sample answers:</p>
+            <ol>
+                <li>
+                    <p><strong>Reverse a String</strong>:<br>Question: Write a C# function to reverse a string.</p>
+                    <CodeSnippet>
+public static string ReverseString(string input)
+{
+    char[] charArray = input.ToCharArray();
+    Array.Reverse(charArray);
+    return new string(charArray);
+}
+                    </CodeSnippet>
+                </li>
+                <li>
+                    <p><strong>Find the Maximum Number in an Array</strong>:<br>Question: Write a C# function to find the maximum number in an array of integers.</p>
+                    <CodeSnippet>
+public static int FindMax(int[] numbers)
+{
+    if (numbers == null || numbers.Length == 0)
+        throw new ArgumentException(&quot;Array is empty or null&quot;);
+
+    int max = numbers[0];
+    for (int i = 1; i &lt; numbers.Length; i++)
+    {
+        if (numbers[i] &gt; max)
+            max = numbers[i];
+    }
+    return max;
+}
+                    </CodeSnippet>
+                </li>
+                <li>
+                    <p><strong>Check if a String is a Palindrome</strong>:<br>Question: Write a C# function to determine if a given string is a palindrome.</p>
+                    <CodeSnippet>
+public static bool IsPalindrome(string input)
+{
+    int left = 0;
+    int right = input.Length - 1;
+
+    while (left &lt; right)
+    {
+        if (input[left] != input[right])
+            return false;
+        left++;
+        right--;
+    }
+    return true;
+}
+                    </CodeSnippet>
+                </li>
+                <li>
+                    <p><strong>Implement a Stack</strong>:<br>Question: Implement a stack data structure in C#.</p>
+                    <CodeSnippet>
+public class Stack&lt;T&gt;
+{
+    private List&lt;T&gt; items = new List&lt;T&gt;();
+
+    public void Push(T item)
+    {
+        items.Add(item);
+    }
+
+    public T Pop()
+    {
+        if (items.Count == 0)
+            throw new InvalidOperationException(&quot;Stack is empty&quot;);
+
+        T poppedItem = items[items.Count - 1];
+        items.RemoveAt(items.Count - 1);
+        return poppedItem;
+    }
+
+    public T Peek()
+    {
+        if (items.Count == 0)
+            throw new InvalidOperationException(&quot;Stack is empty&quot;);
+
+        return items[items.Count - 1];
+    }
+
+    public bool IsEmpty()
+    {
+        return items.Count == 0;
+    }
+}
+                    </CodeSnippet>
+                </li>
+                <li>
+                    <p><strong>Fibonacci Series</strong>:<br>Question: Write a C# function to generate the Fibonacci series up to a specified number of terms.</p>
+                    <CodeSnippet>
+public static List&lt;int&gt; FibonacciSeries(int count)
+{
+    List&lt;int&gt; series = new List&lt;int&gt;();
+    int a = 0, b = 1;
+
+    for (int i = 0; i &lt; count; i++)
+    {
+        series.Add(a);
+        int temp = a;
+        a = b;
+        b = temp + b;
+    }
+    return series;
+}
+                    </CodeSnippet>
+                </li>
+                <li>
+                    <p>C# program that finds the longest substring without repeating characters:</p>
+                    <CodeSnippet>
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static int LengthOfLongestSubstring(string s)
+    {
+        if (string.IsNullOrEmpty(s))
+            return 0;
+
+        Dictionary&lt;char, int&gt; charIndexMap = new Dictionary&lt;char, int&gt;();
+        int maxLength = 0;
+        int startIndex = 0;
+
+        for (int i = 0; i &lt; s.Length; i++)
+        {
+            if (charIndexMap.ContainsKey(s[i]))
+            {
+                startIndex = Math.Max(startIndex, charIndexMap[s[i]] + 1);
+            }
+
+            charIndexMap[s[i]] = i;
+            maxLength = Math.Max(maxLength, i - startIndex + 1);
+        }
+
+        return maxLength;
+    }
+
+    static void Main(string[] args)
+    {
+        string input = &quot;abcabcbb&quot;;
+        int length = LengthOfLongestSubstring(input);
+        Console.WriteLine(&quot;Length of the longest substring without repeating characters: &quot; + length);
+    }
+}
+                    </CodeSnippet>
+                    <p>This program defines a method <code>LengthOfLongestSubstring</code> that takes a string as input and returns the length of the longest substring without repeating characters. It uses a sliding window approach along with a dictionary to keep track of the last index of each character encountered. The <code>startIndex</code> variable keeps track of the start of the current substring without repeating characters. Finally, it returns the maximum length found.</p>
+                </li>
+            </ol>
+            <p>These are basic examples, and depending on the level of the interview, questions can become more complex. Make sure to understand the problem thoroughly, discuss edge cases, and write clean, efficient code.</p>
+        </div>
+    </TabPage>
+    <TabPage Title="Longest Common Substring">
+        <div class="content">
+            <p>You can create a C# function to find the length of the longest common substring between two strings using dynamic programming. Here&apos;s an implementation:</p>
+            <CodeSnippet>
+using System;
+
+class LongestCommonSubstring
+{
+    public static int LongestCommonSubstringLength(string str1, string str2)
+    {
+        int[,] dp = new int[str1.Length + 1, str2.Length + 1];
+        int maxLength = 0;
+
+        for (int i = 1; i &lt;= str1.Length; i++)
+        {
+            for (int j = 1; j &lt;= str2.Length; j++)
+            {
+                if (str1[i - 1] == str2[j - 1])
+                {
+                    dp[i, j] = dp[i - 1, j - 1] + 1;
+                    maxLength = Math.Max(maxLength, dp[i, j]);
+                }
+                else
+                {
+                    dp[i, j] = 0; // Reset to 0 for non-matching characters
+                }
+            }
+        }
+
+        return maxLength;
+    }
+
+    static void Main(string[] args)
+    {
+        string str1 = &quot;abcdefg&quot;;
+        string str2 = &quot;xbcdefgh&quot;;
+        int length = LongestCommonSubstringLength(str1, str2);
+        Console.WriteLine(&quot;Length of the longest common substring: &quot; + length); // Output: 5
+    }
+}
+            </CodeSnippet>
+            <p>This function uses a 2D array <code>dp</code> to store the lengths of common substrings ending at each position. If characters at positions <code>i</code> in <code>str1</code> and <code>j</code> in <code>str2</code> match, the length of the common substring ending at these positions is incremented by 1. If they don&apos;t match, the length is reset to 0 because the substring ends there. Finally, it returns the length of the longest common substring found.</p>
+        </div>
+    </TabPage>
+    <TabPage Title="Introducing yourself">
+        <div class="content">
+            <p>Introducing yourself in a technical interview is crucial as it sets the tone for the conversation and provides the interviewer with an overview of your experience and skills. Here&apos;s a structured way to introduce yourself:</p>
+            <ol>
+                <li>
+                    <p><strong>Greeting</strong>: Start with a polite greeting to the interviewer. For example: &quot;Hello, it&apos;s a pleasure to meet you.&quot;</p>
+                </li>
+                <li>
+                    <p><strong>Introduction</strong>: Provide a brief overview of who you are. For example: &quot;My name is [Your Name], and I&apos;m a seasoned C# developer with nine years of experience in software development.&quot;</p>
+                </li>
+                <li>
+                    <p><strong>Professional Background</strong>: Highlight your relevant professional experience. You can mention your previous roles, projects, and accomplishments. For example: &quot;Throughout my career, I&apos;ve worked on a wide range of projects, including [mention specific types of projects or industries you&apos;ve worked in]. I&apos;ve also had the opportunity to collaborate with cross-functional teams and deliver high-quality software solutions.&quot;</p>
+                </li>
+                <li>
+                    <p><strong>Technical Skills</strong>: Emphasize your technical skills and expertise in C# development. Highlight any specific technologies, frameworks, or methodologies you&apos;re proficient in. For example: &quot;I have a strong command of C# programming language, along with expertise in .NET framework and ASP.NET Core. I&apos;m also familiar with various development tools and libraries such as Visual Studio, Entity Framework, and LINQ.&quot;</p>
+                </li>
+                <li>
+                    <p><strong>Problem-Solving Approach</strong>: Briefly discuss your approach to problem-solving and your ability to tackle complex technical challenges. For example: &quot;I&apos;m a proactive problem-solver who enjoys diving into code to troubleshoot issues and find efficient solutions. I believe in leveraging best practices and design patterns to write clean, maintainable code.&quot;</p>
+                </li>
+                <li>
+                    <p><strong>Teamwork and Communication</strong>: Highlight your interpersonal skills and ability to work effectively in a team environment. Mention any experience you have in mentoring junior developers or collaborating with stakeholders. For example: &quot;I value clear communication and collaboration within the team. In my previous roles, I&apos;ve had the opportunity to mentor junior developers, participate in code reviews, and engage with stakeholders to gather requirements and feedback.&quot;</p>
+                </li>
+                <li>
+                    <p><strong>Closing</strong>: Conclude your introduction with a positive note and express your enthusiasm for the opportunity. For example: &quot;I&apos;m excited about the opportunity to discuss how my experience and skills can contribute to the success of your team. I look forward to our conversation.&quot;</p>
+                </li>
+            </ol>
+            <p>Remember to tailor your introduction to the specific job role and company you&apos;re interviewing with, highlighting the skills and experiences most relevant to the position. Keep it concise, focused, and engaging to leave a strong impression on the interviewer.</p>
+        </div>
+    </TabPage>
+     <TabPage Title="Sample">
+         <div class="content">
+            <Toggle Title="test">test</Toggle>
+         </div>
+     </TabPage>
+</TabControl>
+
+@code {
+
+}

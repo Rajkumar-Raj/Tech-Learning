@@ -1,0 +1,34 @@
+﻿<div class="code-snippet-container">
+    <div class="code-header">
+        <button class="toggle-button" @onclick="ToggleCodeVisibility">
+            @if (isExpanded)
+            {
+                <span class="bi bi-chevron-down"></span>
+            }
+            else
+            {
+                <span class="bi bi-chevron-right"></span>
+            }
+            @Title
+        </button>
+    </div>
+    @if (isExpanded)
+    {
+        <div class="code-block-wrapper">
+            @ChildContent
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public string Title { get; set; } = string.Empty;
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+    private bool isExpanded = false; // Initial state is collapsed
+
+    private void ToggleCodeVisibility()
+    {
+        isExpanded = !isExpanded;
+    }
+}
