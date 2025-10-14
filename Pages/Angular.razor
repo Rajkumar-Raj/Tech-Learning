@@ -1,0 +1,1231 @@
+﻿@page "/angular"
+
+<TabControl>
+    <TabPage Title="Concepts">
+        <div class="content">
+            <h1>🚀 <strong>All Important Angular Concepts (Basic &rarr; Advanced)</strong></h1>
+            <hr />
+            <h2>🟢 <strong>1. Angular Fundamentals</strong></h2>
+            <ul>
+                <li>
+                    <p><strong>Angular Architecture</strong></p>
+                    <ul>
+                        <li>
+                            <p>Modules (<code>NgModule</code>)</p>
+                        </li>
+                        <li>
+                            <p>Components</p>
+                        </li>
+                        <li>
+                            <p>Templates</p>
+                        </li>
+                        <li>
+                            <p>Metadata</p>
+                        </li>
+                        <li>
+                            <p>Services</p>
+                        </li>
+                        <li>
+                            <p>Dependency Injection</p>
+                        </li>
+                        <li>
+                            <p>Routing</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Angular CLI</strong></p>
+                    <ul>
+                        <li>
+                            <p>Project generation, build, serve, lint, test</p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <hr />
+            <h2>🧱 <strong>2. Modules</strong></h2>
+            <ul>
+                <li>
+                    <p>Root Module (<code>AppModule</code>)</p>
+                </li>
+                <li>
+                    <p>Feature Modules</p>
+                </li>
+                <li>
+                    <p>Shared Modules</p>
+                </li>
+                <li>
+                    <p>Lazy-loaded Modules</p>
+                </li>
+                <li>
+                    <p>Module imports &amp; exports</p>
+                </li>
+            </ul>
+            <hr />
+            <h2>🧩 <strong>3. Components</strong></h2>
+            <ul>
+                <li>
+                    <p><code>&commat;Component</code> decorator</p>
+                </li>
+                <li>
+                    <p>Template, Styles, Selector</p>
+                </li>
+                <li>
+                    <p>Lifecycle hooks (<code>ngOnInit</code>, <code>ngOnDestroy</code>, etc.)</p>
+                </li>
+                <li>
+                    <p>Component communication:</p>
+                    <ul>
+                        <li>
+                            <p><code>&commat;Input()</code> / <code>&commat;Output()</code></p>
+                        </li>
+                        <li>
+                            <p><code>&commat;ViewChild()</code> / <code>&commat;ContentChild()</code></p>
+                        </li>
+                        <li>
+                            <p>Shared services (Subjects/BehaviorSubjects)</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p>Change detection (<code>Default</code>, <code>OnPush</code>)</p>
+                </li>
+            </ul>
+            <hr />
+            <h2>🧠 <strong>4. Templates and Data Binding</strong></h2>
+            <ul>
+                <li>
+                    <p><strong>Interpolation:</strong> <code>{{ value }}</code></p>
+                </li>
+                <li>
+                    <p><strong>Property binding:</strong> <code>[property]="value"</code></p>
+                </li>
+                <li>
+                    <p><strong>Event binding:</strong> <code>(event)="handler()"</code></p>
+                </li>
+                <li>
+                    <p><strong>Two-way binding:</strong> <code>[(ngModel)]</code></p>
+                </li>
+                <li>
+                    <p><strong>Template reference variables:</strong> <code>#ref</code></p>
+                </li>
+                <li>
+                    <p><strong>Pipes:</strong> Built-in (date, currency) and custom pipes</p>
+                </li>
+            </ul>
+            <hr />
+            <h2>🧭 <strong>5. Directives</strong></h2>
+            <ul>
+                <li>
+                    <p><strong>Structural Directives:</strong> <code>*ngIf</code>, <code>*ngFor</code>, <code>*ngSwitch</code></p>
+                </li>
+                <li>
+                    <p><strong>Attribute Directives:</strong> <code>[ngStyle]</code>, <code>[ngClass]</code></p>
+                </li>
+                <li>
+                    <p><strong>Custom Directives</strong></p>
+                </li>
+            </ul>
+            <hr />
+            <h2>⚙️ <strong>6. Services &amp; Dependency Injection (DI)</strong></h2>
+            <ul>
+                <li>
+                    <p><code>&commat;Injectable()</code> decorator</p>
+                </li>
+                <li>
+                    <p>DI hierarchy: root, module, component level</p>
+                </li>
+                <li>
+                    <p>Service providers (<code>providedIn</code>)</p>
+                </li>
+                <li>
+                    <p>Singleton vs Scoped services</p>
+                </li>
+            </ul>
+            <hr />
+            <h2>🚦 <strong>7. Routing &amp; Navigation</strong></h2>
+            <ul>
+                <li>
+                    <p><code>RouterModule</code></p>
+                </li>
+                <li>
+                    <p>Route configuration</p>
+                </li>
+                <li>
+                    <p>Route parameters</p>
+                </li>
+                <li>
+                    <p>Route guards:</p>
+                    <ul>
+                        <li>
+                            <p><code>CanActivate</code></p>
+                        </li>
+                        <li>
+                            <p><code>CanDeactivate</code></p>
+                        </li>
+                        <li>
+                            <p><code>CanLoad</code></p>
+                        </li>
+                        <li>
+                            <p><code>Resolve</code></p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p>Lazy loading</p>
+                </li>
+                <li>
+                    <p>Route resolvers</p>
+                </li>
+                <li>
+                    <p>Child routes</p>
+                </li>
+                <li>
+                    <p>Wildcard &amp; redirect routes</p>
+                </li>
+            </ul>
+            <hr />
+            <h2>🧾 <strong>8. Forms</strong></h2>
+            <ul>
+                <li>
+                    <p><strong>Template-driven forms:</strong></p>
+                    <ul>
+                        <li>
+                            <p><code>FormsModule</code></p>
+                        </li>
+                        <li>
+                            <p><code>[(ngModel)]</code></p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Reactive forms:</strong></p>
+                    <ul>
+                        <li>
+                            <p><code>FormGroup</code>, <code>FormControl</code>, <code>FormBuilder</code></p>
+                        </li>
+                        <li>
+                            <p>Validators (sync/async)</p>
+                        </li>
+                        <li>
+                            <p>Custom validators</p>
+                        </li>
+                        <li>
+                            <p>FormArray</p>
+                        </li>
+                        <li>
+                            <p>Form status and value changes</p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <hr />
+            <h2>🌐 <strong>9. HTTP Communication</strong></h2>
+            <ul>
+                <li>
+                    <p><code>HttpClientModule</code></p>
+                </li>
+                <li>
+                    <p>GET, POST, PUT, DELETE requests</p>
+                </li>
+                <li>
+                    <p>Interceptors:</p>
+                    <ul>
+                        <li>
+                            <p>Add tokens</p>
+                        </li>
+                        <li>
+                            <p>Handle errors</p>
+                        </li>
+                        <li>
+                            <p>Modify headers</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p>Observables &amp; RxJS integration</p>
+                </li>
+                <li>
+                    <p>Error handling and retry strategies</p>
+                </li>
+            </ul>
+            <hr />
+            <h2>🔄 <strong>10. RxJS (Reactive Extensions)</strong></h2>
+            <ul>
+                <li>
+                    <p><strong>Core Concepts:</strong> Observable, Observer, Subscription</p>
+                </li>
+                <li>
+                    <p><strong>Subjects:</strong> Subject, BehaviorSubject, ReplaySubject</p>
+                </li>
+                <li>
+                    <p><strong>Operators:</strong> map, filter, switchMap, mergeMap, debounceTime, catchError</p>
+                </li>
+                <li>
+                    <p><strong>AsyncPipe</strong></p>
+                </li>
+                <li>
+                    <p>Unsubscribe patterns (takeUntil, async pipe)</p>
+                </li>
+            </ul>
+            <hr />
+            <h2>🔒 <strong>11. Authentication &amp; Authorization</strong></h2>
+            <ul>
+                <li>
+                    <p>JWT authentication</p>
+                </li>
+                <li>
+                    <p>Auth guards</p>
+                </li>
+                <li>
+                    <p>Role-based access control</p>
+                </li>
+                <li>
+                    <p>Secure routes and API calls</p>
+                </li>
+                <li>
+                    <p>Interceptors for tokens</p>
+                </li>
+            </ul>
+            <hr />
+            <h2>🧩 <strong>12. Change Detection &amp; Zones</strong></h2>
+            <ul>
+                <li>
+                    <p>Angular change detection mechanism</p>
+                </li>
+                <li>
+                    <p>Zone.js</p>
+                </li>
+                <li>
+                    <p>ChangeDetectorRef</p>
+                </li>
+                <li>
+                    <p><code>OnPush</code> strategy</p>
+                </li>
+                <li>
+                    <p>Performance tuning with <code>trackBy</code></p>
+                </li>
+            </ul>
+            <hr />
+            <h2>🧰 <strong>13. Advanced Component Topics</strong></h2>
+            <ul>
+                <li>
+                    <p>ViewEncapsulation (<code>Emulated</code>, <code>ShadowDom</code>, <code>None</code>)</p>
+                </li>
+                <li>
+                    <p>Content projection (<code>&lt;ng-content&gt;</code>)</p>
+                </li>
+                <li>
+                    <p>Dynamic components (<code>ViewContainerRef</code>, <code>ComponentFactoryResolver</code>)</p>
+                </li>
+                <li>
+                    <p>HostBinding and HostListener</p>
+                </li>
+                <li>
+                    <p>Lifecycle optimization</p>
+                </li>
+                <li>
+                    <p>Signals (Angular 17+)</p>
+                </li>
+            </ul>
+            <hr />
+            <h2>🧮 <strong>14. State Management</strong></h2>
+            <ul>
+                <li>
+                    <p>Local state (via services)</p>
+                </li>
+                <li>
+                    <p>Global state with <strong>NgRx</strong> (Store, Actions, Reducers, Effects, Selectors)</p>
+                </li>
+                <li>
+                    <p>Akita, NGXS (alternatives)</p>
+                </li>
+                <li>
+                    <p>RxJS-based service state</p>
+                </li>
+            </ul>
+            <hr />
+            <h2>💡 <strong>15. Angular Performance Optimization</strong></h2>
+            <ul>
+                <li>
+                    <p>AOT (Ahead-of-Time) compilation</p>
+                </li>
+                <li>
+                    <p>Tree shaking</p>
+                </li>
+                <li>
+                    <p>Lazy loading</p>
+                </li>
+                <li>
+                    <p>Preloading strategies</p>
+                </li>
+                <li>
+                    <p><code>OnPush</code> change detection</p>
+                </li>
+                <li>
+                    <p>Caching (HTTP interceptors)</p>
+                </li>
+                <li>
+                    <p>Code splitting</p>
+                </li>
+                <li>
+                    <p>trackBy in <code>*ngFor</code></p>
+                </li>
+            </ul>
+            <hr />
+            <h2>🧱 <strong>16. Testing</strong></h2>
+            <ul>
+                <li>
+                    <p>Unit Testing:</p>
+                    <ul>
+                        <li>
+                            <p>Jasmine &amp; Karma</p>
+                        </li>
+                        <li>
+                            <p>Component, service, and pipe testing</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p>Integration Testing</p>
+                </li>
+                <li>
+                    <p>End-to-End (E2E):</p>
+                    <ul>
+                        <li>
+                            <p>Protractor (legacy)</p>
+                        </li>
+                        <li>
+                            <p>Cypress / Playwright (modern)</p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <hr />
+            <h2>🧠 <strong>17. Advanced Topics</strong></h2>
+            <ul>
+                <li>
+                    <p>Dependency Injection tokens</p>
+                </li>
+                <li>
+                    <p>Multi-provider patterns</p>
+                </li>
+                <li>
+                    <p>Custom pipes and directives</p>
+                </li>
+                <li>
+                    <p>Async data handling (Observables, Promises)</p>
+                </li>
+                <li>
+                    <p>Dynamic module loading</p>
+                </li>
+            </ul>
+            <hr />
+            <h2>🌍 <strong>18. Internationalization (i18n)</strong></h2>
+            <ul>
+                <li>
+                    <p>Built-in Angular i18n support</p>
+                </li>
+                <li>
+                    <p>Third-party: <code>ngx-translate</code></p>
+                </li>
+            </ul>
+            <hr />
+            <h2>⚙️ <strong>19. Angular Universal (SSR)</strong></h2>
+            <ul>
+                <li>
+                    <p>Server-side rendering for SEO and performance</p>
+                </li>
+                <li>
+                    <p><code>&commat;nguniversal/express-engine</code></p>
+                </li>
+            </ul>
+            <hr />
+            <h2>📱 <strong>20. Progressive Web Apps (PWA)</strong></h2>
+            <ul>
+                <li>
+                    <p>Service Workers</p>
+                </li>
+                <li>
+                    <p>Caching &amp; offline mode</p>
+                </li>
+                <li>
+                    <p>Push notifications</p>
+                </li>
+                <li>
+                    <p>Web manifest</p>
+                </li>
+            </ul>
+            <hr />
+            <h2>🧮 <strong>21. Monorepos &amp; Micro Frontends</strong></h2>
+            <ul>
+                <li>
+                    <p>Nx workspace</p>
+                </li>
+                <li>
+                    <p>Module Federation (Webpack 5)</p>
+                </li>
+                <li>
+                    <p>Sharing code across apps</p>
+                </li>
+            </ul>
+            <hr />
+            <h2>🧩 <strong>22. Error Handling &amp; Logging</strong></h2>
+            <ul>
+                <li>
+                    <p>Global error handler (<code>ErrorHandler</code>)</p>
+                </li>
+                <li>
+                    <p>HTTP interceptor-based logging</p>
+                </li>
+                <li>
+                    <p>Sentry or custom error tracking</p>
+                </li>
+            </ul>
+            <hr />
+            <h2>🧰 <strong>23. Build &amp; Deployment</strong></h2>
+            <ul>
+                <li>
+                    <p>Environments (<code>environment.ts</code>)</p>
+                </li>
+                <li>
+                    <p>Build optimizations</p>
+                </li>
+                <li>
+                    <p>Versioning and caching</p>
+                </li>
+                <li>
+                    <p>Dockerizing Angular apps</p>
+                </li>
+                <li>
+                    <p>CI/CD pipelines (GitHub Actions, Azure DevOps, Jenkins)</p>
+                </li>
+            </ul>
+            <hr />
+            <h2>⚡ <strong>24. Modern Angular (v16+ Features)</strong></h2>
+            <ul>
+                <li>
+                    <p><strong>Standalone Components</strong></p>
+                </li>
+                <li>
+                    <p><strong>Signals API</strong></p>
+                </li>
+                <li>
+                    <p><strong>Functional guards and resolvers</strong></p>
+                </li>
+                <li>
+                    <p><strong>Typed Forms</strong></p>
+                </li>
+                <li>
+                    <p><strong>Injector Tree improvements</strong></p>
+                </li>
+                <li>
+                    <p><strong>Deferrable Views</strong></p>
+                </li>
+                <li>
+                    <p><strong>Hydration for SSR</strong></p>
+                </li>
+            </ul>
+            <hr />
+            <h2>💬 <strong>25. Common Design Patterns in Angular</strong></h2>
+            <ul>
+                <li>
+                    <p>Smart vs Dumb Components</p>
+                </li>
+                <li>
+                    <p>Presenter-Container pattern</p>
+                </li>
+                <li>
+                    <p>Observer pattern (RxJS)</p>
+                </li>
+                <li>
+                    <p>Facade pattern (for state management)</p>
+                </li>
+                <li>
+                    <p>Dependency Injection pattern</p>
+                </li>
+            </ul>
+            <hr />
+            <h1>✅ <strong>Summary: Angular Core Areas</strong></h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Key Concepts</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Core</strong></td>
+                        <td>Components, Modules, Templates, DI</td>
+                    </tr>
+                    <tr>
+                        <td><strong>UI Logic</strong></td>
+                        <td>Directives, Pipes, Binding</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data</strong></td>
+                        <td>Services, HTTP, RxJS</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Navigation</strong></td>
+                        <td>Routing, Guards</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Forms</strong></td>
+                        <td>Template-driven, Reactive</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Performance</strong></td>
+                        <td>Change detection, Lazy loading</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Security</strong></td>
+                        <td>Auth, Interceptors</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Advanced</strong></td>
+                        <td>SSR, PWA, NgRx, Signals</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tooling</strong></td>
+                        <td>Testing, Deployment, Monorepo</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+        </div>
+    </TabPage>
+    <TabPage Title="Summary">
+        <div class="content">
+            <p><strong>Concise, one-page summary</strong> of all <strong>Angular concepts (Basic + Advanced)</strong> &mdash; perfect for quick revision or interview prep.</p>
+            <hr />
+            <h1>🚀 <strong>Angular Concepts Summary (Basic &rarr; Advanced)</strong></h1>
+            <hr />
+            <h2>🟢 <strong>BASIC CONCEPTS</strong></h2>
+            <h3>🔸 <strong>1. Architecture</strong></h3>
+            <ul>
+                <li>
+                    <p>Components, Modules, Templates, Metadata, Services, DI, Routing.</p>
+                </li>
+            </ul>
+            <h3>🔸 <strong>2. Modules</strong></h3>
+            <ul>
+                <li>
+                    <p>Organize app into logical units (<code>&commat;NgModule</code>).</p>
+                </li>
+                <li>
+                    <p>Types: Root, Feature, Shared, Lazy-loaded.</p>
+                </li>
+            </ul>
+            <h3>🔸 <strong>3. Components</strong></h3>
+            <ul>
+                <li>
+                    <p>UI building blocks (<code>&commat;Component</code>).</p>
+                </li>
+                <li>
+                    <p>Lifecycle hooks: <code>ngOnInit</code>, <code>ngOnDestroy</code>, etc.</p>
+                </li>
+                <li>
+                    <p>Communication: <code>&commat;Input</code>, <code>&commat;Output</code>, <code>ViewChild</code>.</p>
+                </li>
+            </ul>
+            <h3>🔸 <strong>4. Data Binding</strong></h3>
+            <ul>
+                <li>
+                    <p>One-way: Interpolation <code>{{}}</code>, Property <code>[prop]</code>, Event <code>(event)</code>.</p>
+                </li>
+                <li>
+                    <p>Two-way: <code>[(ngModel)]</code>.</p>
+                </li>
+            </ul>
+            <h3>🔸 <strong>5. Directives</strong></h3>
+            <ul>
+                <li>
+                    <p>Structural: <code>*ngIf</code>, <code>*ngFor</code>, <code>*ngSwitch</code>.</p>
+                </li>
+                <li>
+                    <p>Attribute: <code>[ngClass]</code>, <code>[ngStyle]</code>.</p>
+                </li>
+                <li>
+                    <p>Custom directives for reusable logic.</p>
+                </li>
+            </ul>
+            <h3>🔸 <strong>6. Pipes</strong></h3>
+            <ul>
+                <li>
+                    <p>Transform display data.</p>
+                </li>
+                <li>
+                    <p>Built-in (date, currency) and Custom.</p>
+                </li>
+                <li>
+                    <p>Pure vs Impure pipes.</p>
+                </li>
+            </ul>
+            <h3>🔸 <strong>7. Services &amp; Dependency Injection</strong></h3>
+            <ul>
+                <li>
+                    <p>Shared logic via <code>&commat;Injectable</code>.</p>
+                </li>
+                <li>
+                    <p>Lifetimes: root, module, component.</p>
+                </li>
+                <li>
+                    <p>Hierarchical injection.</p>
+                </li>
+            </ul>
+            <h3>🔸 <strong>8. Routing</strong></h3>
+            <ul>
+                <li>
+                    <p><code>RouterModule</code>, <code>RouterOutlet</code>, <code>RouterLink</code>.</p>
+                </li>
+                <li>
+                    <p>Guards: <code>CanActivate</code>, <code>CanLoad</code>, etc.</p>
+                </li>
+                <li>
+                    <p>Lazy loading &amp; route resolvers.</p>
+                </li>
+            </ul>
+            <h3>🔸 <strong>9. Forms</strong></h3>
+            <ul>
+                <li>
+                    <p>Template-driven (<code>ngModel</code>) and Reactive (<code>FormGroup</code>, <code>FormControl</code>).</p>
+                </li>
+                <li>
+                    <p>Validators, async validators.</p>
+                </li>
+            </ul>
+            <h3>🔸 <strong>10. HTTP Client</strong></h3>
+            <ul>
+                <li>
+                    <p><code>HttpClient</code> for REST calls.</p>
+                </li>
+                <li>
+                    <p>Interceptors, error handling, JWT auth.</p>
+                </li>
+            </ul>
+            <hr />
+            <h2>🔵 <strong>ADVANCED CONCEPTS</strong></h2>
+            <h3>🔸 <strong>1. Change Detection</strong></h3>
+            <ul>
+                <li>
+                    <p>Zone.js + ChangeDetectorRef.</p>
+                </li>
+                <li>
+                    <p><code>OnPush</code> strategy, <code>trackBy</code>, optimize rendering.</p>
+                </li>
+            </ul>
+            <h3>🔸 <strong>2. RxJS &amp; Observables</strong></h3>
+            <ul>
+                <li>
+                    <p>Core for async streams.</p>
+                </li>
+                <li>
+                    <p>Key operators: <code>map</code>, <code>switchMap</code>, <code>mergeMap</code>, <code>filter</code>.</p>
+                </li>
+                <li>
+                    <p>Subjects, BehaviorSubjects, unsubscribe patterns.</p>
+                </li>
+            </ul>
+            <h3>🔸 <strong>3. State Management</strong></h3>
+            <ul>
+                <li>
+                    <p>Service-based or NgRx (Store, Actions, Reducers, Effects, Selectors).</p>
+                </li>
+            </ul>
+            <h3>🔸 <strong>4. Lazy Loading &amp; Preloading</strong></h3>
+            <ul>
+                <li>
+                    <p>Load modules on demand; improve startup performance.</p>
+                </li>
+            </ul>
+            <h3>🔸 <strong>5. Interceptors</strong></h3>
+            <ul>
+                <li>
+                    <p>Modify requests/responses globally (auth, logging, caching).</p>
+                </li>
+            </ul>
+            <h3>🔸 <strong>6. Dynamic Components</strong></h3>
+            <ul>
+                <li>
+                    <p>Create components at runtime using <code>ViewContainerRef</code>.</p>
+                </li>
+            </ul>
+            <h3>🔸 <strong>7. Content Projection &amp; Encapsulation</strong></h3>
+            <ul>
+                <li>
+                    <p><code>ng-content</code>, Shadow DOM, encapsulation modes.</p>
+                </li>
+            </ul>
+            <h3>🔸 <strong>8. Custom Decorators</strong></h3>
+            <ul>
+                <li>
+                    <p>Define reusable metadata logic.</p>
+                </li>
+            </ul>
+            <h3>🔸 <strong>9. Angular Universal (SSR)</strong></h3>
+            <ul>
+                <li>
+                    <p>Server-side rendering for SEO &amp; performance.</p>
+                </li>
+            </ul>
+            <h3>🔸 <strong>10. PWA (Progressive Web Apps)</strong></h3>
+            <ul>
+                <li>
+                    <p>Offline support, service workers, push notifications.</p>
+                </li>
+            </ul>
+            <h3>🔸 <strong>11. Testing</strong></h3>
+            <ul>
+                <li>
+                    <p>Unit tests (Jasmine, Karma), Integration tests, E2E (Cypress).</p>
+                </li>
+            </ul>
+            <h3>🔸 <strong>12. Security</strong></h3>
+            <ul>
+                <li>
+                    <p>XSS/CSRF protection, sanitization, secure APIs.</p>
+                </li>
+            </ul>
+            <h3>🔸 <strong>13. Performance Optimization</strong></h3>
+            <ul>
+                <li>
+                    <p>AOT compilation, Tree shaking, OnPush, caching, lazy loading.</p>
+                </li>
+            </ul>
+            <h3>🔸 <strong>14. Internationalization (i18n)</strong></h3>
+            <ul>
+                <li>
+                    <p>Multi-language support via i18n or <code>ngx-translate</code>.</p>
+                </li>
+            </ul>
+            <h3>🔸 <strong>15. Micro Frontends</strong></h3>
+            <ul>
+                <li>
+                    <p>Module Federation for multi-app integration.</p>
+                </li>
+            </ul>
+            <h3>🔸 <strong>16. Monorepos</strong></h3>
+            <ul>
+                <li>
+                    <p>Manage multiple Angular apps/libraries using Nx.</p>
+                </li>
+            </ul>
+            <h3>🔸 <strong>17. DevOps &amp; Deployment</strong></h3>
+            <ul>
+                <li>
+                    <p>CI/CD pipelines, Dockerization, environment configs.</p>
+                </li>
+            </ul>
+            <h3>🔸 <strong>18. Modern Angular Features</strong></h3>
+            <ul>
+                <li>
+                    <p>Standalone components, Signals, Typed forms, Functional guards.</p>
+                </li>
+            </ul>
+            <hr />
+            <p>✅ <strong>Focus Areas for Senior Developers:</strong></p>
+            <ul>
+                <li>
+                    <p>RxJS mastery</p>
+                </li>
+                <li>
+                    <p>NgRx architecture</p>
+                </li>
+                <li>
+                    <p>Performance tuning &amp; change detection</p>
+                </li>
+                <li>
+                    <p>Advanced DI &amp; modular design</p>
+                </li>
+                <li>
+                    <p>CI/CD &amp; deployment optimization</p>
+                </li>
+            </ul>
+            <hr />
+            <p>&nbsp;</p>
+        </div>
+    </TabPage>
+    <TabPage Title="Auth">
+        <div class="content">
+            <p><strong>text-based diagram</strong> showing how <strong>Authorization Code Flow with PKCE</strong> works between your <strong>Angular SPA</strong>, <strong>Azure Entra ID</strong>, and <strong>ASP.NET Core Web API</strong>.</p>
+            <hr />
+            <h2>🧩 Authorization Code Flow with PKCE</h2>
+            <p><em>(for Angular SPA + Azure Entra ID + ASP.NET Core API)</em></p>
+<pre><code>┌──────────────────────┐                     ┌──────────────────────────────┐                     ┌──────────────────────────┐
+│                      │                     │                              │                     │                          │
+│   🟦 Angular SPA      │                     │ 🔐 Azure Entra ID            │                     │ 🟩 ASP.NET Core Web API   │
+│   (Client)            │                     │ (Authorization Server / IdP) │                     │ (Resource Server)        │
+│                      │                     │                              │                     │                          │
+└─────────┬────────────┘                     └─────────────┬────────────────┘                     └──────────────┬──────────┘
+          │                                                │                                                   │
+          │ 1️⃣ Authorization Request                      │                                                   │
+          │───────────────────────────────────────────────&gt;│                                                   │
+          │   Includes: client_id, redirect_uri,           │                                                   │
+          │   response_type=code, scopes,                  │                                                   │
+          │   code_challenge (PKCE), method=S256           │                                                   │
+          │                                                │                                                   │
+          │                                                │                                                   │
+          │                         2️⃣ Login + Consent     │                                                   │
+          │&lt;───────────────────────────────────────────────│                                                   │
+          │   User logs in, grants consent                 │                                                   │
+          │                                                │                                                   │
+          │                                                │                                                   │
+          │ 3️⃣ Authorization Code Redirect                │                                                   │
+          │&lt;───────────────────────────────────────────────│                                                   │
+          │   Receives: code + state                       │                                                   │
+          │                                                │                                                   │
+          │                                                │                                                   │
+          │ 4️⃣ Token Request (with code_verifier)          │                                                   │
+          │───────────────────────────────────────────────&gt;│                                                   │
+          │   Sends: code, client_id, redirect_uri,        │                                                   │
+          │   code_verifier (original PKCE secret)         │                                                   │
+          │                                                │                                                   │
+          │                                                │                                                   │
+          │                        5️⃣ Token Response       │                                                   │
+          │&lt;───────────────────────────────────────────────│                                                   │
+          │   Receives: id_token, access_token             │                                                   │
+          │   (optional refresh_token)                     │                                                   │
+          │                                                │                                                   │
+          │                                                │                                                   │
+          │ 6️⃣ API Call with Access Token                 │──────────────────────────────────────────────────&gt;│
+          │   Authorization: Bearer &lt;access_token&gt;          │                                                   │
+          │                                                │                                                   │
+          │                                                │                           7️⃣ Validate Token      │
+          │                                                │&lt;──────────────────────────────────────────────────│
+          │                                                │   Checks signature, audience, scopes              │
+          │                                                │                                                   │
+          │                                                │                                                   │
+          │&lt;──────────────────────────────────────────────────────────────────────────────────────────────────│
+          │                        8️⃣ Protected Response                                                     │
+          │                                                │                                                   │
+┌─────────┴────────────┐                     ┌─────────────┴────────────────┐                     ┌──────────────┴──────────┐
+│                      │                     │                              │                     │                          │
+│   User Authenticated │                     │   Tokens Issued              │                     │   Token Validated         │
+│   Session Established│                     │   (ID + Access Token)        │                     │   Data Returned           │
+│                      │                     │                              │                     │                          │
+└──────────────────────┘                     └──────────────────────────────┘                     └──────────────────────────┘
+</code></pre>
+            <hr />
+            <h3>🔵 Blue = OpenID Connect (Authentication)</h3>
+            <ul>
+                <li>
+                    <p>Steps <strong>1&ndash;3</strong>: The user authenticates and your app receives an <strong>authorization code</strong>.</p>
+                </li>
+                <li>
+                    <p>Step <strong>5</strong> (ID token): Confirms user&rsquo;s identity.</p>
+                </li>
+            </ul>
+            <h3>🟢 Green = OAuth 2.0 (Authorization)</h3>
+            <ul>
+                <li>
+                    <p>Steps <strong>4&ndash;8</strong>: The app exchanges the code for <strong>tokens</strong>, and uses the <strong>access token</strong> to call APIs securely.</p>
+                </li>
+            </ul>
+            <hr />
+            <h3>🧠 Summary of Key Security Concepts</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Concept</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>code_verifier</strong></td>
+                        <td>Random secret kept by the SPA; never sent until token exchange</td>
+                    </tr>
+                    <tr>
+                        <td><strong>code_challenge</strong></td>
+                        <td>Hashed form of the verifier sent to Azure Entra ID at login</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PKCE check</strong></td>
+                        <td>Ensures only the client that initiated login can exchange the code</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ID Token</strong></td>
+                        <td>Proves who the user is (used by SPA)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Access Token</strong></td>
+                        <td>Grants access to the backend API</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bearer Token</strong></td>
+                        <td>Sent in HTTP header: <code>Authorization: Bearer &lt;token&gt;</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Azure Entra ID</strong></td>
+                        <td>Authenticates users, issues tokens, and validates PKCE</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <p>Here&rsquo;s the <strong>step-by-step explanation</strong> for the <strong>Authorization Code Flow with PKCE</strong>, tailored for your setup:</p>
+            <blockquote>
+                <p><strong>Angular SPA (Frontend)</strong> + <strong>Azure Entra ID (Auth Provider)</strong> + <strong>ASP.NET Core Web API (Backend)</strong></p>
+            </blockquote>
+            <hr />
+            <h2>🔄 Authorization Code Flow with PKCE &mdash; Step-by-Step Breakdown</h2>
+            <hr />
+            <h3><strong>1️⃣ Authorization Request</strong></h3>
+            <p><strong>Who:</strong> Angular SPA &rarr; Azure Entra ID<br /> <strong>What Happens:</strong></p>
+            <ul>
+                <li>
+                    <p>The Angular app (client) redirects the user&rsquo;s browser to Azure Entra ID&rsquo;s <code>/authorize</code> endpoint.</p>
+                </li>
+                <li>
+                    <p>It includes:</p>
+                    <ul>
+                        <li>
+                            <p><code>client_id</code></p>
+                        </li>
+                        <li>
+                            <p><code>redirect_uri</code></p>
+                        </li>
+                        <li>
+                            <p><code>response_type=code</code></p>
+                        </li>
+                        <li>
+                            <p><code>scope</code> (e.g., <code>openid profile api://.../user.read</code>)</p>
+                        </li>
+                        <li>
+                            <p><code>code_challenge</code> (PKCE hash)</p>
+                        </li>
+                        <li>
+                            <p><code>code_challenge_method=S256</code></p>
+                        </li>
+                        <li>
+                            <p><code>state</code> (random anti-CSRF token)</p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <p><strong>Purpose:</strong><br /> This tells Azure Entra ID: <em>&ldquo;I want to sign the user in and get an authorization code &mdash; here&rsquo;s my proof (the challenge) that I&rsquo;ll use later.&rdquo;</em></p>
+            <hr />
+            <h3><strong>2️⃣ User Login and Consent</strong></h3>
+            <p><strong>Who:</strong> User interacts with Azure Entra ID<br /> <strong>What Happens:</strong></p>
+            <ul>
+                <li>
+                    <p>The user sees the Microsoft login page.</p>
+                </li>
+                <li>
+                    <p>They enter credentials.</p>
+                </li>
+                <li>
+                    <p>If it&rsquo;s their first time, they may consent to allow the Angular app to access APIs on their behalf.</p>
+                </li>
+            </ul>
+            <p><strong>Purpose:</strong><br /> Authenticate the user and get consent for API access.</p>
+            <hr />
+            <h3><strong>3️⃣ Authorization Code Returned</strong></h3>
+            <p><strong>Who:</strong> Azure Entra ID &rarr; Angular SPA<br /> <strong>What Happens:</strong></p>
+            <ul>
+                <li>
+                    <p>Azure Entra ID redirects back to the Angular app&rsquo;s redirect URI:</p>
+<pre><code>https://localhost:4200/?code=AUTH_CODE_HERE&amp;state=randomState
+</code></pre>
+                </li>
+                <li>
+                    <p>The app now has an <strong>authorization code</strong> &mdash; a short-lived, single-use token.</p>
+                </li>
+            </ul>
+            <p><strong>Purpose:</strong><br /> This code represents proof that the user successfully authenticated.</p>
+            <hr />
+            <h3><strong>4️⃣ Token Request</strong></h3>
+            <p><strong>Who:</strong> Angular SPA &rarr; Azure Entra ID <code>/token</code> endpoint<br /> <strong>What Happens:</strong></p>
+            <ul>
+                <li>
+                    <p>The Angular app exchanges the authorization code for tokens.</p>
+                </li>
+                <li>
+                    <p>It sends:</p>
+                    <ul>
+                        <li>
+                            <p><code>grant_type=authorization_code</code></p>
+                        </li>
+                        <li>
+                            <p><code>code=AUTH_CODE_HERE</code></p>
+                        </li>
+                        <li>
+                            <p><code>redirect_uri</code></p>
+                        </li>
+                        <li>
+                            <p><code>client_id</code></p>
+                        </li>
+                        <li>
+                            <p><code>code_verifier</code> (the original secret that matches the earlier <code>code_challenge</code>)</p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <p><strong>Purpose:</strong><br /> This proves the app that started the login is the same app completing it &mdash; PKCE prevents &ldquo;code interception&rdquo; attacks.</p>
+            <hr />
+            <h3><strong>5️⃣ Token Response</strong></h3>
+            <p><strong>Who:</strong> Azure Entra ID &rarr; Angular SPA<br /> <strong>What Happens:</strong></p>
+            <ul>
+                <li>
+                    <p>Azure Entra ID validates the <code>code_verifier</code>.</p>
+                </li>
+                <li>
+                    <p>If valid, it returns:</p>
+<pre><code class="language-json">{
+  "id_token": "eyJhbGciOi...",
+  "access_token": "eyJhbGciOi...",
+  "expires_in": 3600
+}
+</code></pre>
+                </li>
+            </ul>
+            <p><strong>Purpose:</strong><br /> The SPA now knows <em>who</em> the user is (<code>id_token</code>) and has <em>permission</em> to call APIs (<code>access_token</code>).</p>
+            <hr />
+            <h3><strong>6️⃣ API Call with Access Token</strong></h3>
+            <p><strong>Who:</strong> Angular SPA &rarr; ASP.NET Core Web API<br /> <strong>What Happens:</strong></p>
+            <ul>
+                <li>
+                    <p>Angular calls a protected API endpoint:</p>
+<pre><code>GET https://localhost:5001/api/values
+Authorization: Bearer eyJhbGciOi...
+</code></pre>
+                </li>
+                <li>
+                    <p>The access token (JWT) is attached in the <code>Authorization</code> header.</p>
+                </li>
+            </ul>
+            <p><strong>Purpose:</strong><br /> Authenticate requests to your backend API securely.</p>
+            <hr />
+            <h3><strong>7️⃣ Token Validation</strong></h3>
+            <p><strong>Who:</strong> ASP.NET Core Web API<br /> <strong>What Happens:</strong></p>
+            <ul>
+                <li>
+                    <p>The API (using <code>Microsoft.Identity.Web</code>) validates:</p>
+                    <ul>
+                        <li>
+                            <p>The token&rsquo;s <strong>signature</strong> using Azure Entra&rsquo;s public keys (via OpenID discovery)</p>
+                        </li>
+                        <li>
+                            <p>The <strong>issuer (iss)</strong> matches Azure Entra ID</p>
+                        </li>
+                        <li>
+                            <p>The <strong>audience (aud)</strong> matches your API&rsquo;s client ID</p>
+                        </li>
+                        <li>
+                            <p>The <strong>scopes/roles</strong> permit the requested operation</p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <p><strong>Purpose:</strong><br /> Ensure the token is authentic, not expired, and valid for this API.</p>
+            <hr />
+            <h3><strong>8️⃣ Protected Resource Returned</strong></h3>
+            <p><strong>Who:</strong> ASP.NET Core Web API &rarr; Angular SPA<br /> <strong>What Happens:</strong></p>
+            <ul>
+                <li>
+                    <p>If the access token is valid, the API executes the request and returns protected data.</p>
+                </li>
+                <li>
+                    <p>If invalid or expired, returns <code>401 Unauthorized</code>.</p>
+                </li>
+            </ul>
+            <p><strong>Purpose:</strong><br /> Deliver secured resources to authenticated users.</p>
+            <hr />
+            <h2>🧠 Summary Table</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Step</th>
+                        <th>From &rarr; To</th>
+                        <th>What Happens</th>
+                        <th>Protocol</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Angular &rarr; Azure Entra ID</td>
+                        <td>Send login request with PKCE challenge</td>
+                        <td>OIDC</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>User &harr; Azure Entra ID</td>
+                        <td>User authenticates</td>
+                        <td>OIDC</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Azure Entra ID &rarr; Angular</td>
+                        <td>Return authorization code</td>
+                        <td>OIDC</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Angular &rarr; Azure Entra ID</td>
+                        <td>Exchange code + verifier</td>
+                        <td>OAuth 2.0</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Azure Entra ID &rarr; Angular</td>
+                        <td>Return tokens</td>
+                        <td>OAuth 2.0</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Angular &rarr; API</td>
+                        <td>Call API with access token</td>
+                        <td>OAuth 2.0</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>API</td>
+                        <td>Validate token</td>
+                        <td>OAuth 2.0</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>API &rarr; Angular</td>
+                        <td>Return protected data</td>
+                        <td>&mdash;</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <h3>🔐 Key Security Advantages of PKCE</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Threat Prevented</th>
+                        <th>How PKCE Helps</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Authorization code interception</td>
+                        <td>Code verifier ensures only the original app can exchange the code</td>
+                    </tr>
+                    <tr>
+                        <td>Client secret exposure</td>
+                        <td>No client secret required (safe for SPAs)</td>
+                    </tr>
+                    <tr>
+                        <td>Replay attacks</td>
+                        <td>Authorization codes are single-use and short-lived</td>
+                    </tr>
+                    <tr>
+                        <td>Token tampering</td>
+                        <td>JWT tokens are signed by Azure Entra ID and verified by the API</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+        </div>
+    </TabPage>
+</TabControl>
+
+@code {
+
+}
