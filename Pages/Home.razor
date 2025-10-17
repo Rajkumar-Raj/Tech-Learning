@@ -1,7 +1,22 @@
 ﻿@page "/"
+@inject NavigationManager Nav
 
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
+
+@code {
+    protected override void OnInitialized()
+    {
+        var uri = new Uri(Nav.Uri);
+        var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
+        var route = query.Get("path");
+
+        if (!string.IsNullOrEmpty(route))
+        {
+            Nav.NavigateTo(route, true);
+        }
+    }
+}
