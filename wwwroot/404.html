@@ -11,7 +11,7 @@
 
             // Remove your base path if your app is deployed in a subfolder
             // Example: if your app is at /myapp/, strip that part out
-            var basePath = "/Tech-Learning"; // ⬅️ Change this if needed
+            var basePath = "/Tech-Learning/"; // ⬅️ Change this if needed
             if (path.startsWith(basePath)) {
                 path = path.substring(basePath.length);
             }
@@ -21,7 +21,7 @@
             var hash = window.location.hash;
 
             // Build redirect URL
-            var redirectUrl = basePath + "/?path=" + encodeURIComponent(path + query + hash);
+            var redirectUrl = basePath + "?path=" + encodeURIComponent(path + query + hash);
 
             // Redirect to index.html with path as query parameter
             window.location.replace(redirectUrl);
