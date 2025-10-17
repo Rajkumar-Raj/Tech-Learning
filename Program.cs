@@ -28,7 +28,7 @@ var path = query.Get("path");
 if (!string.IsNullOrEmpty(path))
 {
     var nav = host.Services.GetRequiredService<NavigationManager>();
-    nav.NavigateTo("Tech-Learning/" + path, forceLoad: false);
+    nav.NavigateTo(path, forceLoad: false);
 }
 
 await host.RunAsync();
