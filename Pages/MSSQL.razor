@@ -1,0 +1,432 @@
+﻿@page "/mssql"
+
+<TabControl>
+    <TabPage Title="MS SQL Core concepts">
+        <div class="content">
+            <h2>🧩 <strong>MS SQL &ndash; Basic Concepts</strong></h2>
+            <h3>1. <strong>Introduction to Databases</strong></h3>
+            <ul>
+                <li>
+                    <p>What is a Database</p>
+                </li>
+                <li>
+                    <p>Types of Databases (Relational, NoSQL, etc.)</p>
+                </li>
+                <li>
+                    <p>Introduction to RDBMS (Relational Database Management System)</p>
+                </li>
+                <li>
+                    <p>Overview of SQL Server and its components</p>
+                </li>
+                <li>
+                    <p>SQL Server Management Studio (SSMS)</p>
+                </li>
+            </ul>
+            <h3>2. <strong>SQL Fundamentals</strong></h3>
+            <ul>
+                <li>
+                    <p>SQL Syntax and Structure</p>
+                </li>
+                <li>
+                    <p>Data Definition Language (DDL)</p>
+                    <ul>
+                        <li>
+                            <p><code>CREATE</code>, <code>ALTER</code>, <code>DROP</code>, <code>TRUNCATE</code></p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p>Data Manipulation Language (DML)</p>
+                    <ul>
+                        <li>
+                            <p><code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code></p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p>Data Control Language (DCL)</p>
+                    <ul>
+                        <li>
+                            <p><code>GRANT</code>, <code>REVOKE</code></p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p>Transaction Control Language (TCL)</p>
+                    <ul>
+                        <li>
+                            <p><code>COMMIT</code>, <code>ROLLBACK</code>, <code>SAVEPOINT</code></p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <h3>3. <strong>Data Types</strong></h3>
+            <ul>
+                <li>
+                    <p>Numeric, Character, Date/Time, Binary, and Other Types</p>
+                </li>
+                <li>
+                    <p>NULL Values</p>
+                </li>
+            </ul>
+            <h3>4. <strong>Constraints</strong></h3>
+            <ul>
+                <li>
+                    <p><code>PRIMARY KEY</code>, <code>FOREIGN KEY</code></p>
+                </li>
+                <li>
+                    <p><code>UNIQUE</code>, <code>NOT NULL</code>, <code>CHECK</code>, <code>DEFAULT</code></p>
+                </li>
+            </ul>
+            <h3>5. <strong>Operators</strong></h3>
+            <ul>
+                <li>
+                    <p>Arithmetic, Comparison, Logical, and String Operators</p>
+                </li>
+                <li>
+                    <p><code>BETWEEN</code>, <code>IN</code>, <code>LIKE</code>, <code>IS NULL</code></p>
+                </li>
+            </ul>
+            <h3>6. <strong>Functions</strong></h3>
+            <ul>
+                <li>
+                    <p>Aggregate Functions (<code>COUNT</code>, <code>SUM</code>, <code>AVG</code>, <code>MIN</code>, <code>MAX</code>)</p>
+                </li>
+                <li>
+                    <p>String Functions (<code>LEN</code>, <code>SUBSTRING</code>, <code>REPLACE</code>, <code>CONCAT</code>)</p>
+                </li>
+                <li>
+                    <p>Date Functions (<code>GETDATE</code>, <code>DATEADD</code>, <code>DATEDIFF</code>, <code>FORMAT</code>)</p>
+                </li>
+                <li>
+                    <p>Conversion Functions (<code>CAST</code>, <code>CONVERT</code>)</p>
+                </li>
+            </ul>
+            <h3>7. <strong>Joins</strong></h3>
+            <ul>
+                <li>
+                    <p><code>INNER JOIN</code></p>
+                </li>
+                <li>
+                    <p><code>LEFT JOIN</code> / <code>RIGHT JOIN</code></p>
+                </li>
+                <li>
+                    <p><code>FULL OUTER JOIN</code></p>
+                </li>
+                <li>
+                    <p><code>CROSS JOIN</code></p>
+                </li>
+                <li>
+                    <p>Self Join</p>
+                </li>
+            </ul>
+            <h3>8. <strong>Subqueries and Nested Queries</strong></h3>
+            <ul>
+                <li>
+                    <p>Scalar Subqueries</p>
+                </li>
+                <li>
+                    <p>Correlated Subqueries</p>
+                </li>
+            </ul>
+            <h3>9. <strong>Views</strong></h3>
+            <ul>
+                <li>
+                    <p>Creating and Managing Views</p>
+                </li>
+                <li>
+                    <p>Updatable vs Non-Updatable Views</p>
+                </li>
+            </ul>
+            <h3>10. <strong>Indexes</strong></h3>
+            <ul>
+                <li>
+                    <p>Clustered and Non-Clustered Indexes</p>
+                </li>
+                <li>
+                    <p>Index Maintenance and Optimization</p>
+                </li>
+            </ul>
+            <h3>11. <strong>Normalization</strong></h3>
+            <ul>
+                <li>
+                    <p>1NF, 2NF, 3NF, BCNF</p>
+                </li>
+                <li>
+                    <p>Denormalization</p>
+                </li>
+            </ul>
+            <h3>12. <strong>Stored Procedures</strong></h3>
+            <ul>
+                <li>
+                    <p>Creating, Executing, and Modifying Procedures</p>
+                </li>
+                <li>
+                    <p>Input/Output Parameters</p>
+                </li>
+            </ul>
+            <h3>13. <strong>Triggers</strong></h3>
+            <ul>
+                <li>
+                    <p><code>AFTER</code>, <code>INSTEAD OF</code> Triggers</p>
+                </li>
+                <li>
+                    <p>DML and DDL Triggers</p>
+                </li>
+            </ul>
+            <h3>14. <strong>Transactions</strong></h3>
+            <ul>
+                <li>
+                    <p>ACID Properties</p>
+                </li>
+                <li>
+                    <p><code>BEGIN TRANSACTION</code>, <code>COMMIT</code>, <code>ROLLBACK</code></p>
+                </li>
+                <li>
+                    <p>Error Handling with <code>TRY...CATCH</code></p>
+                </li>
+            </ul>
+            <h3>15. <strong>Basic Security</strong></h3>
+            <ul>
+                <li>
+                    <p>Users, Roles, and Permissions</p>
+                </li>
+                <li>
+                    <p>SQL Authentication vs Windows Authentication</p>
+                </li>
+            </ul>
+            <hr />
+            <h2>⚙️ <strong>MS SQL &ndash; Advanced Concepts</strong></h2>
+            <h3>1. <strong>Advanced Joins and Queries</strong></h3>
+            <ul>
+                <li>
+                    <p>CTE (Common Table Expressions)</p>
+                </li>
+                <li>
+                    <p>Recursive Queries</p>
+                </li>
+                <li>
+                    <p>Pivoting and Unpivoting Data</p>
+                </li>
+                <li>
+                    <p>Window Functions (<code>ROW_NUMBER</code>, <code>RANK</code>, <code>DENSE_RANK</code>, <code>NTILE</code>)</p>
+                </li>
+                <li>
+                    <p>Dynamic SQL</p>
+                </li>
+            </ul>
+            <h3>2. <strong>Advanced Stored Procedures</strong></h3>
+            <ul>
+                <li>
+                    <p>Error Handling (<code>TRY...CATCH</code>)</p>
+                </li>
+                <li>
+                    <p>Transactions in Stored Procedures</p>
+                </li>
+                <li>
+                    <p>Parameterized and Dynamic Procedures</p>
+                </li>
+            </ul>
+            <h3>3. <strong>Functions (User-Defined Functions)</strong></h3>
+            <ul>
+                <li>
+                    <p>Scalar Functions</p>
+                </li>
+                <li>
+                    <p>Table-Valued Functions (Inline and Multi-Statement)</p>
+                </li>
+            </ul>
+            <h3>4. <strong>Performance Tuning and Optimization</strong></h3>
+            <ul>
+                <li>
+                    <p>Query Execution Plans</p>
+                </li>
+                <li>
+                    <p>Index Tuning and Maintenance</p>
+                </li>
+                <li>
+                    <p>Statistics and Histograms</p>
+                </li>
+                <li>
+                    <p>Caching and Buffer Management</p>
+                </li>
+                <li>
+                    <p>Parameter Sniffing</p>
+                </li>
+                <li>
+                    <p>Avoiding Deadlocks</p>
+                </li>
+            </ul>
+            <h3>5. <strong>Advanced Indexing</strong></h3>
+            <ul>
+                <li>
+                    <p>Filtered Indexes</p>
+                </li>
+                <li>
+                    <p>Columnstore Indexes</p>
+                </li>
+                <li>
+                    <p>XML and Full-Text Indexes</p>
+                </li>
+            </ul>
+            <h3>6. <strong>SQL Server Architecture</strong></h3>
+            <ul>
+                <li>
+                    <p>Database Engine Components</p>
+                </li>
+                <li>
+                    <p>System Databases (master, model, msdb, tempdb)</p>
+                </li>
+                <li>
+                    <p>Memory and Storage Architecture</p>
+                </li>
+                <li>
+                    <p>Checkpoints and Recovery Models</p>
+                </li>
+            </ul>
+            <h3>7. <strong>Backup and Recovery</strong></h3>
+            <ul>
+                <li>
+                    <p>Full, Differential, and Transaction Log Backups</p>
+                </li>
+                <li>
+                    <p>Restore Strategies</p>
+                </li>
+                <li>
+                    <p>Point-in-Time Recovery</p>
+                </li>
+            </ul>
+            <h3>8. <strong>Replication</strong></h3>
+            <ul>
+                <li>
+                    <p>Snapshot, Transactional, and Merge Replication</p>
+                </li>
+                <li>
+                    <p>Publication and Subscription Models</p>
+                </li>
+            </ul>
+            <h3>9. <strong>High Availability and Disaster Recovery (HADR)</strong></h3>
+            <ul>
+                <li>
+                    <p>Log Shipping</p>
+                </li>
+                <li>
+                    <p>Database Mirroring</p>
+                </li>
+                <li>
+                    <p>Always On Availability Groups</p>
+                </li>
+                <li>
+                    <p>Failover Clustering</p>
+                </li>
+            </ul>
+            <h3>10. <strong>Security (Advanced)</strong></h3>
+            <ul>
+                <li>
+                    <p>Encryption (TDE, Always Encrypted)</p>
+                </li>
+                <li>
+                    <p>Row-Level Security</p>
+                </li>
+                <li>
+                    <p>Dynamic Data Masking</p>
+                </li>
+                <li>
+                    <p>Auditing and Compliance</p>
+                </li>
+            </ul>
+            <h3>11. <strong>Partitioning</strong></h3>
+            <ul>
+                <li>
+                    <p>Table and Index Partitioning</p>
+                </li>
+                <li>
+                    <p>Partition Schemes and Functions</p>
+                </li>
+            </ul>
+            <h3>12. <strong>Service Broker</strong></h3>
+            <ul>
+                <li>
+                    <p>Messaging and Queues</p>
+                </li>
+                <li>
+                    <p>Asynchronous Processing</p>
+                </li>
+            </ul>
+            <h3>13. <strong>SQL Server Integration and Automation</strong></h3>
+            <ul>
+                <li>
+                    <p>SQL Server Agent Jobs</p>
+                </li>
+                <li>
+                    <p>SQLCMD and PowerShell Integration</p>
+                </li>
+                <li>
+                    <p>SSIS (Integration Services), SSRS (Reporting Services), SSAS (Analysis Services)</p>
+                </li>
+            </ul>
+            <h3>14. <strong>XML and JSON Handling</strong></h3>
+            <ul>
+                <li>
+                    <p>FOR XML / OPENXML</p>
+                </li>
+                <li>
+                    <p>JSON Functions (<code>OPENJSON</code>, <code>FOR JSON</code>)</p>
+                </li>
+            </ul>
+            <h3>15. <strong>Data Warehousing and BI Concepts</strong></h3>
+            <ul>
+                <li>
+                    <p>ETL Process</p>
+                </li>
+                <li>
+                    <p>Star and Snowflake Schemas</p>
+                </li>
+                <li>
+                    <p>OLAP Cubes</p>
+                </li>
+            </ul>
+            <h3>16. <strong>TempDB and Resource Management</strong></h3>
+            <ul>
+                <li>
+                    <p>Temp Tables, Table Variables, and CTEs</p>
+                </li>
+                <li>
+                    <p>Resource Governor</p>
+                </li>
+                <li>
+                    <p>Deadlock Analysis and Locking Mechanisms</p>
+                </li>
+            </ul>
+            <h3>17. <strong>Monitoring and Maintenance</strong></h3>
+            <ul>
+                <li>
+                    <p>Dynamic Management Views (DMVs)</p>
+                </li>
+                <li>
+                    <p>Profiler and Extended Events</p>
+                </li>
+                <li>
+                    <p>Performance Monitor (PerfMon)</p>
+                </li>
+            </ul>
+            <h3>18. <strong>Cloud and Hybrid SQL</strong></h3>
+            <ul>
+                <li>
+                    <p>Azure SQL Database</p>
+                </li>
+                <li>
+                    <p>Managed Instances</p>
+                </li>
+                <li>
+                    <p>Synapse Analytics</p>
+                </li>
+            </ul>
+            <hr />
+        </div>
+    </TabPage>
+</TabControl>
+
+@code {
+
+}

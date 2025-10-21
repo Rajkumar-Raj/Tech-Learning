@@ -1,0 +1,604 @@
+﻿@page "/javascript"
+
+
+<TabControl>
+    <TabPage Title="Core Concepts">
+        <div class="content">
+            <h2>🧠 <strong>Core Concepts</strong></h2>
+            <h3>1. <strong>What is JavaScript</strong></h3>
+            <ul>
+                <li>
+                    <p><strong>High-level</strong>, <strong>interpreted</strong>, <strong>dynamic</strong> programming language.</p>
+                </li>
+                <li>
+                    <p><strong>Single-threaded</strong>, <strong>event-driven</strong>, <strong>prototype-based</strong>, and used primarily for <strong>web development</strong>.</p>
+                </li>
+                <li>
+                    <p>Runs in browsers (client-side) and on servers via <strong>Node.js</strong>.</p>
+                </li>
+            </ul>
+            <hr />
+            <h2>⚙️ <strong>Language Basics</strong></h2>
+            <h3>2. <strong>Data Types</strong></h3>
+            <ul>
+                <li>
+                    <p><strong>Primitive types:</strong><br /> <code>string</code>, <code>number</code>, <code>boolean</code>, <code>null</code>, <code>undefined</code>, <code>symbol</code>, <code>bigint</code></p>
+                </li>
+                <li>
+                    <p><strong>Non-primitive:</strong><br /> <code>object</code>, <code>array</code>, <code>function</code></p>
+                </li>
+            </ul>
+<pre><code class="language-js">let name = "Raj";        // string
+let age = 30;            // number
+let active = true;       // boolean
+let person = { name, age }; // object
+</code></pre>
+            <hr />
+            <h3>3. <strong>Variables and Scope</strong></h3>
+            <ul>
+                <li>
+                    <p><code>var</code> &rarr; function-scoped, hoisted</p>
+                </li>
+                <li>
+                    <p><code>let</code> &rarr; block-scoped</p>
+                </li>
+                <li>
+                    <p><code>const</code> &rarr; block-scoped, cannot be reassigned</p>
+                </li>
+            </ul>
+<pre><code class="language-js">let a = 10;
+const b = 20;
+</code></pre>
+            <hr />
+            <h3>4. <strong>Hoisting</strong></h3>
+            <ul>
+                <li>
+                    <p>Variable and function declarations are moved to the top of scope during compilation.</p>
+                </li>
+            </ul>
+<pre><code class="language-js">console.log(x); // undefined
+var x = 5;      // declaration hoisted, initialization not
+</code></pre>
+            <hr />
+            <h3>5. <strong>Functions</strong></h3>
+            <ul>
+                <li>
+                    <p><strong>Function declaration:</strong></p>
+<pre><code class="language-js">function add(a, b) { return a + b; }
+</code></pre>
+                </li>
+                <li>
+                    <p><strong>Function expression:</strong></p>
+<pre><code class="language-js">const add = function(a, b) { return a + b; }
+</code></pre>
+                </li>
+                <li>
+                    <p><strong>Arrow function (ES6):</strong></p>
+<pre><code class="language-js">const add = (a, b) =&gt; a + b;
+</code></pre>
+                </li>
+            </ul>
+            <hr />
+            <h2>🔁 <strong>Execution and Control Flow</strong></h2>
+            <h3>6. <strong>Execution Context &amp; Call Stack</strong></h3>
+            <ul>
+                <li>
+                    <p>JS runs in <strong>Global Execution Context</strong> &rarr; functions create new <strong>Execution Contexts</strong> &rarr; managed by the <strong>Call Stack</strong>.</p>
+                </li>
+            </ul>
+            <hr />
+            <h3>7. <strong>Event Loop &amp; Asynchronous Programming</strong></h3>
+            <ul>
+                <li>
+                    <p>JS is <strong>single-threaded</strong>, but async operations (e.g., API calls) are handled via the <strong>event loop</strong>, <strong>callback queue</strong>, and <strong>Web APIs</strong>.</p>
+                </li>
+            </ul>
+<pre><code class="language-js">console.log("A");
+setTimeout(() =&gt; console.log("B"), 0);
+console.log("C");
+// Output: A, C, B
+</code></pre>
+            <hr />
+            <h2>🧩 <strong>Objects and Prototypes</strong></h2>
+            <h3>8. <strong>Objects</strong></h3>
+            <ul>
+                <li>
+                    <p>Key-value pairs; can store functions as methods.</p>
+                </li>
+            </ul>
+<pre><code class="language-js">const user = {
+  name: "Raj",
+  greet() { console.log("Hello " + this.name); }
+};
+</code></pre>
+            <hr />
+            <h3>9. <strong>Prototype and Inheritance</strong></h3>
+            <ul>
+                <li>
+                    <p>Each object has a hidden link (<code>__proto__</code>) to another object (its prototype).</p>
+                </li>
+                <li>
+                    <p>Enables <strong>inheritance</strong> and <strong>method sharing</strong>.</p>
+                </li>
+            </ul>
+<pre><code class="language-js">function Person(name) { this.name = name; }
+Person.prototype.sayHi = function() { console.log("Hi " + this.name); };
+</code></pre>
+            <hr />
+            <h2>🧮 <strong>Important Concepts</strong></h2>
+            <h3>10. <strong>Closures</strong></h3>
+            <ul>
+                <li>
+                    <p>Function &ldquo;remembers&rdquo; variables from its outer scope.</p>
+                </li>
+            </ul>
+<pre><code class="language-js">function makeCounter() {
+  let count = 0;
+  return function() {
+    count++;
+    return count;
+  };
+}
+const counter = makeCounter();
+console.log(counter()); // 1
+</code></pre>
+            <hr />
+            <h3>11. <strong>this Keyword</strong></h3>
+            <ul>
+                <li>
+                    <p>Refers to the <strong>object</strong> that is executing the function.</p>
+                </li>
+                <li>
+                    <p>Depends on how the function is <strong>called</strong> (not where defined).</p>
+                </li>
+            </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Context</th>
+                        <th>Value of <code>this</code></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Global</td>
+                        <td><code>window</code> or <code>undefined</code> (strict mode)</td>
+                    </tr>
+                    <tr>
+                        <td>Method</td>
+                        <td>Object that owns the method</td>
+                    </tr>
+                    <tr>
+                        <td>Arrow function</td>
+                        <td>Lexically inherited (outer scope)</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <h3>12. <strong>Call, Apply, Bind</strong></h3>
+            <p>Used to control the value of <code>this</code>.</p>
+<pre><code class="language-js">function greet(city) {
+  console.log(`Hello ${this.name} from ${city}`);
+}
+const user = { name: "Raj" };
+greet.call(user, "Dallas");
+greet.apply(user, ["Dallas"]);
+const boundGreet = greet.bind(user, "Dallas");
+boundGreet();
+</code></pre>
+            <hr />
+            <h2>⚡ <strong>Modern JavaScript (ES6+) Features</strong></h2>
+            <h3>13. <strong>Template Literals</strong></h3>
+<pre><code class="language-js">let name = "Raj";
+console.log(`Hello, ${name}!`);
+</code></pre>
+            <h3>14. <strong>Destructuring</strong></h3>
+<pre><code class="language-js">const user = { name: "Raj", age: 30 };
+const { name, age } = user;
+</code></pre>
+            <h3>15. <strong>Spread and Rest Operators</strong></h3>
+<pre><code class="language-js">const arr = [1, 2, 3];
+const newArr = [...arr, 4]; // spread
+
+function sum(...nums) { return nums.reduce((a,b) =&gt; a+b); } // rest
+</code></pre>
+            <h3>16. <strong>Modules</strong></h3>
+<pre><code class="language-js">// math.js
+export function add(a, b) { return a + b; }
+// main.js
+import { add } from './math.js';
+</code></pre>
+            <h3>17. <strong>Promises &amp; Async/Await</strong></h3>
+<pre><code class="language-js">const fetchData = async () =&gt; {
+  try {
+    const res = await fetch('https://api.example.com');
+    const data = await res.json();
+    console.log(data);
+  } catch (err) {
+    console.error(err);
+  }
+};
+</code></pre>
+            <h3>18. <strong>Classes</strong></h3>
+<pre><code class="language-js">class Person {
+  constructor(name) { this.name = name; }
+  greet() { console.log(`Hello ${this.name}`); }
+}
+</code></pre>
+            <hr />
+            <h2>🧰 <strong>Other Useful Features</strong></h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Concept</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Map / Set</strong></td>
+                        <td>Advanced collection types for unique keys/values</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Optional Chaining (?.)</strong></td>
+                        <td>Prevents errors when accessing nested properties</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nullish Coalescing (??)</strong></td>
+                        <td>Returns right-hand side if left-hand side is null/undefined</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Generators / Iterators</strong></td>
+                        <td>Functions that can pause execution (<code>yield</code>)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Symbols</strong></td>
+                        <td>Unique identifiers for object keys</td>
+                    </tr>
+                    <tr>
+                        <td><strong>BigInt</strong></td>
+                        <td>For very large integers</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+
+            <h2>🧠 1. <strong>Execution Context &amp; Scope Chain</strong></h2>
+            <h3>🔹 What it is</h3>
+            <p>Every time JS executes a function, it creates an <strong>Execution Context (EC)</strong> containing:</p>
+            <ul>
+                <li>
+                    <p><strong>Variable Environment</strong></p>
+                </li>
+                <li>
+                    <p><strong>Lexical Environment</strong></p>
+                </li>
+                <li>
+                    <p><strong><code>this</code> binding</strong></p>
+                </li>
+            </ul>
+            <p>The ECs are managed by the <strong>Call Stack</strong>.<br /> When JS tries to access a variable, it looks up the <strong>scope chain</strong> &mdash; current &rarr; parent &rarr; global.</p>
+<pre><code class="language-js">let x = 10;
+function outer() {
+  let y = 20;
+  function inner() {
+    console.log(x + y);
+  }
+  inner(); // 30
+}
+outer();
+</code></pre>
+            <p>👉 <strong>Scope Chain</strong> = <code>inner</code> &rarr; <code>outer</code> &rarr; <code>global</code></p>
+            <hr />
+            <h2>🔁 2. <strong>Closures (Deep Understanding)</strong></h2>
+            <p>A <strong>closure</strong> is created when an inner function &ldquo;remembers&rdquo; its outer variables even after the outer function has finished executing.</p>
+<pre><code class="language-js">function makeCounter() {
+  let count = 0;
+  return function() {
+    return ++count;
+  };
+}
+
+const counter = makeCounter();
+console.log(counter()); // 1
+console.log(counter()); // 2
+</code></pre>
+            <p>🧩 <strong>Use cases:</strong></p>
+            <ul>
+                <li>
+                    <p>Data privacy / encapsulation</p>
+                </li>
+                <li>
+                    <p>Event handlers and callbacks</p>
+                </li>
+                <li>
+                    <p>Memoization, state management</p>
+                </li>
+            </ul>
+            <hr />
+            <h2>⚙️ 3. <strong>Prototype &amp; Prototypal Inheritance</strong></h2>
+            <p>Every object has a hidden property <code>[[Prototype]]</code> (accessible as <code>__proto__</code>) that points to another object &mdash; forming a <strong>prototype chain</strong>.</p>
+<pre><code class="language-js">const animal = { eats: true };
+const dog = Object.create(animal);
+dog.barks = true;
+console.log(dog.eats); // true (inherited)
+</code></pre>
+            <p>Modern syntax with <strong>classes</strong>:</p>
+<pre><code class="language-js">class Animal { speak() { console.log("Sound"); } }
+class Dog extends Animal { speak() { console.log("Bark"); } }
+new Dog().speak(); // Bark
+</code></pre>
+            <hr />
+            <h2>⚡ 4. <strong>Asynchronous JavaScript</strong></h2>
+            <h3>🔹 Event Loop</h3>
+            <p>JS is <strong>single-threaded</strong>, but async behavior comes via:</p>
+            <ul>
+                <li>
+                    <p><strong>Call Stack</strong></p>
+                </li>
+                <li>
+                    <p><strong>Web APIs</strong></p>
+                </li>
+                <li>
+                    <p><strong>Callback Queue</strong></p>
+                </li>
+                <li>
+                    <p><strong>Event Loop</strong></p>
+                </li>
+                <li>
+                    <p><strong>Microtask Queue (Promises)</strong></p>
+                </li>
+            </ul>
+<pre><code class="language-js">console.log("A");
+setTimeout(() =&gt; console.log("B"), 0);
+Promise.resolve().then(() =&gt; console.log("C"));
+console.log("D");
+// Output: A, D, C, B
+</code></pre>
+            <p>🕓 <strong>Order</strong>: Call Stack &rarr; Microtasks &rarr; Macrotasks</p>
+            <hr />
+            <h2>🧵 5. <strong>Promises, async/await, and Microtasks</strong></h2>
+            <h3>🔹 Promise</h3>
+            <p>A <strong>Promise</strong> represents a value that may be available <strong>now</strong>, <strong>later</strong>, or <strong>never</strong>.</p>
+<pre><code class="language-js">const promise = new Promise((resolve, reject) =&gt; {
+  setTimeout(() =&gt; resolve("Done!"), 1000);
+});
+
+promise.then(console.log).catch(console.error);
+</code></pre>
+            <h3>🔹 async/await</h3>
+            <p>Syntactic sugar over Promises.</p>
+<pre><code class="language-js">async function fetchData() {
+  try {
+    const res = await fetch("https://api.example.com");
+    const data = await res.json();
+    console.log(data);
+  } catch (err) {
+    console.error(err);
+  }
+}
+</code></pre>
+            <p>🧩 <strong>Tips:</strong></p>
+            <ul>
+                <li>
+                    <p><code>await</code> only works inside <code>async</code> functions</p>
+                </li>
+                <li>
+                    <p>Multiple async calls &rarr; use <code>Promise.all()</code></p>
+                </li>
+            </ul>
+            <hr />
+            <h2>🧩 6. <strong>Functional Programming Concepts</strong></h2>
+            <h3>🔹 First-Class and Higher-Order Functions</h3>
+            <ul>
+                <li>
+                    <p>Functions can be assigned, passed, or returned.</p>
+                </li>
+            </ul>
+<pre><code class="language-js">function operate(a, b, fn) {
+  return fn(a, b);
+}
+console.log(operate(2, 3, (x, y) =&gt; x + y));
+</code></pre>
+            <h3>🔹 Pure Functions</h3>
+            <p>No side effects, same input &rarr; same output.</p>
+            <h3>🔹 Currying</h3>
+            <p>Transforms a function with multiple arguments into nested functions.</p>
+<pre><code class="language-js">const add = a =&gt; b =&gt; a + b;
+console.log(add(2)(3)); // 5
+</code></pre>
+            <h3>🔹 Composition</h3>
+            <p>Combining multiple functions into one.</p>
+<pre><code class="language-js">const compose = (f, g) =&gt; x =&gt; f(g(x));
+</code></pre>
+            <hr />
+            <h2>🧮 7. <strong>Memory Management &amp; Garbage Collection</strong></h2>
+            <p>JS has <strong>automatic garbage collection</strong>, but understanding memory behavior helps optimize performance.</p>
+            <h3>🔹 Common leaks</h3>
+            <ul>
+                <li>
+                    <p>Global variables</p>
+                </li>
+                <li>
+                    <p>Detached DOM nodes</p>
+                </li>
+                <li>
+                    <p>Closures holding references</p>
+                </li>
+                <li>
+                    <p>Timers not cleared</p>
+                </li>
+            </ul>
+            <h3>🔹 Best practices</h3>
+            <ul>
+                <li>
+                    <p>Use <code>let</code>/<code>const</code> properly</p>
+                </li>
+                <li>
+                    <p>Clean up event listeners</p>
+                </li>
+                <li>
+                    <p>Use WeakMap/WeakSet for cache-like objects</p>
+                </li>
+            </ul>
+            <hr />
+            <h2>🧱 8. <strong>Modules, Bundling, and Namespaces</strong></h2>
+            <h3>🔹 ES Modules (ESM)</h3>
+<pre><code class="language-js">// math.js
+export const add = (a, b) =&gt; a + b;
+
+// main.js
+import { add } from "./math.js";
+</code></pre>
+            <h3>🔹 CommonJS (Node.js)</h3>
+<pre><code class="language-js">module.exports = add;
+const add = require("./math");
+</code></pre>
+            <p>Modern bundlers (Vite, Webpack, Rollup) optimize and tree-shake module imports.</p>
+            <hr />
+            <h2>🔒 9. <strong>Advanced ES6+ Features</strong></h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Symbol</strong></td>
+                        <td>Unique, immutable key</td>
+                        <td><code>const id = Symbol("id");</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Iterators &amp; Generators</strong></td>
+                        <td>Custom iterable logic</td>
+                        <td><code>function* gen() { yield 1; yield 2; }</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>WeakMap / WeakSet</strong></td>
+                        <td>Hold weak references (no memory leaks)</td>
+                        <td><code>let wm = new WeakMap();</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Proxy</strong></td>
+                        <td>Intercept object operations</td>
+                        <td><code>new Proxy(obj, { get: ... })</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Reflect API</strong></td>
+                        <td>Low-level object manipulation</td>
+                        <td><code>Reflect.get(obj, 'prop')</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Optional Chaining</strong></td>
+                        <td>Safe property access</td>
+                        <td><code>user?.address?.city</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nullish Coalescing</strong></td>
+                        <td>Default only for null/undefined</td>
+                        <td><code>value ?? 'default'</code></td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <h2>⚙️ 10. <strong>Event Delegation &amp; DOM Performance</strong></h2>
+<pre><code class="language-js">document.querySelector('#list').addEventListener('click', e =&gt; {
+  if (e.target.tagName === 'LI') {
+    console.log(e.target.textContent);
+  }
+});
+</code></pre>
+            <p>Efficiently handles dynamic elements via <strong>bubbling</strong>.</p>
+            <hr />
+            <h2>🧰 11. <strong>Design Patterns in JavaScript</strong></h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pattern</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Module Pattern</strong></td>
+                        <td>Encapsulate private data</td>
+                        <td>IIFE returning public methods</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Observer</strong></td>
+                        <td>Event-driven system</td>
+                        <td>Custom Event Emitters</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Singleton</strong></td>
+                        <td>One instance</td>
+                        <td>Shared config or store</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Factory</strong></td>
+                        <td>Object creation abstraction</td>
+                        <td>React.createElement()</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Decorator</strong></td>
+                        <td>Extend behavior</td>
+                        <td>Function wrappers</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <h2>🧠 12. <strong>Performance Optimization</strong></h2>
+            <ul>
+                <li>
+                    <p>Use <strong>debouncing/throttling</strong> for events</p>
+                </li>
+                <li>
+                    <p>Lazy-load scripts and images</p>
+                </li>
+                <li>
+                    <p>Avoid deep nested loops</p>
+                </li>
+                <li>
+                    <p>Use <strong>web workers</strong> for CPU-heavy tasks</p>
+                </li>
+                <li>
+                    <p>Profile using <strong>Performance API</strong></p>
+                </li>
+            </ul>
+            <hr />
+            <h3>⚡ Bonus: Event Loop Priority Visualization</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Task Type</th>
+                        <th>Queue</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Macro-task</td>
+                        <td>Task Queue</td>
+                        <td><code>setTimeout</code>, <code>setInterval</code></td>
+                    </tr>
+                    <tr>
+                        <td>Micro-task</td>
+                        <td>Microtask Queue</td>
+                        <td><code>Promise.then()</code>, <code>queueMicrotask()</code></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Order: <strong>Call Stack &rarr; Microtasks &rarr; Macrotasks</strong></p>
+            <hr />
+            <p>&nbsp;</p>
+        </div>
+    </TabPage>
+</TabControl>
+
+@code {
+
+}
